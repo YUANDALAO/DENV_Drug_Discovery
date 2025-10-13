@@ -165,3 +165,40 @@ backup_*.csv
 # External
 autogrow4/
 contrib/
+
+# ============================================================
+# 超大文件排除
+# ============================================================
+
+# TensorBoard（GB级）
+**/events.out.tfevents.*
+**/tensorboard*/
+**/tensorboard_*/
+
+# Checkpoints（100MB+）
+**/*.chkpt
+**/*.ckpt
+
+# Prior models（77-91MB）
+priors/*.prior
+priors/*.model
+!priors/.gitkeep
+
+# 大型CSV
+experiments/runs/**/results_*.csv
+experiments/runs/**/candidates_*.csv
+experiments/runs/**/*_molecules*.csv
+experiments/runs/**/diagnostic_results/
+experiments/runs/**/full_evaluation/
+
+# 主目录临时文件
+denv_*.csv
+backup_*.csv
+*_results_*.csv
+*.smi
+!data/*.smi
+!data/**/*.smi
+
+# External
+autogrow4/
+contrib/
