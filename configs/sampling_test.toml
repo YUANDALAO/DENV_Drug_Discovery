@@ -1,0 +1,7 @@
+run_type = "sampling"
+device = "cuda:0"
+
+[parameters]
+model_file = "priors/denv_ultra_clean_model.model"
+num_smiles = 10
+output_file = "generated_molecules.smi"

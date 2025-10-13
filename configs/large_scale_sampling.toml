@@ -1,0 +1,7 @@
+run_type = "sampling"
+device = "cuda:0"
+
+[parameters]
+model_file = "priors/denv_ultra_clean_model.model"
+num_smiles = 1000
+output_file = "denv_candidates_1000.smi"

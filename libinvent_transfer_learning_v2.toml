@@ -1,0 +1,36 @@
+run_type = "transfer_learning"
+device = "cuda:0"
+tb_logdir = "tb_libinvent_denv_v2"
+json_out_config = "_tl_config.json"
+
+[parameters]
+# ========================================
+# 关键改进
+# ========================================
+num_epochs = 30                          # 从50降到30（防止过拟合）
+save_every_n_epochs = 5                  # 从10改到5（更频繁保存）
+batch_size = 32                          # 从64降到32（显存安全）
+num_refs = 100                           # 从50增到100（更好的相似度评估）
+sample_batch_size = 100
+
+input_model_file = "priors/libinvent.prior"
+
+# ========================================
+# 数据集分割（关键修复！）
+# ========================================
+# 训练集：80%的数据
+smiles_file = "data/libinvent_final_format_train.smi"
+
+# 验证集：20%的独立数据
+validation_smiles_file = "data/libinvent_final_format_valid.smi"
+
+output_model_file = "priors/denv_libinvent_model_v2.model"
+
+# ========================================
+# 相似度配置（优化）
+# ========================================
+pairs.type = "tanimoto"
+pairs.upper_threshold = 1.0
+pairs.lower_threshold = 0.6              # 从0.7降到0.6（允许更多多样性）
+pairs.min_cardinality = 1
+pairs.max_cardinality = 100              # 和num_refs一致

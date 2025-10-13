@@ -1,0 +1,38 @@
+run_type = "reinforcement_learning"
+device = "cuda:0"
+tb_logdir = "tb_scaffold_rl_qsar"
+
+[parameters]
+agent = "priors/denv_ultra_clean_model.model"
+prior = "priors/reinvent.prior"
+n_steps = 500
+
+[parameters.diversity_filter]
+name = "IdenticalMurckoScaffold"
+bucket_size = 25
+minscore = 0.5
+
+[parameters.scoring]
+type = "geometric_mean"
+
+    [[parameters.scoring.component]]
+    [parameters.scoring.component.matching_substructure]
+    weight = 1.0
+    smarts = [
+        "O=CC1CCNCC1",
+        "O=CC1CCC1"
+    ]
+    
+    [[parameters.scoring.component]]
+    [parameters.scoring.component.DENV_QSAR]
+    weight = 1.0
+    [parameters.scoring.component.DENV_QSAR.params]
+    model_path = "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib"
+    
+    [[parameters.scoring.component]]
+    [parameters.scoring.component.QED]
+    weight = 1.0
+    
+    [[parameters.scoring.component]]
+    [parameters.scoring.component.SA_score]
+    weight = 1.0

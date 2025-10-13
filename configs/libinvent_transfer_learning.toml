@@ -1,0 +1,15 @@
+run_type = "transfer_learning"
+device = "cuda:0"
+tb_logdir = "tb_libinvent_denv"
+
+[parameters]
+num_epochs = 50
+save_every_n_epochs = 10
+batch_size = 64
+num_refs = 50
+sample_batch_size = 100
+
+input_model_file = "priors/libinvent.prior"
+smiles_file = "data/libinvent_final_format.smi"
+output_model_file = "priors/denv_libinvent_model.model"
+validation_smiles_file = "data/libinvent_final_format.smi"

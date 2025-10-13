@@ -1,0 +1,66 @@
+# scaffold_rl_with_qsar.toml
+# REINVENT4 Configuration for Scaffold-based RL with DENV QSAR Model
+
+run_type = "reinforcement_learning"
+
+[parameters]
+# Hardware configuration
+device = "cuda:0"
+
+# Model paths
+agent = "priors/denv_ultra_clean_model.model"
+prior = "priors/denv_ultra_clean_model.model"
+
+# Training parameters
+num_steps = 1000
+batch_size = 128
+
+# Diversity filter configuration
+[parameters.diversity_filter]
+name = "IdenticalMurckoScaffold"
+bucket_size = 50
+minscore = 0.4
+
+# Inception memory configuration
+[parameters.inception]
+memory_size = 100
+sample_size = 10
+smiles = []
+
+# Scoring function configuration
+[parameters.scoring_function]
+name = "custom_sum"
+parallel = false
+
+    # Component 1: Scaffold constraint
+    [[parameters.scoring_function.components]]
+    component_type = "matching_substructure"
+    name = "Scaffold_Constraint"
+    weight = 1.0
+    
+        [parameters.scoring_function.components.specific_parameters]
+        smiles = ["c1ccccc1C1CCNC(C1)C(=O)N", "c1ccccc1C1CC(C1)C(=O)N"]
+
+    # Component 2: DENV QSAR model
+    [[parameters.scoring_function.components]]
+    component_type = "my_denv_qsar_model"
+    name = "DENV_pIC50"
+    weight = 0.6
+    
+        [parameters.scoring_function.components.specific_parameters]
+        model_path = "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib"
+
+    # Component 3: QED score
+    [[parameters.scoring_function.components]]
+    component_type = "qed_score"
+    name = "QED"
+    weight = 0.2
+
+    # Component 4: Synthetic accessibility
+    [[parameters.scoring_function.components]]
+    component_type = "sa_score"
+    name = "Synthesizability"
+    weight = 0.2
+    
+        [parameters.scoring_function.components.specific_parameters]
+        transformation = {type = "reverse_sigmoid", high = 4.0, low = 1.0, k = 0.2}

@@ -1,0 +1,478 @@
+18:17:14 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-08
+18:17:14 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent experiments/runs/run10_safe_mode/config.toml
+18:17:14 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run10_safe_mode/config.toml using format toml
+18:17:14 <INFO> User cheriong on host CS00050812
+18:17:14 <INFO> Python version 3.10.18
+18:17:14 <INFO> PyTorch version 2.5.1, git a8d6afb511a69687bbb2b7e88a3cf67917e1697e
+18:17:14 <INFO> PyTorch compiled with CUDA version 11.8
+18:17:14 <INFO> RDKit version 2025.03.2
+18:17:14 <INFO> Platform Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+18:17:15 <INFO> Number of PyTorch CUDA devices 1
+18:17:15 <WARN> 'use_cuda' is deprecated, use 'device' instead
+18:17:15 <INFO> Using CUDA device:0 NVIDIA T1200 Laptop GPU
+18:17:15 <INFO> GPU memory: 3295 MiB free, 4095 MiB total
+18:17:15 <INFO> Writing TensorBoard summary to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run10_safe_mode/tensorboard
+18:17:15 <INFO> Starting 1 stage of Reinforcement Learning
+18:17:15 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+18:17:15 <INFO> Number of network parameters: 23,686,692
+18:17:15 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+18:17:15 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+18:17:15 <INFO> Number of network parameters: 23,686,692
+18:17:15 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+18:17:15 <INFO> Using generator Libinvent
+18:17:15 <INFO> Prior read from priors/libinvent.prior
+18:17:15 <INFO> Agent read from priors/libinvent.prior
+18:17:15 <INFO> Input molecules/fragments read from file data/pyrrolidine_dual_aryl.smi
+18:17:15 <INFO> Using reward strategy dap
+18:17:15 <INFO> Using diversity filter IdenticalMurckoScaffold
+18:17:15 <INFO> Purging diversity filter memories after each stage
+18:17:16 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+18:17:16 <INFO> Registered scoring component GroupCount
+18:17:16 <INFO> Registered scoring component FragmentQed
+18:17:16 <INFO> Registered scoring component FragmentSlogP
+18:17:16 <INFO> Registered scoring component FragmentMolecularWeight
+18:17:16 <INFO> Registered scoring component FragmentTPSA
+18:17:16 <INFO> Registered scoring component FragmentDistanceMatrix
+18:17:16 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+18:17:16 <INFO> Registered scoring component FragmentHBondAcceptors
+18:17:16 <INFO> Registered scoring component FragmentHBondDonors
+18:17:16 <INFO> Registered scoring component FragmentNumRotBond
+18:17:16 <INFO> Registered scoring component FragmentCsp3
+18:17:16 <INFO> Registered scoring component Fragmentnumsp
+18:17:16 <INFO> Registered scoring component Fragmentnumsp2
+18:17:16 <INFO> Registered scoring component Fragmentnumsp3
+18:17:16 <INFO> Registered scoring component FragmentEffectiveLength
+18:17:16 <INFO> Registered scoring component FragmentGraphLength
+18:17:16 <INFO> Registered scoring component FragmentLengthRatio
+18:17:16 <INFO> Registered scoring component FragmentNumHeavyAtoms
+18:17:16 <INFO> Registered scoring component FragmentNumHeteroAtoms
+18:17:16 <INFO> Registered scoring component FragmentNumRings
+18:17:16 <INFO> Registered scoring component FragmentNumAromaticRings
+18:17:16 <INFO> Registered scoring component FragmentNumAliphaticRings
+18:17:16 <INFO> Registered scoring component FragmentSlogP
+18:17:16 <INFO> Registered scoring component MatchingSubstructure
+18:17:16 <INFO> Registered scoring component MolVolume
+18:17:16 <INFO> Registered scoring component Qed
+18:17:16 <INFO> Registered scoring component LargestRingSize
+18:17:16 <INFO> Registered scoring component MolecularWeight
+18:17:16 <INFO> Registered scoring component GraphLength
+18:17:16 <INFO> Registered scoring component NumAtomStereoCenters
+18:17:16 <INFO> Registered scoring component HBondAcceptors
+18:17:16 <INFO> Registered scoring component HBondDonors
+18:17:16 <INFO> Registered scoring component NumRotBond
+18:17:16 <INFO> Registered scoring component Csp3
+18:17:16 <INFO> Registered scoring component numsp
+18:17:16 <INFO> Registered scoring component numsp2
+18:17:16 <INFO> Registered scoring component numsp3
+18:17:16 <INFO> Registered scoring component NumHeavyAtoms
+18:17:16 <INFO> Registered scoring component NumHeteroAtoms
+18:17:16 <INFO> Registered scoring component NumRings
+18:17:16 <INFO> Registered scoring component NumAromaticRings
+18:17:16 <INFO> Registered scoring component NumAliphaticRings
+18:17:16 <INFO> Registered scoring component SlogP
+18:17:16 <INFO> Registered scoring component LargestRingSize
+18:17:16 <INFO> Registered scoring component PMI
+18:17:16 <INFO> Registered scoring component RDKitDescriptors
+18:17:16 <INFO> Registered scoring component TanimotoSimilarity
+18:17:16 <INFO> Registered scoring component TanimotoDistance
+18:17:16 <INFO> Registered scoring component TPSA
+18:17:16 <INFO> Registered scoring component SAScore
+18:17:16 <INFO> Registered scoring component Cazp
+18:17:16 <INFO> Registered scoring component ChemProp
+18:17:16 <INFO> Registered scoring component CustomAlerts
+18:17:16 <INFO> Registered scoring component DockStream
+18:17:16 <INFO> Registered scoring component ExternalProcess
+18:17:16 <INFO> Registered scoring component REST
+18:17:16 <INFO> Registered scoring component Icolos
+18:17:16 <INFO> Registered scoring component Maize
+18:17:16 <INFO> Registered scoring component MMP
+18:17:16 <INFO> Registered scoring component Qptuna
+18:17:16 <INFO> Registered scoring component QSARScorer
+18:17:16 <INFO> Registered scoring component ReactionFilter
+18:17:16 <INFO> Registered scoring component ScaffoldMatcher
+18:17:16 <INFO> Registered scoring component RingPrecedence
+18:17:17 <INFO> Creating scoring component QSARScorer
+18:17:17 <INFO> Creating scoring component Qed
+18:17:17 <INFO> Writing tabular data for stage to experiments/runs/run10_safe_mode/results_1.csv
+18:17:17 <INFO> Starting stage 1 <<<
+18:17:17 <INFO> Current GPU memory usage: 1152 MiB used, 2943 MiB free
+18:17:25 <INFO> Score: 4.95 Agent NLL: 13.14 Valid: 100% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 17.0869 12.0661 627.7172 5.3315266 CCCCCC(=O)N1C(c2cccc(C)c2)CC(C(=O)NS(C)(=O)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C(CCC)CC(=O)*|*C(C)C|O=S(=O)(*)C c1ccc(C2CCC(c3ccccc3)N2)cc1 7.7627935 7.7628 0.4689922 0.4690
+ | 15.4827 16.0238 615.7938 5.2651463 Cc1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C)c3)N2C(=O)c2cnccn2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|O=C(c1nccnc1)*|C*|*S(C)(=O)=O O=C(c1cnccn1)N1C(c2ccccc2)CCC1c1ccccc1 7.5959616 7.5960 0.6035154 0.6035
+ | 18.3787 21.3710 617.6917 5.3255219 CC(=O)OCC(=O)N1C(c2cccc(C(F)(F)F)c2)CC(C(=O)NS(C)(=O)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C(F)(F)(*)F|O(CC(*)=O)C(=O)C|CC(C)*|S(=O)(=O)(*)C c1ccc(C2CCC(c3ccccc3)N2)cc1 7.7300363 7.7300 0.5164927 0.5165
+ | 29.5030 28.0848 596.4891 5.2047821 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)Cc2c[nH]c3ccccc23)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C(=O)Cc1c2ccccc2[nH]c1|C*|CC(=O)* O=C(Cc1c[nH]c2ccccc12)N1C(c2ccccc2)CCC1c1ccccc1 7.6098046 7.6098 0.3947367 0.3947
+ | 18.2866 18.4558 613.4073 5.2655256 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)Cn2cc(C)nn2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C(=O)Cn1nnc(C)c1|CC(*)C|*C(=O)C O=C(Cn1ccnn1)N1C(c2ccccc2)CCC1c1ccccc1 7.6149764 7.6150 0.5666235 0.5666
+ | 7.9914 9.1515 628.7234 5.3156242 CC(=O)N1C(c2cccc(C)c2)CC(C(=O)NS(C)(=O)=O)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C(C)=O|*C|O=S(=O)(*)C c1ccc(C2CCC(c3ccccc3)N2)cc1 7.5566568 7.5567 0.8335585 0.8336
+ | 15.5617 16.3215 624.6854 5.3417247 Cc1cccc(C2CC(C(=O)NS(C)(=O)=O)C(c3ccc(C(C)C)cc3)N2C(=O)NC(C)C)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C(NC(C)C)=O|CC(C)*|O=S(C)(=O)* c1ccc(C2CCC(c3ccccc3)N2)cc1 7.6959515 7.6960 0.6332708 0.6333
+ | 30.1027 29.7585 599.1555 5.2409504 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(CCCCOCCO)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(F)*|C(COCCO)CC*|*c1ccccc1|C(C)(*)=O c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.7211189 7.7211 0.2806128 0.2806
+ | 9.9959 8.4042 629.6977 5.3175160 CC(=O)N1C(c2cccc(C)c2)CC(C(=O)NS(C)(=O)=O)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *C|*C(C)=O|S(=O)(*)(C)=O c1ccc(C2CCC(c3ccccc3)N2)cc1 7.5485973 7.5486 0.8553528 0.8554
+ | 8.4583 6.9614 639.9214 5.3906897 Cc1cccc(C2CC(C(=O)NS(C)(=O)=O)C(c3ccccc3)N2C)c1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *C|*C|S(*)(C)(=O)=O c1ccc(C2CCC(c3ccccc3)N2)cc1 7.6379318 7.6379 0.8962049 0.8962
+18:17:33 <INFO> Score: 4.61 Agent NLL: 14.80 Valid: 100% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 21.1571 22.0614 618.7371 5.3399869 CCCCN(C)CC(=O)N1C(c2cccc(C(F)(F)F)c2)CC(C(=O)NC(C)=O)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C(F)(F)F|C(CCC)N(CC(*)=O)C|c1c(*)cccc1|C(C)(*)=O c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.8506131 7.8506 0.3187339 0.3187
+ | 13.3654 15.6270 628.4497 5.3673064 CC(=O)N1C(c2cccc(C)c2)CC(C(=O)NC(N)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|*C(=O)C|CC(C)*|*C(N)=O c1ccc(C2CCC(c3ccccc3)N2)cc1 7.6493278 7.6493 0.8032631 0.8033
+ | 17.1885 14.2546 616.9304 5.2598750 Cc1ccc(C(=O)N2C(c3cccc(C)c3)CC(C(=O)NS(C)(=O)=O)C2c2ccc(C(C)C)cc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1(C)ccc(C(*)=O)cc1|*C(C)C|CS(=O)(*)=O O=C(c1ccccc1)N1C(c2ccccc2)CCC1c1ccccc1 7.6545358 7.6545 0.4705530 0.4706
+ | 17.5028 13.7263 620.6768 5.2866928 COCCOCC(=O)N1C(c2cccc(C)c2)CC(C(=O)NS(C)(=O)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|O(CC(*)=O)CCOC|*C(C)C|CS(=O)(=O)* c1ccc(C2CCC(c3ccccc3)N2)cc1 7.6873908 7.6874 0.4852963 0.4853
+ | 10.0905 15.8571 -15.8571 0.0000000 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(C)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|O=C(C)*|CC(C)*|O=C(C)* c1ccc(C2CCC(c3ccccc3)N2)cc1 7.6210823 7.6211 0.8166771 0.8167
+ | 17.2224 22.2437 610.4337 5.2723110 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)c2ccco2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(*)(F)F|C(=O)(*)c1ccco1|*C(C)C|*C(C)=O O=C(c1ccco1)N1C(c2ccccc2)CCC1c1ccccc1 7.6820345 7.6820 0.4528635 0.4529
+ | 14.7418 14.4998 621.9194 5.3034927 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(C)=O)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(*)(F)F|O=C(C)*|*c1ccccc1|CC(=O)* c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.7016582 7.7017 0.5071612 0.5072
+ | 14.1679 14.3665 -14.3665 0.0000000 CC(C)c1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C(F)(F)F)c3)N2C(=O)CN(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(*)F|*C(=O)CN(C)C|CC(C)*|O=S(=O)(*)C c1ccc(C2CCC(c3ccccc3)N2)cc1 7.7972212 7.7972 0.5728188 0.5728
+ | 17.2924 25.7772 597.8234 5.1966709 CSCCN1C(c2cccc(C)c2)CC(C(=O)NC(=O)Nc2ccc(C)cc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *C|*CCSC|c1(C)ccc(NC(*)=O)cc1 O=C(NC(=O)C1CC(c2ccccc2)NC1c1ccccc1)Nc1ccccc1 7.5842419 7.5842 0.4215286 0.4215
+ | 16.2175 20.1865 607.1124 5.2274915 CN1C(c2cccc(-c3ccco3)c2)CC(C(=O)NS(C)(=O)=O)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1occc1|*C|O=S(C)(=O)* c1ccc(C2CCC(c3cccc(-c4ccco4)c3)N2)cc1 7.5038881 7.5039 0.6746978 0.6747
+18:17:34 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccc3ccccc23)C(C(=O)N[*])C1C1C(CCC2CCN(S(=O)(=O)*)CC2)(=N)NC(C)(C)Cc1|*C(=O)NC could not be converted
+18:17:41 <INFO> Score: 4.53 Agent NLL: 15.81 Valid:  99% Step: 3
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 35.8191 35.6007 612.6983 5.4024917 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)C2CCN(C(C)=O)CCN2C)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C(F)(F)F|N1(C)CCN(C(=O)C)CCC1C(*)=O|C(C)(*)C|C(C)(=O)* O=C(C1CCNCCN1)N1C(c2ccccc2)CCC1c1ccccc1 7.8342986 7.8343 0.5388774 0.5389
+ | 19.4262 23.1641 -23.1641 0.0000000 CCNC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(C)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C(F)(F)(F)*|CC(=O)*|C(*)(C)C|C(NCC)(*)=O c1ccc(C2CCC(c3ccccc3)N2)cc1 7.7239542 7.7240 0.5963864 0.5964
+ | 19.7532 16.5764 608.5425 5.2093242 Cc1ccc(S(=O)(=O)NC(=O)C2CC(c3cccc(C)c3)N(C(=O)c3cccnc3)C2c2ccc(C(C)C)cc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C(=O)c1cnccc1|*C(C)C|c1(S(=O)(=O)*)ccc(C)cc1 O=C(NS(=O)(=O)c1ccccc1)C1CC(c2ccccc2)N(C(=O)c2cccnc2)C1c1ccccc1 7.6752453 7.6752 0.2774815 0.2775
+ | 21.2393 23.8706 608.1459 5.2668038 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)c2cccc(OC(C)C)c2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C(*)(=O)c1cccc(OC(C)C)c1|CC(*)C|C(=O)(C)* O=C(c1ccccc1)N1C(c2ccccc2)CCC1c1ccccc1 7.7098808 7.7099 0.3806493 0.3806
+ | 10.9857 14.1679 614.8783 5.2420511 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(C)=O)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C(*)(C)=O|c1ccc(*)cc1|O=C(*)C c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.5518117 7.5518 0.6225295 0.6225
+ | 20.9391 21.9530 602.5310 5.2040335 CCN(CC)C(=O)N1C(c2cccc(C)c2)CC(C(=O)NC(=O)NC)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C(N(C(=O)*)CC)C|c1c(*)cccc1|CNC(*)=O c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.5832410 7.5832 0.4456180 0.4456
+ | 13.7886 17.7348 -17.7348 0.0000000 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(C)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(*)F|CC(*)=O|CC(*)C|C(C)(=O)* c1ccc(C2CCC(c3ccccc3)N2)cc1 7.7059855 7.7060 0.6869844 0.6870
+ | 17.4700 22.9897 620.6802 5.3639160 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)C2CCOC2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(F)*|C1C(C(*)=O)CCO1|CC(*)C|CC(=O)* O=C(C1CCOC1)N1C(c2ccccc2)CCC1c1ccccc1 7.7479010 7.7479 0.5959456 0.5959
+ | 9.5763 19.4568 617.9025 5.3113280 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(Cc2cccnc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *C(F)(F)F|c1ccncc1C*|O=C(*)C c1ccc(C2CCC(c3ccccc3)N2Cc2cccnc2)cc1 7.6822805 7.6823 0.5694225 0.5694
+ | 8.7084 7.9191 -7.9191 0.0000000 Cc1cccc(C2CC(C(=O)NS(C)(=O)=O)C(c3ccccc3)N2C)c1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 C*|C*|*S(=O)(=O)C c1ccc(C2CCC(c3ccccc3)N2)cc1 7.6379318 7.6379 0.8962049 0.8962
+18:17:49 <INFO> Score: 4.80 Agent NLL: 16.07 Valid: 100% Step: 4
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 23.4847 26.4806 597.3870 5.1988967 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)CCOCc2ccco2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C(F)(F)F|o1c(COCCC(*)=O)ccc1|c1cccc(*)c1|C(*)(=O)C O=C(CCOCc1ccco1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.6928997 7.6929 0.2108902 0.2109
+ | 13.7752 14.2676 -14.2676 0.0000000 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(C)=O)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|O=C(*)C|c1cc(*)ccc1|O=C(*)C c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.5518117 7.5518 0.6225295 0.6225
+ | 12.0631 17.9968 607.5504 5.2128937 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)c2cc(C)on2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|n1oc(C)cc1C(=O)*|c1ccc(*)cc1|*C(=O)C O=C(c1ccon1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.6285892 7.6286 0.3815022 0.3815
+ | 23.6574 30.3791 596.2558 5.2219572 CC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2cccnc2C)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1ccccc1|c1nc(C)c(C(*)=O)cc1|*C(C)C|O=C(*)C O=C(c1cccnc1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.6882291 7.6882 0.2894130 0.2894
+ | 11.8881 16.8200 -16.8200 0.0000000 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(C)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C(*)(F)(F)F|*C(=O)C|C(*)(C)C|*C(=O)C c1ccc(C2CCC(c3ccccc3)N2)cc1 7.7059855 7.7060 0.6869844 0.6870
+ | 14.0015 14.5751 613.7422 5.2359778 CCC(=O)N1C(c2cccc(C)c2)CC(C(=O)NC(C)=O)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|CCC(*)=O|c1ccc(*)cc1|C(*)(=O)C c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.5719924 7.5720 0.5639483 0.5639
+ | 30.1812 29.8354 586.1417 5.1331429 Cc1cccc(C2CC(C(=O)NC(=O)NC(C)(C)C)C(c3ccc(-c4ccccc4)cc3)N2C(=O)CCN(C)Cc2ccccc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|c1cc(CN(CCC(=O)*)C)ccc1|*c1ccccc1|C(C)(C)(NC(=O)*)C O=C(CCNCc1ccccc1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.5989704 7.5990 0.2014875 0.2015
+ | 16.8950 24.3952 614.7651 5.3263362 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)C2CCCC2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(*)(F)F|*C(C1CCCC1)=O|CC(C)*|*C(=O)C O=C(C1CCCC1)N1C(c2ccccc2)CCC1c1ccccc1 7.7353096 7.7353 0.5083890 0.5084
+ | 11.4619 24.5391 604.4244 5.2413619 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(Cc2ccccc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cnccc1|c1ccccc1C*|*C(=O)C c1ccc(CN2C(c3ccccc3)CCC2c2cccc(-c3cccnc3)c2)cc1 7.6681976 7.6682 0.3876901 0.3877
+ | 12.7292 24.1132 611.1569 5.2939175 CC(=O)NC(=O)C1CC(c2cccc(-c3cncnc3)c2)N(C(C)=O)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cncnc1|CC(*)=O|O=C(C)* c1ccc(C2CCC(c3cccc(-c4cncnc4)c3)N2)cc1 7.5973229 7.5973 0.6871062 0.6871
+18:17:50 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1c(*)cccc1=O|c12c(cc(C(=O)*)cc1)nccn2|CC(=O)* could not be converted
+18:17:57 <INFO> Score: 4.71 Agent NLL: 18.03 Valid:  99% Step: 5
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 23.7464 23.0206 604.9947 5.2334611 CSCCC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)c2cc(C)cc(C)c2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C(F)(F)F|c1c(C)cc(C)cc1C(*)=O|*C(C)C|CSCCC(=O)* O=C(c1ccccc1)N1C(c2ccccc2)CCC1c1ccccc1 7.7087455 7.7087 0.2828918 0.2829
+ | 22.3631 23.7389 616.3386 5.3339791 Cc1noc(C)c1C(=O)N1C(c2cccc(C(F)(F)F)c2)CC(C(=O)NC(N)=O)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(*)(F)F|Cc1onc(C)c1C(=O)*|CC(C)*|C(*)(N)=O O=C(c1cnoc1)N1C(c2ccccc2)CCC1c1ccccc1 7.7825494 7.7825 0.4368381 0.4368
+ | 20.2577 22.9808 603.5098 5.2207554 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)Cc2cc(C)cc(C)c2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(*)F|C(*)(=O)Cc1cc(C)cc(C)c1|c1cccc(*)c1|CC(*)=O O=C(Cc1ccccc1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.7063036 7.7063 0.2496584 0.2497
+ | 19.7671 31.9351 595.4073 5.2278527 CCc1ccc(C2C(C(=O)NC(C)=O)CC(c3cccc(C(F)(F)F)c3)N2C(=O)CCc2cccnc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(*)F|n1c(C)c(CCC(=O)*)ccc1|*CC|*C(=O)C O=C(CCc1cccnc1)N1C(c2ccccc2)CCC1c1ccccc1 7.6433692 7.6434 0.3968193 0.3968
+ | 20.0770 23.9694 612.3900 5.3029952 COCCNC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)c2cncnc2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(F)*|n1cc(C(=O)*)cnc1|c1(*)ccccc1|COCC* O=C(c1cncnc1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.8213339 7.8213 0.2663173 0.2663
+ | 17.6956 26.9719 595.7518 5.1893640 COCCOCC(=O)N1C(c2cccc(-c3ccccc3)c2)CC(C(=O)NC(C)=O)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)ccccc1|*C(COCCOC)=O|c1cccc(*)c1|*C(C)=O c1ccc(-c2ccc(C3CCC(c4cccc(-c5ccccc5)c4)N3)cc2)cc1 7.6665297 7.6665 0.2350322 0.2350
+ | 18.4771 29.2418 599.4327 5.2389547 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2cccnc2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)cccnc1|*C(=O)c1cnccc1|*c1ccccc1|O=C(*)C O=C(c1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7303405 7.7303 0.2561828 0.2562
+ | 35.9484 51.4002 582.5233 5.2826951 CC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C#N)c3)c2)N(C(=O)CC2CN(C)CCN2)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(C#N)cccc(*)c1|C1CNC(CC(*)=O)CN1C|*c1cc(C)ccc1|*C(=O)C O=C(CC1CNCCN1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.7913170 7.7913 0.2654509 0.2655
+ | 25.0277 39.2532 578.8093 5.1505214 CCNC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3C)c2)N(C(=O)c2ccncc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1c(C)cccc1|O=C(*)c1ccncc1|C(NCC)(=O)* O=C(c1ccncc1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.5627551 7.5628 0.3260535 0.3261
+ | 19.8301 29.3282 601.3246 5.2554403 CNC(=O)NC(=O)C1CC(c2cccc(Nc3ccc(C)cc3)c2)N(C)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 N(*)c1ccc(C)cc1|C*|C(=O)(*)NC c1ccc(Nc2cccc(C3CCC(c4ccccc4)N3)c2)cc1 7.6211834 7.6212 0.5239536 0.5240
+18:18:05 <INFO> Score: 4.78 Agent NLL: 18.99 Valid: 100% Step: 6
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 17.7161 20.1407 603.1487 5.1940787 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)CCCOc2ccccc2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|*C(CCCOc1ccccc1)=O|c1ccc(*)cc1|O=C(*)C O=C(CCCOc1ccccc1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.6770325 7.6770 0.2281707 0.2282
+ | 20.7171 22.3376 600.4263 5.1896985 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)c2ccnc(Cl)c2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1c(Cl)nccc1C(=O)*|CC(*)C|C(*)(=O)C O=C(c1ccncc1)N1C(c2ccccc2)CCC1c1ccccc1 7.5606356 7.5606 0.4478240 0.4478
+ | 20.6856 27.4120 599.5314 5.2245288 CNC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)Cc2ccccc2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1cc(CC(=O)*)ccc1|C(*)(C)C|O=C(NC)* O=C(Cc1ccccc1)N1C(c2ccccc2)CCC1c1ccccc1 7.5990286 7.5990 0.4755287 0.4755
+ | 26.2446 35.0477 599.6483 5.2891336 C#Cc1ccc(C2C(C(=O)NC(=O)NC)CC(c3cccc(C(F)(F)F)c3)N2C(=O)c2ncc(C)o2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C(F)(F)(F)*|n1cc(C)oc1C(=O)*|C(#C)*|CNC(*)=O O=C(c1ncco1)N1C(c2ccccc2)CCC1c1ccccc1 7.6871071 7.6871 0.4931861 0.4932
+ | 19.8392 23.9405 600.9622 5.2075221 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)c2ccn(C)n2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|c1(C(=O)*)nn(C)cc1|c1ccccc1*|O=C(*)C O=C(c1cc[nH]n1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.6048903 7.6049 0.4127851 0.4128
+ | 19.4954 29.9671 608.4535 5.3201711 CCC(=O)N1C(c2cccc(C(F)(F)F)c2)CC(C(=O)NC(C)=O)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(F)*|*C(CC)=O|c1c(C)cccc1*|O=C(C)* c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.7689166 7.7689 0.4226795 0.4227
+ | 17.8889 33.5287 595.0690 5.2383141 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)CC2CCCC2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)cnccc1|C1CCCC1CC(=O)*|c1c(*)cccc1|C(C)(*)=O O=C(CC1CCCC1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7311387 7.7311 0.2526644 0.2527
+ | 17.0931 30.2970 -30.2970 0.0000000 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2cccnc2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccc(*)cn1|c1ncccc1C(=O)*|c1cc(*)ccc1|*C(=O)C O=C(c1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7303405 7.7303 0.2561828 0.2562
+ | 16.9258 32.1939 585.4414 5.1469603 CNC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)Nc2ccccc2C)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cnccc1|c1(C)ccccc1NC(=O)*|*C(=O)NC O=C(Nc1ccccc1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.5707211 7.5707 0.2994380 0.2994
+ | 23.6721 36.9694 587.4505 5.2034992 CNC(=O)NC(=O)C1CC(c2cccc(-c3cnn(C)c3)c2)N(CCCOc2ncc(F)cn2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 c1(*)cn(C)nc1|c1nc(OCCC*)ncc1F|N(C)C(=O)* c1ccc(C2CCC(c3cccc(-c4cn[nH]c4)c3)N2CCCOc2ncccn2)cc1 7.6559291 7.6559 0.2986389 0.2986
+18:18:06 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccc3ccccc23)C(C(=O)N[*])C1n1c(C)[nH]c(C)cc1=O)CCC(=O)*|N(C(=O)*)C could not be converted
+18:18:06 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccsc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1ccccc1CCCCC)C*|O=C(NCCCCC)* could not be converted
+18:18:14 <INFO> Score: 4.89 Agent NLL: 19.96 Valid:  98% Step: 7
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 25.4401 30.2500 584.6500 5.1241672 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)Nc2cccc(C#N)c2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C(=O)(*)Nc1cc(C#N)ccc1|*c1c(C)cccc1|O=C(C)* O=C(Nc1ccccc1)N1C(c2ccccc2)CCC1c1ccc(-c2ccccc2)cc1 7.5458035 7.5458 0.2808939 0.2809
+ | 25.3536 39.2249 582.6749 5.1824978 CC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C)c3)c2)N(C(=O)CC2CCCO2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1cc(*)ccc1|C1CCC(CC(*)=O)O1|c1cccc(*)c1|*C(C)=O O=C(CC1CCCO1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6493869 7.6494 0.2487191 0.2487
+ | 24.8834 38.4588 593.5277 5.2665544 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(c2ncccn2)C1c1ccc(-c2cccc(C(F)(F)F)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(*)F|c1(*)ncccn1|FC(F)(F)c1cc(*)ccc1|*C(=O)C c1ccc(-c2ccc(C3CCC(c4ccccc4)N3c3ncccn3)cc2)cc1 7.7762766 7.7763 0.2471096 0.2471
+ | 15.8930 19.2815 -19.2815 0.0000000 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)CN(C)C)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(F)*|N(CC(=O)*)(C)C|c1ccc(*)cc1|CC(*)=O c1ccc(-c2ccc(C3CCC(c4ccccc4)N3)cc2)cc1 7.7872186 7.7872 0.4678591 0.4679
+ | 22.3945 35.1252 582.5258 5.1470919 CC(=O)NC(=O)C1CC(c2cccc(-c3ccc(F)cc3)c2)N(C(=O)CCOc2ccccc2C)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)ccc(F)cc1|c1ccc(C)c(OCCC(=O)*)c1|c1c(*)cccc1|*C(=O)C O=C(CCOc1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6325469 7.6325 0.1761814 0.1762
+ | 26.2068 47.1313 576.4167 5.1962337 CCNC(=O)NC(=O)C1CC(c2cccc(-c3cccc(F)c3)c2)N(C(=O)CCCn2cccc2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(F)cc(*)ccc1|C(CCn1cccc1)C(*)=O|c1ccccc1*|CCNC(=O)* O=C(CCCn1cccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.7131405 7.7131 0.1624196 0.1624
+ | 17.7315 31.3081 598.8049 5.2509418 CNC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2ccno2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cccc(*)c1|n1ccc(C(=O)*)o1|CC(C)*|CNC(=O)* O=C(c1ccno1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.7159314 7.7159 0.3209622 0.3210
+ | 24.6389 38.6011 584.6747 5.1939644 Cc1ccccc1C(=O)N1C(c2cccc(-c3cccnc3)c2)CC(C(=O)NC(=O)N2CCCC2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|c1ccc(C)c(C(=O)*)c1|c1ccc(*)cc1|C1CCCN1C(=O)* O=C(NC(=O)N1CCCC1)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2ccccc2)C1c1ccc(-c2ccccc2)cc1 7.6883192 7.6883 0.2052542 0.2053
+ | 10.8374 26.7587 612.2830 5.3253480 CNC(=O)NC(=O)C1CC(c2cccc(-c3cncc(C#N)c3)c2)N(C)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cncc(C#N)c1|C*|CNC(=O)* c1ccc(C2CCC(c3cccc(-c4cccnc4)c3)N2)cc1 7.6659179 7.6659 0.6442079 0.6442
+ | 12.2760 28.6834 599.5835 5.2355575 CNC(=O)NC(=O)C1CC(c2cccc(-c3cncnc3)c2)N(Cc2ccncc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cncnc1|c1cnccc1C*|O=C(NC)* c1ccc(C2CCC(c3cccc(-c4cncnc4)c3)N2Cc2ccncc2)cc1 7.6451478 7.6451 0.4163765 0.4164
+18:18:15 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ncccc2)C(C(=O)N[*])C1c1nc(C(=O)*)cn2cccnc12|c1cc(C)cc(NC(*)=O)c1 could not be converted
+18:18:22 <INFO> Score: 4.89 Agent NLL: 21.57 Valid:  99% Step: 8
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 23.0738 35.8848 586.6232 5.1875670 CCNC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2ccco2)C1c1ccc(CC)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cnccc1|c1c(C(=O)*)occ1|*CC|CCNC(*)=O O=C(c1ccco1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6235580 7.6236 0.3155843 0.3156
+ | 31.8989 55.0601 565.2089 5.1689082 CCNC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3SC)c2)N(C(=O)C2CCCO2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 CSc1ccccc1*|C(=O)(*)C1OCCC1|C(C)(*)C|O=C(NCC)* O=C(C1CCCO1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.6150894 7.6151 0.2765453 0.2765
+ | 26.9445 39.8843 575.1406 5.1252069 COc1cccc(-c2cccc(C3CC(C(=O)NC(C)=O)C(c4ccc(-c5ccccc5F)cc4)N3C(=O)Cn3ccc(C)n3)c2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 O(C)c1cccc(*)c1|c1c(C)nn(CC(=O)*)c1|c1c(*)c(F)ccc1|*C(=O)C O=C(Cn1cccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.5843692 7.5844 0.2068820 0.2069
+ | 36.6030 70.9701 544.6205 5.1299213 CCNC(=O)NC(=O)C1CC(c2cccc(C#CNCc3cccnc3)c2)N(C(=O)c2csnn2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(CNC#C*)cncc1|n1scc(C(*)=O)n1|c1cccc(*)c1C|C(C)NC(*)=O O=C(c1csnn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(C#CNCc2cccnc2)c1 7.6244817 7.6245 0.1408001 0.1408
+ | 32.7883 49.6916 576.2247 5.2159699 Cc1cnc(CCC(=O)N2C(c3cccc(-c4ccc(F)cc4)c3)CC(C(=O)NC(=O)NC(C)C)C2c2ccc(-c3ccccc3)cc2)nc1C 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cc(F)ccc1*|n1cc(C)c(C)nc1CCC(=O)*|*c1ccccc1|C(=O)(*)NC(C)C O=C(CCc1ncccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.7421408 7.7421 0.1636277 0.1636
+ | 15.4558 32.8822 584.6848 5.1463918 CC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)Cc2cccc(C)n2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cccc(*)c1|c1ccc(C)nc1CC(*)=O|c1ccc(*)cc1|O=C(C)* O=C(Cc1ccccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6118574 7.6119 0.2154602 0.2155
+ | 18.3382 31.5294 596.3414 5.2322561 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2cccc(C)n2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cncc(*)c1|c1ccc(C)nc1C(=O)*|*C(C)C|C(=O)(C)* O=C(c1ccccn1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6925440 7.6925 0.3116800 0.3117
+ | 16.7356 36.8411 584.9874 5.1819035 CNC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)CCc2ccccc2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|c1cc(CCC(=O)*)ccc1|c1ccc(*)cc1|*C(=O)NC O=C(CCc1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.6748376 7.6748 0.1960350 0.1960
+ | 21.3790 33.1741 591.4531 5.2052259 CC(=O)NC(=O)C1CC(c2cccc(-c3ccnc(C)c3)c2)N(C(=O)CCn2cnc(C)n2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cc(C)ncc1|c1nc(C)nn1CCC(=O)*|*C(=O)C O=C(CCn1cncn1)N1C(c2ccccc2)CCC1c1cccc(-c2ccncc2)c1 7.6196852 7.6197 0.3763069 0.3763
+ | 27.9105 33.5812 598.5173 5.2674872 CC(=O)NC(=O)C1CC(c2cccc(-c3cnccn3)c2)N(C(=O)c2nnn(C)n2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1nccnc1|n1(C)nnc(C(*)=O)n1|CC(*)=O O=C(c1nn[nH]n1)N1C(c2ccccc2)CCC1c1cccc(-c2cnccn2)c1 7.6789980 7.6790 0.4444652 0.4445
+18:18:23 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccnc2)C(C(=O)N[*])C1C1N(CCn2ccncc2)CCC(C(=O)*)C1|c1c(C)cccc1C(=O)* could not be converted
+18:18:23 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccsc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1Nc1nccc(Cl)n1CC(*)=O|c1ccc(C)cc1NC(=O)* could not be converted
+18:18:31 <INFO> Score: 4.91 Agent NLL: 21.60 Valid:  98% Step: 9
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 24.6912 40.1987 569.8381 5.0836406 CC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3F)c2)N(C(=O)c2cc(C)cc(C)c2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Fc1ccccc1*|O=C(c1cc(C)cc(C)c1)*|c1ccc(*)c(C)c1|O=C(C)* O=C(c1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.5226669 7.5227 0.2055874 0.2056
+ | 17.3801 41.2186 570.2239 5.0953543 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2ccco2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(*)cncc1|*C(=O)c1occc1|c1cccc(*)c1C|*C(=O)C O=C(c1ccco1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.5232534 7.5233 0.2395556 0.2396
+ | 21.2902 29.5659 596.9250 5.2207575 CC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2cnoc2C)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cc(*)ccc1|c1noc(C)c1C(=O)*|CC(C)*|C(C)(*)=O O=C(c1cnoc1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.6765099 7.6765 0.3092524 0.3093
+ | 32.4002 44.7104 586.3939 5.2592019 Cc1cc(C)c(C(=O)N2C(c3cccc(-c4ccccc4)c3)CC(C(=O)NC(=O)C3CC3)C2c2ccc(C(F)(F)F)cc2)nn1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cccc(*)c1|Cc1cc(C)nnc1C(=O)*|FC(F)(F)*|C1(C(=O)*)CC1 O=C(NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2cccnn2)C1c1ccccc1)C1CC1 7.7674861 7.7675 0.2426330 0.2426
+ | 17.0742 26.6311 597.4138 5.2003747 CC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)Cc2cccnc2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccccc1*|*C(=O)Cc1cnccc1|*c1ccccc1|CC(*)=O O=C(Cc1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6874084 7.6874 0.2263066 0.2263
+ | 21.5697 47.9877 577.4006 5.2115687 C=CCNC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(C)=O)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|*C(C)=O|c1ccc(*)cc1C|C(CNC(*)=O)=C c1ccc(-c2ccc(C3CCC(c4cccc(-c5cccnc5)c4)N3)cc2)cc1 7.6886592 7.6887 0.2573873 0.2574
+ | 23.2972 43.9879 576.4418 5.1702477 COCC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)CCc2cnc(C)cn2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|c1c(C)ncc(CCC(=O)*)n1|c1ccc(*)cc1|COCC(*)=O O=C(CCc1cnccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.6566572 7.6567 0.1974281 0.1974
+ | 24.3764 49.3291 569.5230 5.1571010 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2cncc(C)c2C)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 n1cccc(*)c1|c1ncc(C)c(C)c1C(=O)*|c1ccc(*)cc1C|C(=O)(*)C O=C(c1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.6267729 7.6268 0.2177569 0.2178
+ | 26.1030 39.3497 594.7990 5.2845726 CC(C)NC(=O)NC(=O)C1CC(c2cccc(-c3cncn3C)c2)N(c2cnccn2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Cn1c(*)cnc1|c1cnc(*)cn1|O=C(*)NC(C)C c1ccc(C2CCC(c3cccc(-c4cnc[nH]4)c3)N2c2cnccn2)cc1 7.7274971 7.7275 0.3987231 0.3987
+ | 29.7989 50.8492 569.9787 5.1735661 CCNC(=O)NC(=O)C1CC(c2cccc(-c3ccc4c(C)nccn4c3=O)c2)N(Cc2ccncc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 c1(*)ccc2c(C)nccn2c1=O|c1cnccc1C*|O=C(NCC)* O=c1c(-c2cccc(C3CCC(c4ccccc4)N3Cc3ccncc3)c2)ccc2cnccn12 7.6248670 7.6249 0.2709639 0.2710
+18:18:32 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccncc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1C(c1cc(C)c2ncc(C)cn2n1)(*)=O|*C(NC)=O could not be converted
+18:18:32 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccsc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1cccc2c1cc(C#N)c(C)n2CC(*)=O|C(=O)(Nc1ccc(CNCC)cc1)* could not be converted
+18:18:40 <INFO> Score: 5.04 Agent NLL: 23.71 Valid:  98% Step: 10
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 26.7685 31.7464 595.9001 5.2303877 CCC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)CCCc2cn(C)cn2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C(c1cn(C)cn1)CCC(=O)*|CC(*)C|CCC(=O)* O=C(CCCc1c[nH]cn1)N1C(c2ccccc2)CCC1c1ccccc1 7.6484799 7.6485 0.3942026 0.3942
+ | 24.8422 39.0774 584.4300 5.1958949 CC(=O)NC(=O)C1CC(c2cccc(-c3ccc(F)cc3)c2)N(C(=O)CCNC2CCCC2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1ccc(F)cc1|C1CCCC1NCCC(=O)*|c1ccccc1*|*C(=O)C O=C(CCNC1CCCC1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6910558 7.6911 0.2055725 0.2056
+ | 28.8114 45.1554 594.6877 5.3320256 O=C(NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2ccnnc2)C1c1ccc(-c2ccccc2)cc1)C1CCCNC1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1ccccc1|*C(=O)c1cnncc1|c1ccccc1*|O=C(*)C1CCCNC1 O=C(NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2ccnnc2)C1c1ccc(-c2ccccc2)cc1)C1CCCNC1 7.8976326 7.8976 0.2008111 0.2008
+ | 20.1226 35.8842 578.1731 5.1171443 CC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3C)c2)N(C(C)=O)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1ccccc1*|CC(*)=O|c1(*)cc(C)ccc1|C(*)(=O)C c1ccc(-c2ccc(C3CCC(c4cccc(-c5ccccc5)c4)N3)cc2)cc1 7.5239120 7.5239 0.3036084 0.3036
+ | 26.5519 47.9917 570.8857 5.1573116 Cc1ccc(-c2cccc(C3CC(C(=O)NC=O)C(c4ccc(-c5ccccc5C)cc4)N3C(=O)c3c(C)cccc3C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)ccc(C)cc1|Cc1cccc(C)c1C(=O)*|*c1ccccc1C|*C=O O=C(c1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6414289 7.6414 0.1890765 0.1891
+ | 28.8978 47.8377 570.5320 5.1530813 CCNC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C#N)c3)c2)N(C(=O)CCN2CCCC2)C1c1ccc(-c2ccccc2F)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C#N)cccc1*|C1CCN(CCC(*)=O)C1|c1ccc(*)c(F)c1|CCNC(=O)* O=C(CCN1CCCC1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6286802 7.6287 0.2018831 0.2019
+ | 35.8315 63.2870 559.3226 5.1884141 COc1cccc(-c2cccc(C3CC(C(=O)NC(=O)NC(C)C)C(c4ccc(-c5ccc(C)o5)cc4)N3Cc3nccs3)c2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccc(OC)cc1*|c1csc(C*)n1|c1c(C)oc(*)c1|CC(NC(=O)*)C c1ccc(-c2cccc(C3CCC(c4ccc(-c5ccco5)cc4)N3Cc3nccs3)c2)cc1 7.6971164 7.6971 0.1710091 0.1710
+ | 29.6274 63.4648 553.0219 5.1373893 Cc1ccc(C(=O)NC(=O)C2CC(c3cccc(-c4ccccc4)c3)N(C(=O)c3cccnc3C)C2c2ccc(-c3ccccc3C)cc2)cc1C 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccccc1*|*C(c1cccnc1C)=O|c1(*)ccccc1C|Cc1c(C)cc(C(=O)*)cc1 O=C(NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2cccnc2)C1c1ccc(-c2ccccc2)cc1)c1ccccc1 7.6210303 7.6210 0.1701069 0.1701
+ | 23.8905 35.4701 596.0793 5.2629108 CCOCCCC(=O)N1C(c2cccc(-c3ccnc(C)c3)c2)CC(C(=O)NC(C)=O)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Cc1cc(*)ccn1|C(CCOCC)C(=O)*|O=C(C)* c1ccc(C2CCC(c3cccc(-c4ccncc4)c3)N2)cc1 7.6948195 7.6948 0.3990930 0.3991
+ | 24.9233 38.7485 588.6425 5.2282580 CNC(=O)NC(=O)C1CC(c2cccc(-c3ccc(C)nc3)c2)N(C(=O)c2cnccc2N)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Cc1ccc(*)cn1|C(=O)(*)c1c(N)ccnc1|O=C(*)NC O=C(c1cccnc1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6687880 7.6688 0.3471978 0.3472
+18:18:41 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1c1cc(NCCCC)nc(N)n1CC*|c1(C)c(C(=O)*)ccc(C)c1 could not be converted
+18:18:49 <INFO> Score: 5.08 Agent NLL: 24.43 Valid:  99% Step: 11
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 30.1801 55.8713 553.6185 5.0790815 CC(=O)NC(=O)C1CC(c2cccc(C#Cc3cccnc3)c2)N(C(=O)C#Cc2cccnc2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C(#C*)c1cccnc1|c1cncc(C#CC(*)=O)c1|c1ccc(*)c(C)c1|*C(C)=O O=C(C#Cc1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(C#Cc2cccnc2)c1 7.4988241 7.4988 0.2395958 0.2396
+ | 28.5988 36.5047 590.3704 5.2239592 CC(=O)NC(=O)C1CC(c2cccc(C(F)(F)F)c2)N(C(=O)c2cc(C)nn2C)C1c1ccc(C#Cc2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 FC(F)(F)*|*C(=O)c1cc(C)nn1C|c1ccccc1C#C*|C(=O)(*)C O=C(c1ccn[nH]1)N1C(c2ccccc2)CCC1c1ccc(C#Cc2ccccc2)cc1 7.6842976 7.6843 0.3032819 0.3033
+ | 28.6641 52.5173 562.5741 5.1257617 COc1ccccc1-c1ccc(C2C(C(=O)NC(C)=O)CC(c3cccc(-c4ccc(=O)n(C)c4)c3)N2c2cccc(C)n2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cc(*)cn(C)c1=O|c1ccc(*)nc1C|c1cccc(*)c1OC|CC(*)=O O=c1ccc(-c2cccc(C3CCC(c4ccc(-c5ccccc5)cc4)N3c3ccccn3)c2)c[nH]1 7.5743279 7.5743 0.2286286 0.2286
+ | 20.5102 45.2972 567.0116 5.1025735 CNC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2ccc(C)o2)C1c1ccc(-c2ccccc2F)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccccc1*|c1cc(C)oc1C(*)=O|c1cccc(*)c1F|C(=O)(NC)* O=C(c1ccco1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.5481687 7.5482 0.2113827 0.2114
+ | 26.7611 77.0813 540.8892 5.1497543 CCNC(=O)NC(=O)C1CC(c2cccc(-c3cncc(C#Cc4ccccc4)c3)c2)N(C(=O)c2c(C)cccc2C)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncc(*)cc1C#Cc1ccccc1|c1(C)cccc(C)c1C(*)=O|c1c(*)c(C)ccc1|CCNC(=O)* O=C(c1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cncc(C#Cc3ccccc3)c2)c1 7.6446910 7.6447 0.1598804 0.1599
+ | 20.5994 44.7241 577.8349 5.1879909 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2c(C)cccc2C)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncc(*)cc1|Cc1cccc(C)c1C(=O)*|c1c(*)cc(C)cc1|C(=O)(*)C O=C(c1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.6757274 7.6757 0.2125176 0.2125
+ | 33.0619 42.8420 575.3806 5.1518546 CC(=O)OCC(=O)N1C(c2cccc(-c3ccncc3)c2)CC(C(=O)NC(=O)c2ccccc2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1nccc(*)c1|O=C(OCC(=O)*)C|Cc1ccccc1*|C(=O)(c1ccccc1)* O=C(NC(=O)C1CC(c2cccc(-c3ccncc3)c2)NC1c1ccc(-c2ccccc2)cc1)c1ccccc1 7.6542664 7.6543 0.1470305 0.1470
+ | 37.0524 75.3449 541.6219 5.1413897 Cc1cccc(-c2ccc(C3C(C(=O)NC(=O)c4ccncc4)CC(c4cccc(-c5cnccn5)c4)N3C(=O)c3cccc4c3OCCCO4)cc2)c1C 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 n1ccncc1*|C1CCOc2cccc(C(*)=O)c2O1|c1(*)cccc(C)c1C|O=C(c1ccncc1)* O=C(NC(=O)C1CC(c2cccc(-c3cnccn3)c2)N(C(=O)c2cccc3c2OCCCO3)C1c1ccc(-c2ccccc2)cc1)c1ccncc1 7.6297097 7.6297 0.1647493 0.1647
+ | 23.7971 36.7913 591.7263 5.2376467 CCNC(=O)NC(=O)C1CC(c2cccc(-c3cncc(C#N)c3)c2)N(C(=O)c2csc(C)n2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cc(C#N)cnc1|c1c(C(*)=O)nc(C)s1|*C(=O)NCC O=C(c1cscn1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6902986 7.6903 0.3323424 0.3323
+ | 27.2347 50.5206 563.7825 5.1191928 Cc1cc(C)c(C(=O)NC(=O)C2CC(c3cccc(-c4cccnc4N)c3)N(S(C)(=O)=O)C2c2ccccc2)c(C)c1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Nc1ncccc1*|S(=O)(=O)(*)C|Cc1cc(C)cc(C)c1C(=O)* O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)NC1c1ccccc1)c1ccccc1 7.5295115 7.5295 0.2985550 0.2986
+18:18:49 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1C(=O)(Cc1ccc(C)cn1)*|c1cc(OC)ccc1CC(=O)* could not be converted
+18:18:57 <INFO> Score: 5.12 Agent NLL: 24.90 Valid:  99% Step: 12
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 23.1122 55.9392 570.4315 5.2197566 CCOc1cccc(-c2ccc(C3C(C(=O)NC(=O)NC)CC(c4cccc(-c5cccnc5)c4)N3C(=O)c3cc(C)ccn3)cc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cccnc1|n1ccc(C)cc1C(=O)*|c1c(OCC)cccc1*|CNC(=O)* O=C(c1ccccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7343001 7.7343 0.1906691 0.1907
+ | 34.6999 70.2791 544.3162 5.1216276 CNC(=O)NC(=O)C1CC(c2cccc(-c3cnccc3C)c2)N(C(=O)c2cc(C)n(C)n2)C1c1ccc(-c2ccc(F)c(Cl)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cnccc1C|Cn1c(C)cc(C(=O)*)n1|Clc1c(F)ccc(*)c1|C(NC)(*)=O O=C(c1cc[nH]n1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.5804090 7.5804 0.2040644 0.2041
+ | 25.9549 40.8225 591.5430 5.2697130 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)CCN2CCCC(C)C2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cnccc1|C1(C)CCCN(CCC(*)=O)C1|c1cc(*)ccc1|O=C(C)* O=C(CCN1CCCCC1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7869158 7.7869 0.2353070 0.2353
+ | 27.2523 67.1908 548.8672 5.1338170 CC(=O)NC(=O)C1CC(c2cccc(-c3cnccc3C)c2)N(C(=O)CCCc2cccc(C)n2)C1c1ccc(CC(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)cnccc1C|n1c(C)cccc1CCCC(*)=O|C(*)C(C)C|C(=O)(C)* O=C(CCCc1ccccn1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.5995879 7.5996 0.2022748 0.2023
+ | 31.9860 60.8760 565.1332 5.2167429 CC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C#N)c3)c2)N(C(C)CCCn2ccnc2C)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C#N)cccc1*|C(n1ccnc1C)CCC(C)*|c1cc(C)cc(*)c1|C(=O)(C)* c1ccc(-c2ccc(C3CCC(c4cccc(-c5ccccc5)c4)N3CCCCn3ccnc3)cc2)cc1 7.7429762 7.7430 0.1642759 0.1643
+ | 23.7747 47.8188 569.5287 5.1445630 CC(=O)NC(=O)C1CC(c2cccc(-c3ccc(C)cc3)c2)N(C2CCOCC2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cc(*)ccc1C|*C1CCOCC1|c1(C)c(*)cccc1|O=C(C)* c1ccc(-c2ccc(C3CCC(c4cccc(-c5ccccc5)c4)N3C3CCOCC3)cc2)cc1 7.5874720 7.5875 0.2587446 0.2587
+ | 19.5849 42.3501 572.2329 5.1215249 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2cc(C)nn2C)C1c1ccc(-c2ccccc2F)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cc(*)cnc1|c1c(C)nn(C)c1C(=O)*|c1cc(F)c(*)cc1|*C(C)=O O=C(c1ccn[nH]1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.5573316 7.5573 0.2499110 0.2499
+ | 23.3981 46.9771 577.1890 5.2013843 CC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C)c3)c2)N(C(=O)CCCOCc2ccccc2)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccc(C)cc1*|c1ccccc1COCCCC(=O)*|*c1cccc(C)c1|*C(=O)C O=C(CCCOCc1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.7304926 7.7305 0.1431671 0.1432
+ | 24.8890 37.3967 591.2606 5.2388112 Cc1cc(C(=O)N2C(c3cccc(-c4ccnn4C)c3)CC(C(=O)NC(=O)c3cccnc3)C2c2ccccc2)ncn1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Cn1nccc1*|n1cnc(C)cc1C(*)=O|c1cc(C(*)=O)cnc1 O=C(NC(=O)C1CC(c2cccc(-c3ccn[nH]3)c2)N(C(=O)c2ccncn2)C1c1ccccc1)c1cccnc1 7.7091146 7.7091 0.2982039 0.2982
+ | 25.3914 55.7658 557.9706 5.1144705 CCCNC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3C#N)c2)N(C(=O)CCCc2ccc(C)cc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 c1(*)ccccc1C#N|c1cc(C)ccc1CCCC(*)=O|*C(NCCC)=O O=C(CCCc1ccccc1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.5744419 7.5744 0.1945273 0.1945
+18:18:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc2ccccc2c1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1cc(C)cc(C)c1S(=O)(n1nc(C)c(CC(=O)*)c1=O)=O|c1c(N2CCNCC2)ccc(C(=O)*)c1 could not be converted
+18:18:58 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1C1(=O)N(C)Cc2c(C)c(C)ccc2N1c1ncccn1CCCCC(=O)*|c1cc(C)c(NC(=O)*)cc1 could not be converted
+18:19:06 <INFO> Score: 5.03 Agent NLL: 25.82 Valid:  98% Step: 13
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 31.5645 55.4521 561.2227 5.1389570 CCCNC(=O)NC(=O)C1CC(c2cccc(C#Cc3cccnc3)c2)N(C(=O)Cn2cccn2)C1c1ccc(-c2cccnc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C#Cc1cccnc1|n1n(CC(=O)*)ccc1|n1cc(*)ccc1|O=C(NCCC)* O=C(Cn1cccn1)N1C(c2ccc(-c3cccnc3)cc2)CCC1c1cccc(C#Cc2cccnc2)c1 7.5970960 7.5971 0.2226787 0.2227
+ | 31.4749 34.5514 583.2172 5.1480718 Cc1cccc(C2CC(C(=O)NC(=O)NC3CCCC3)C(c3ccc(-c4ccccc4C)cc3)N2C(=O)c2cnccn2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|n1ccnc(C(=O)*)c1|c1(*)c(C)cccc1|C1C(NC(*)=O)CCC1 O=C(NC(=O)C1CC(c2ccccc2)N(C(=O)c2cnccn2)C1c1ccc(-c2ccccc2)cc1)NC1CCCC1 7.5876098 7.5876 0.2689955 0.2690
+ | 19.9011 35.2821 590.1265 5.2117381 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2cccc(C)c2C)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cnccc1|c1ccc(C)c(C)c1C(*)=O|*C(C)C|O=C(C)* O=C(c1ccccc1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6809111 7.6809 0.2733917 0.2734
+ | 31.1590 53.9467 560.4495 5.1199681 CCCC(=O)N1C(c2cccc(-c3ccc(C)cc3C)c2)CC(C(=O)NC(C)=O)C1c1ccc(-c2ccc(C)cn2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1cc(C)ccc1*|C(CC)C(=O)*|*c1ccc(C)cn1|C(=O)(C)* c1ccc(-c2cccc(C3CCC(c4ccc(-c5ccccn5)cc4)N3)c2)cc1 7.5552998 7.5553 0.2493043 0.2493
+ | 20.9805 37.9092 574.6212 5.1044201 CC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3C)c2)N(C(=O)CCc2cnccn2)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1ccccc1*|c1ncc(CCC(*)=O)nc1|*C(C)C|*C(C)=O O=C(CCc1cnccn1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.5269680 7.5270 0.2593238 0.2593
+ | 22.6180 64.0623 564.2081 5.2355874 CCNC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2ccon2)C1c1ccc(-c2cncc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)cnccc1|n1occc1C(=O)*|c1ncc(*)cc1C|C(NC(=O)*)C O=C(c1ccon1)N1C(c2ccc(-c3cccnc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7343974 7.7344 0.2379671 0.2380
+ | 24.8677 50.8541 572.5005 5.1946219 CCNC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C)n3)c2)N(C(=O)c2ccccn2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccc(*)nc1C|*C(c1ncccc1)=O|c1cccc(*)c1|*C(=O)NCC O=C(c1ccccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccn2)c1 7.6875625 7.6876 0.2087402 0.2087
+ | 32.7097 57.7818 553.4182 5.0933327 CCOc1ccccc1-c1ccc(C2C(C(=O)NC(=O)CC)CC(c3cccc(-c4ccccc4)c3)N2C(=O)Cn2cccn2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cccc(*)c1|c1cnn(CC(*)=O)c1|c1cc(*)c(OCC)cc1|O=C(CC)* O=C(Cn1cccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.5498753 7.5499 0.1802472 0.1802
+ | 34.8655 47.5026 581.5360 5.2419881 COc1cccc(C(=O)NC(=O)C2CC(c3cccc(-c4cccc(C#N)c4)c3)N(c3cc(OC)nc(C)n3)C2c2ccccc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cccc(C#N)c1|c1(OC)nc(C)nc(*)c1|c1c(C(*)=O)cccc1OC O=C(NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(c2ccncn2)C1c1ccccc1)c1ccccc1 7.7669306 7.7669 0.1921026 0.1921
+ | 38.6056 63.0444 560.8887 5.1994423 Cc1nn(C)cc1CNC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C#CCCS(C)(=O)=O)c3)c2)N(Cc2cccnc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 CS(=O)(CCC#Cc1cc(*)ccc1)=O|C(c1cnccc1)*|C(c1c(C)nn(C)c1)NC(=O)* O=C(NCc1cn[nH]c1)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(Cc2cccnc2)C1c1ccccc1 7.7129097 7.7129 0.1725071 0.1725
+18:19:07 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1O=c1cc(CCCCC(=O)*)nc(OCCCC)c1|c1ccccc1*|CCC(*)=O could not be converted
+18:19:07 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1C1CCc2c(C(*)=O)ccc2C1CCCC|*C(=O)NC(C)C could not be converted
+18:19:07 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccncc2)C(C(=O)N[*])C1c1cc2c(nccc(C(*)=O)c2)nc1|Cc1ccc(C(*)=O)nc1 could not be converted
+18:19:07 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2sccc2)C(C(=O)N[*])C1n1cnc(C)cc1*|c1c(CCC)cnc(NCCCC)n1)CC(=O)* could not be converted
+18:19:15 <INFO> Score: 4.95 Agent NLL: 27.00 Valid:  97% Step: 14
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 28.1829 42.5912 584.7255 5.2276398 CCC(=O)NC(=O)C1CC(c2cccc(-c3ccncc3)c2)N(C(=O)CCc2cccc(OC)c2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1ccncc1|COc1cccc(CCC(*)=O)c1|c1ccccc1*|C(CC)(*)=O O=C(CCc1ccccc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccncc2)c1 7.7568164 7.7568 0.1692861 0.1693
+ | 30.9542 82.3124 530.0195 5.1027661 CC#Cc1cccc(-c2ccc(C3C(C(=O)NC(=O)Nc4ccccc4C)CC(c4cccc(-c5cnccc5C)c4)N3C(=O)C3CCC3)cc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cnccc1C|C1(C(=O)*)CCC1|C(#CC)c1cccc(*)c1|c1cccc(C)c1NC(=O)* O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)C2CCC2)C1c1ccc(-c2ccccc2)cc1)Nc1ccccc1 7.5705738 7.5706 0.1671503 0.1672
+ | 42.2005 86.5751 521.6559 5.0685915 Cc1cc(C)c(CC(=O)C(=O)N2C(c3cccc(-c4cccnc4C)c3)CC(C(=O)NC(=O)C3CCCCC(=O)N3)C2c2ccc(-c3ncccc3C)cc2)c(C)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1ncccc1*|c1(C)cc(C)cc(C)c1CC(C(=O)*)=O|c1c(C)c(*)ncc1|C1CCCC(C(*)=O)NC1=O O=C1CCCCC(C(=O)NC(=O)C2CC(c3cccc(-c4cccnc4)c3)N(C(=O)C(=O)Cc3ccccc3)C2c2ccc(-c3ccccn3)cc2)N1 7.5444398 7.5444 0.1168944 0.1169
+ | 26.5597 57.0312 572.0409 5.2422671 CC(=O)N1C(c2cccc(C#Cc3cccnc3)c2)CC(C(=O)NC(=O)CCN2CCOCC2)C1c1ccc(-c2cccc(F)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C#C*)cncc1|O=C(C)*|c1(F)cccc(*)c1|C1OCCN(CCC(=O)*)C1 O=C(CCN1CCOCC1)NC(=O)C1CC(c2cccc(C#Cc3cccnc3)c2)NC1c1ccc(-c2ccccc2)cc1 7.7260251 7.7260 0.2747507 0.2748
+ | 32.5862 67.5071 548.9133 5.1368368 Cc1cncc(-c2cccc(C3CC(C(=O)NC(=O)c4cc(C)ccn4)C(c4ccc(-c5ccco5)cc4)N3C(=O)c3cccnc3)c2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C)cncc1*|c1ccncc1C(=O)*|c1oc(*)cc1|c1(C)ccnc(C(=O)*)c1 O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2cccnc2)C1c1ccc(-c2ccco2)cc1)c1ccccn1 7.6150022 7.6150 0.1805055 0.1805
+ | 34.9600 73.8153 545.1461 5.1580116 CC(=O)NC(=O)C1CC(c2cccc(C3CCC(N(C)Cc4ccccc4C)CC3)c2)N(C(=O)CCc2c(C)nn(C)c2C)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cccc(C)c1CN(C)C1CCC(*)CC1|c1(C)nn(C)c(C)c1CCC(*)=O|CC(C)*|*C(=O)C O=C(CCc1cn[nH]c1)N1C(c2ccccc2)CCC1c1cccc(C2CCC(NCc3ccccc3)CC2)c1 7.6533723 7.6534 0.1672899 0.1673
+ | 36.3720 65.3100 554.4927 5.1650223 Cc1ccc(NC(=O)N2C(c3cccc(-c4cccnc4)c3)CC(C(=O)NC(=O)NCC3CCCCO3)C2c2ccc(-c3ccccc3C)cc2)c(C)n1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|N(c1ccc(C)nc1C)C(=O)*|c1ccc(*)c(C)c1|C1OC(CNC(*)=O)CCC1 O=C(NCC1CCCCO1)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)Nc2cccnc2)C1c1ccc(-c2ccccc2)cc1 7.6737156 7.6737 0.1476352 0.1476
+ | 29.8513 58.5994 571.3333 5.2494398 CCC1CCC(C(=O)NC(=O)C2CC(c3cccc(-c4ccccn4)c3)N(C(=O)Cc3ccccn3)C2c2ccc(-c3cccc(OC)c3)cc2)CC1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 n1ccccc1*|n1ccccc1CC(*)=O|c1cc(OC)cc(*)c1|C1CC(CC)CCC1C(=O)* O=C(NC(=O)C1CC(c2cccc(-c3ccccn3)c2)N(C(=O)Cc2ccccn2)C1c1ccc(-c2ccccc2)cc1)C1CCCCC1 7.8010726 7.8011 0.1461737 0.1462
+ | 26.3000 53.1063 562.8836 5.1332495 CCCNC(=O)NC(=O)C1CC(c2cccc(C#Cc3cccc(C)c3)c2)N(Cc2nccnc2C)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 c1(C)cccc(C#C*)c1|n1ccnc(C)c1C*|C(=O)(NCCC)* C(#Cc1cccc(C2CCC(c3ccccc3)N2Cc2cnccn2)c1)c1ccccc1 7.5676131 7.5676 0.2645217 0.2645
+ | 20.8350 43.1758 572.7118 5.1323963 CNC(=O)NC(=O)C1CC(c2cccc(-c3ccncc3C)c2)N(C(=O)c2nc(C)ccc2C)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 c1(C)cnccc1*|c1(C(=O)*)nc(C)ccc1C|CNC(=O)* O=C(c1ccccn1)N1C(c2ccccc2)CCC1c1cccc(-c2ccncc2)c1 7.5261426 7.5261 0.3449031 0.3449
+18:19:16 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc2ccccc2c1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1c(C)nn(C=C)c1C)CCn1cnc2c1ncnc2*|c1c(C)cccc1CNC(=O)* could not be converted
+18:19:16 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1c1cccnc1CCC(*)=O|c1cc(Cl)ccc1Cl)C(=O)* could not be converted
+18:19:16 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2sccc2)C(C(=O)N[*])C1*C(c1n(C)c2ccccn2c1=O)=O|C(*)(c1ccncc1)=O could not be converted
+18:19:16 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccsc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1n1c(C)oc(C)n1CCC*|c1cccc(NC(=O)*)c1 could not be converted
+18:19:24 <INFO> Score: 4.95 Agent NLL: 27.45 Valid:  97% Step: 15
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 41.1506 80.6805 535.0497 5.1310852 COCC(=O)NC(=O)C1CC(c2cccc(C#Cc3ccccc3C)c2)N(C(=O)c2c(NCc3ncccc3C)cc(C)c(C)c2C)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C#Cc1ccccc1C|n1cccc(C)c1CNc1cc(C)c(C)c(C)c1C(*)=O|c1ccccc1*|COCC(=O)* O=C(c1ccccc1NCc1ccccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(C#Cc2ccccc2)c1 7.6295524 7.6296 0.1341503 0.1342
+ | 30.3097 64.5110 558.6351 5.1928844 CCOc1ccc(-c2ccc(C3C(C(=O)NC=O)CC(c4cccc(-c5cncnc5C)c4)N3C(=O)c3cccnc3)cc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cncnc1C|O=C(*)c1cnccc1|c1(OCC)ccc(*)cc1|*C=O O=C(c1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cncnc2)c1 7.6895638 7.6896 0.1995252 0.1995
+ | 24.1547 55.1370 569.9464 5.2090283 CC#Cc1ccc(C2C(C(=O)NC(C)=O)CC(c3cccc(-c4cnccc4C)c3)N2C(=O)C2CCOCC2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(*)cnccc1C|C1CC(C(=O)*)CCO1|CC#C*|O=C(*)C O=C(C1CCOCC1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.5910263 7.5910 0.4450317 0.4450
+ | 27.2990 73.0354 538.0322 5.0922304 CCC#Cc1ccc(C2C(C(=O)NC(=O)CC)CC(c3cccc(-c4ccccc4C)c3)N2C(=O)c2cccc(C)n2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(C)c(*)cccc1|n1c(C)cccc1C(=O)*|C(#CCC)*|*C(CC)=O O=C(c1ccccn1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.5157652 7.5158 0.2451604 0.2452
+ | 31.2629 47.7474 571.8333 5.1631725 COc1ccc(-c2cccc(C3CC(C(=O)NC(C)=O)C(c4ccc(-c5ccccc5F)cc4)N3C(=O)c3ccnc(C)c3)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(OC)ccc(*)cc1|*C(=O)c1cc(C)ncc1|c1c(*)c(F)ccc1|*C(=O)C O=C(c1ccncc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.6436582 7.6437 0.2022008 0.2022
+ | 22.7997 39.4972 584.8613 5.2029883 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2ccncc2C)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cc(*)cnc1|c1cncc(C)c1C(*)=O|Cc1cccc(*)c1|O=C(*)C O=C(c1ccncc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.6905756 7.6906 0.2278133 0.2278
+ | 24.2953 54.6105 565.5246 5.1677921 CC(=O)NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(CCCCn2ccnc2)C1c1ccc(-c2cccc(C)c2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|C(CCn1cncc1)C*|*c1cccc(C)c1C|C(=O)(*)C c1ccc(-c2ccc(C3CCC(c4cccc(-c5cccnc5)c4)N3CCCCn3ccnc3)cc2)cc1 7.6688123 7.6688 0.1657514 0.1658
+ | 20.2844 53.5941 556.7889 5.0865251 CC(=O)NC(=O)C1CC(c2cccc(-c3ccc(C)cn3)c2)N(C(=O)CCc2c(C)noc2C)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 n1cc(C)ccc1*|Cc1noc(C)c1CCC(*)=O|c1cccc(C)c1*|C(=O)(*)C O=C(CCc1cnoc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccn2)c1 7.5359497 7.5359 0.1876755 0.1877
+ | 32.1328 55.7262 555.0344 5.0896715 Cc1cncc(C)c1C(=O)NC(=O)C1CC(c2cccc(-c3cccc4cccnc34)c2)N(Cc2ccncc2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cccc2cccnc21|n1ccc(C*)cc1|c1ncc(C)c(C(=O)*)c1C O=C(NC(=O)C1CC(c2cccc(-c3cccc4cccnc34)c2)N(Cc2ccncc2)C1c1ccccc1)c1ccncc1 7.5414944 7.5415 0.1860253 0.1860
+ | 24.2142 52.3944 578.6898 5.2590347 CC(=O)NC(=O)C1CC(c2cccc(-c3cn[nH]c3)c2)N(C(=O)CCCCc2ccc(F)cn2)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 [nH]1ncc(*)c1|n1cc(F)ccc1CCCCC(=O)*|O=C(*)C O=C(CCCCc1ccccn1)N1C(c2ccccc2)CCC1c1cccc(-c2cn[nH]c2)c1 7.7520523 7.7521 0.2729991 0.2730
+18:19:25 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1c1ccc(C#ccccc1*)cc1C#N|c1oc(CCC(=O)*)cc1|c1c(C)c(*)ncc1|*C(C)=O could not be converted
+18:19:25 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1c1cccc2n(C)ccc12CCCC(=O)*|C(#CCCCCC)*|c1c(C)ccc(NC(=O)*)c1 could not be converted
+18:19:25 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1O=C(*)c1nnnn2ccccc21|C(=O)(C)* could not be converted
+18:19:25 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ncccc2)C(C(=O)N[*])C1n1ccccn1C1CCC(CC(*)=O)CC1|C1CC1CCC(*)=O could not be converted
+18:19:25 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccoc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1*C(Cn1c2ncnc3c(ccnc3)c2nn1)=O|c1c(C(=O)*)cncc1 could not be converted
+18:19:32 <INFO> Score: 4.99 Agent NLL: 28.51 Valid:  96% Step: 16
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 30.7842 71.3428 552.5475 5.1990865 Cc1ccnc(-c2ccc(C3C(C(=O)NC(=O)c4cnc(C)cn4)CC(c4cccc(-c5cccnc5)c4)N3C(=O)c3ncccn3)cc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(*)cncc1|O=C(*)c1ncccn1|n1ccc(C)cc1*|c1c(C)ncc(C(=O)*)n1 O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2ncccn2)C1c1ccc(-c2ccccn2)cc1)c1cnccn1 7.6952367 7.6952 0.2067855 0.2068
+ | 40.9491 102.9884 523.7712 5.2229971 O=C(CC1CC1)NC(=O)C1CC(c2cccc(-c3cccc(C#CCCF)c3)c2)N(C(=O)c2cnccn2)C1c1ccc(-c2cncc(F)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C#CCCF)cccc1*|C(c1cnccn1)(=O)*|c1ncc(*)cc1F|C1CC1CC(=O)* O=C(CC1CC1)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2cnccn2)C1c1ccc(-c2cccnc2)cc1 7.7540755 7.7541 0.1608398 0.1608
+ | 31.1124 77.6380 547.3077 5.2078820 CCCCc1ccccc1-c1ccc(C2C(C(=O)NC(C)=O)CC(c3cccc(-c4cncc(C#N)c4)c3)N2C(=O)c2ccnc(C#N)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C#N)cc(*)cn1|c1c(C#N)nccc1C(=O)*|c1ccc(*)c(CCCC)c1|CC(*)=O O=C(c1ccncc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7263370 7.7263 0.1709716 0.1710
+ | 43.7061 101.4334 -101.4334 0.0000000 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1c1ccc(C#ccccc1*)cc1C#N|c1oc(CCC(=O)*)cc1|c1c(C)c(*)ncc1|*C(C)=O 0 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccc(C#ccccc1*)cc1C#N|c1oc(CCC(=O)*)cc1|c1c(C)c(*)ncc1|*C(C)=O -- 0.0000000 0.0000 0.0000000 0.0000
+ | 35.9260 83.9019 536.4108 5.1692724 Cc1cccc(-n2cccn2)c1C(=O)N1C(c2cccc(-c3cccc(F)c3)c2)CC(C(=O)NC(=O)c2ccccc2C(F)(F)F)C1c1ccc(-c2cncnc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccc(F)cc1*|c1ccnn1-c1cccc(C)c1C(=O)*|c1(*)cncnc1|FC(F)(F)c1ccccc1C(*)=O O=C(NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)c2ccccc2-n2cccn2)C1c1ccc(-c2cncnc2)cc1)c1ccccc1 7.6932259 7.6932 0.1213652 0.1214
+ | 19.4810 49.5382 571.1665 5.1725393 CC#Cc1ccc(C2C(C(=O)NC(C)=O)CC(c3cccc(-c4cccnc4)c3)N2C(=O)CCc2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ccncc1*|c1cccc(C)c1CCC(*)=O|CC#C*|O=C(C)* O=C(CCc1ccccc1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6272974 7.6273 0.2630226 0.2630
+ | 23.0524 60.1601 563.6229 5.1981917 CC(=O)NC(=O)C1CC(c2cccc(-c3cnccn3)c2)N(C(=O)CCCc2cc(C)nn2C)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1nccnc1*|n1(C)nc(C)cc1CCCC(=O)*|*c1cc(C)ccc1|*C(C)=O O=C(CCCc1ccn[nH]1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cnccn2)c1 7.6984687 7.6985 0.1976371 0.1976
+ | 44.1042 98.4085 531.3811 5.2482467 COc1ccccc1CC(=O)NC(=O)C1CC(c2cccc(-c3cncnc3)c2)N(C(=O)CCCCC(N)=O)C1c1ccc(-c2cccc(OCc3ccccc3)c2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncncc1*|NC(=O)CCCCC(*)=O|c1ccccc1COc1cccc(*)c1C|c1(OC)ccccc1CC(*)=O O=C(Cc1ccccc1)NC(=O)C1CC(c2cccc(-c3cncnc3)c2)NC1c1ccc(-c2cccc(OCc3ccccc3)c2)cc1 7.8260446 7.8260 0.0926506 0.0927
+ | 36.9082 89.0170 531.4047 5.1701815 CCCCCC(=O)NC(=O)C1CC(c2cccc(-c3conc3C)c2)N(C(=O)CCCCc2c(C)ccc3cnccc23)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Cc1nocc1*|c1(C)ccc2c(ccnc2)c1CCCCC(*)=O|C(CC)CCC(=O)* O=C(CCCCc1cccc2cnccc12)N1C(c2ccccc2)CCC1c1cccc(-c2cnoc2)c1 7.6924586 7.6925 0.1256268 0.1256
+ | 27.4760 59.5397 565.2510 5.2065893 Cc1cnc(C)c(C(=O)NC(=O)C2CC(c3cccc(-c4cnn(Cc5cccnc5)c4)c3)N(C)C2c2ccccc2)n1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 c1ccncc1Cn1ncc(*)c1|C*|c1(C)cnc(C)c(C(*)=O)n1 O=C(NC(=O)C1CC(c2cccc(-c3cnn(Cc4cccnc4)c3)c2)NC1c1ccccc1)c1cnccn1 7.6742139 7.6742 0.2713398 0.2713
+18:19:33 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1c1c(F)cccn1*|c1c(C)cccc1CCC(*)=O|Cc1onc(C)c1*|*C(C)=O could not be converted
+18:19:33 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1c(C)ncc(CC)n1Nc1ncnc(C(=O)*)c1|c1(C(*)=O)nonc1C could not be converted
+18:19:33 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccncc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1n1cccc(C)n1CCCC(=O)*|c1ccccc1C(=O)* could not be converted
+18:19:33 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccncc1C1N([*])C(c2ccncc2)C(C(=O)N[*])C1c12c(cc(CCC)nc(CCC(=O)*)c1)nc(C)oc2=O|c1ccccc1C(O)=O)* could not be converted
+18:19:33 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccoc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1n1c2ccccn2c(C)n1)CCCC(*)=O|c1(C)csc(C(*)=O)n1 could not be converted
+18:19:41 <INFO> Score: 4.99 Agent NLL: 28.49 Valid:  96% Step: 17
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 37.9095 92.6906 524.6591 5.1445807 COCC#Cc1cccc(C2CC(C(=O)NC(=O)NC3CC3)C(c3ccc(C#CC=Cc4ccccc4)cc3)N2C(=O)Cc2cnn(C)c2C)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C(#CCOC)*|c1nn(C)c(C)c1CC(*)=O|c1ccccc1C=CC#C*|C1CC1NC(=O)* O=C(NC(=O)C1CC(c2ccccc2)N(C(=O)Cc2cn[nH]c2)C1c1ccc(C#CC=Cc2ccccc2)cc1)NC1CC1 7.5996933 7.5997 0.2343552 0.2344
+ | 34.5991 90.2447 525.3385 5.1298600 CCNC(=O)NC(=O)C1CC(c2cccc(C#CCc3ncccc3C)c2)N(C(=O)CCc2cccc(C)n2)C1c1ccc(-c2cc(C)ccc2F)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1cccnc1CC#C*|c1ccc(C)nc1CCC(=O)*|*c1cc(C)ccc1F|O=C(*)NCC O=C(CCc1ccccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(C#CCc2ccccn2)c1 7.6194358 7.6194 0.1507079 0.1507
+ | 31.0774 91.4029 532.1006 5.1958625 Cc1cccc(-c2ccc(C3C(C(=O)NC(=O)C4CC(C)CCC4C)CC(c4cccc(-c5cc(C)cnc5C)c4)N3C(=O)CCCc3c(C)noc3C)cc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1ncc(C)cc1*|c1(C)onc(C)c1CCCC(=O)*|c1ccc(*)cc1C|C1(C)CCC(C)CC1C(=O)* O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)CCCc2cnoc2)C1c1ccc(-c2ccccc2)cc1)C1CCCCC1 7.7227864 7.7228 0.1420142 0.1420
+ | 27.8810 64.4782 557.7521 5.1852526 CC(=O)NC(=O)C1CC(c2cccc(C#Cc3ccc(C)cc3)c2)N(C(=O)CCCc2ncc(C)cc2C)C1c1ccc(-c2cccc(C)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(C#C*)ccc(C)cc1|n1cc(C)cc(C)c1CCCC(*)=O|*c1cccc(C)c1|*C(=O)C O=C(CCCc1ccccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(C#Cc2ccccc2)c1 7.6950436 7.6950 0.1656702 0.1657
+ | 25.1868 72.8758 550.3760 5.1937640 CC#Cc1cncc(-c2cccc(C3CC(C(=O)NC(C)=O)C(c4ccc(-c5cccc(F)c5)cc4)N3C(=O)CCCc3cccnc3)c2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C#CC)cncc1*|c1ccncc1CCCC(=O)*|c1cc(F)cc(*)c1|CC(=O)* O=C(CCCc1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2cccnc2)c1 7.7088118 7.7088 0.1636680 0.1637
+ | 18.9590 59.2896 554.2271 5.1126386 CC(=O)NC(=O)C1CC(c2cccc(-c3cccc(C)c3)c2)N(C(=O)CCCCc2ccccn2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(C)cccc1*|n1ccccc1CCCCC(=O)*|c1cccc(*)c1C|*C(=O)C O=C(CCCCc1ccccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccc2)c1 7.5921860 7.5922 0.1535434 0.1535
+ | 31.1083 74.3175 -74.3175 0.0000000 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1c1c(F)cccn1*|c1c(C)cccc1CCC(*)=O|Cc1onc(C)c1*|*C(C)=O 0 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1c(F)cccn1*|c1c(C)cccc1CCC(*)=O|Cc1onc(C)c1*|*C(C)=O -- 0.0000000 0.0000 0.0000000 0.0000
+ | 22.5773 44.4610 582.8033 5.2272019 C#Cc1ccc(C2C(C(=O)NC(C)=O)CC(c3cccc(-c4cccnc4)c3)N2C(=O)CCCn2c(C)nnc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|c1(C)nnc(C)n1CCCC(=O)*|C(#C)*|O=C(*)C O=C(CCCn1cnnc1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6881261 7.6881 0.3053531 0.3054
+ | 26.1525 46.9313 568.5962 5.1293956 Cc1cc(C)c(-c2cccc(C3CC(C(=O)NC(=O)NCC(C)C)C(c4ccccc4)N3C(=O)c3ccccn3)c2)cn1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cnc(C)cc1C|n1ccccc1C(*)=O|*C(=O)NCC(C)C O=C(c1ccccn1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.5572815 7.5573 0.2736234 0.2736
+ | 20.4986 35.4579 588.6067 5.2005380 CNC(=O)NC(=O)C1CC(c2cccc(-c3cncc(F)c3)c2)N(C(=O)c2ccc(C)nc2C)C1c1ccccc1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1cncc(F)c1|Cc1nc(C)ccc1C(=O)*|*C(=O)NC O=C(c1cccnc1)N1C(c2ccccc2)CCC1c1cccc(-c2cccnc2)c1 7.6256104 7.6256 0.3503928 0.3504
+18:19:42 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1c(*)cncc1C#N|C(=O)(c1cnn(C)c(C)c1)*|*C(=O)Nc1nn(C)cc1C could not be converted
+18:19:42 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc2ccccc2c1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1cc(Cc2c(C)[nH]cnc2)nn1CC(*)=O|C(=O)(C)* could not be converted
+18:19:42 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc2ccccc2c1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1sccc1-c1n(-cncc2)cc(C(*)=O)n1|CNC(*)=O could not be converted
+18:19:42 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccc3ccccc23)C(C(=O)N[*])C1Cc1ncon1CCCc1nnc(*)n1C|*C(=O)Nc1c(C)ccc(C)c1 could not be converted
+18:19:42 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccc3ccccc23)C(C(=O)N[*])C1n1cnccc1C1ncc(C(=O)*)cc1|*C(NC1CCOCCC1)=O could not be converted
+18:19:42 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccncc1C1N([*])C(c2ccncc2)C(C(=O)N[*])C1C1c2c(F)ccc(C)c2Oc2ccc(CNc3cnc(C)c(Oc3c(Cl)cc(C)cc3)cc2C(=O)*)c1|CC(=O)* could not be converted
+18:19:49 <INFO> Score: 4.94 Agent NLL: 30.46 Valid:  95% Step: 18
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 39.4609 86.5195 544.3713 5.2574240 Cc1ccc(OCCC2CCCCC2NC(=O)C2CC(c3cccc(C#Cc4cccnc4)c3)N(C(=O)c3cncnc3)C2c2ccc(-c3cccnc3)cc2)cc1C 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C#Cc1cnccc1|c1ncncc1C(=O)*|c1ccc(*)cn1|O(c1cc(C)c(C)cc1)CCC1CCCCC1* O=C(NC1CCCCC1CCOc1ccccc1)C1CC(c2cccc(C#Cc3cccnc3)c2)N(C(=O)c2cncnc2)C1c1ccc(-c2cccnc2)cc1 7.8170037 7.8170 0.1382640 0.1383
+ | 35.9767 70.7454 551.8670 5.1884370 Cc1cccc(-c2ccc(C3C(C(=O)NC(=O)c4c(C)noc4C)CC(c4cccc(-c5ccc(C)nc5)c4)N3C(=O)CCN3CCCC3)cc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1ccc(C)nc1|O=C(CCN1CCCC1)*|c1ccc(C)cc1*|c1(C)onc(C)c1C(*)=O O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)CCN2CCCC2)C1c1ccc(-c2ccccc2)cc1)c1cnoc1 7.7039242 7.7039 0.1574623 0.1575
+ | 43.2426 74.4801 549.7745 5.2021220 Cn1cncc1C(=O)N1C(c2cccc(-c3cncnc3)c2)CC(C(=O)NC(=O)Nc2cccnc2)C1c1ccc(-c2ncccc2C#N)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cncnc1|C(c1cncn1C)(*)=O|*c1c(C#N)cccn1|*C(=O)Nc1cnccc1 O=C(NC(=O)C1CC(c2cccc(-c3cncnc3)c2)N(C(=O)c2cnc[nH]2)C1c1ccc(-c2ccccn2)cc1)Nc1cccnc1 7.6922474 7.6922 0.2218708 0.2219
+ | 33.3441 76.4464 541.1114 5.1463152 Cc1ccc(-c2ccc(C3C(C(=O)NC(=O)CCN4CCCC(C)C4)CC(c4cccc(-c5ccccc5C)c4)N3C(=O)CCCc3nc(C)nn3C)cc2)c(C)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1ccccc1*|n1c(C)nn(C)c1CCCC(=O)*|Cc1cc(C)ccc1*|C1C(C)CCCN1CCC(=O)* O=C(CCN1CCCCC1)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)CCCc2ncn[nH]2)C1c1ccc(-c2ccccc2)cc1 7.6514678 7.6515 0.1360097 0.1360
+ | 39.1049 89.1882 528.3046 5.1457732 CCNC(=O)NC(=O)C1CC(c2cccc(-c3ccc(C#Cc4ccc(F)c(F)c4)cn3)c2)N(C(=O)c2ccnc(C)c2)C1c1ccc(-c2ccccc2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Fc1ccc(C#Cc2ccc(*)nc2)cc1F|c1c(C)nccc1C(=O)*|c1ccc(*)c(C)c1|C(NC(=O)*)C O=C(c1ccncc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccc(C#Cc3ccccc3)cn2)c1 7.6394596 7.6395 0.1583999 0.1584
+ | 37.8634 76.2020 545.3157 5.1793140 Cc1ccccc1-c1cccc(C2CC(C(=O)NC(=O)c3cccnc3)C(c3ccc(-c4ccc5ccoc(=O)c5c4)cc3)N2C(=O)Cc2ccccn2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(C)ccccc1*|O=C(Cc1ncccc1)*|c1cc(*)cc2c1ccoc2=O|C(=O)(c1cccnc1)* O=C(NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)Cc2ccccn2)C1c1ccc(-c2ccc3ccoc(=O)c3c2)cc1)c1cccnc1 7.6902456 7.6902 0.1574503 0.1575
+ | 25.4055 61.0596 553.4816 5.1211769 Cc1ccccc1-c1cccc(C2CC(C(=O)NC(=O)CCc3ccncc3)C(c3ccc(-c4ccccc4)cc3)N2C(=O)CCCc2cccnc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(C)ccccc1*|c1ccncc1CCCC(*)=O|c1ccccc1*|C(c1ccncc1)CC(=O)* O=C(CCc1ccncc1)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)CCCc2cccnc2)C1c1ccc(-c2ccccc2)cc1 7.6133819 7.6134 0.1367665 0.1368
+ | 27.9517 78.2236 538.0554 5.1356582 Cc1ccc(CCC(=O)N2C(c3cccc(-c4cccnc4)c3)CC(C(=O)NC(=O)c3ccccc3C(C)C)C2c2ccc(-c3cccc(F)c3)cc2)nn1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncccc1*|c1cc(C)nnc1CCC(*)=O|c1ccc(F)cc1*|c1ccc(C(C)C)c(C(*)=O)c1 O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)CCc2cccnn2)C1c1ccc(-c2ccccc2)cc1)c1ccccc1 7.6329174 7.6329 0.1411394 0.1411
+ | 30.4064 51.5860 570.8125 5.1866534 Cc1cnc(-c2cccc(C3CC(C(=O)NC(=O)c4ncccn4)C(c4ccccc4)N3C3CCCCC3)c2)c(C)n1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 *c1c(C)nc(C)cn1|C1CCCC(*)C1|c1nc(C(=O)*)ncc1 O=C(NC(=O)C1CC(c2cccc(-c3cnccn3)c2)N(C2CCCCC2)C1c1ccccc1)c1ncccn1 7.6343985 7.6344 0.2911628 0.2912
+ | 39.1773 56.1341 569.7342 5.2155695 CCCCOc1cc(C(=O)N2C(c3cccc(-c4cc(C)ncc4C)c3)CC(C(=O)NC(=O)c3ccccn3)C2c2ccccc2)cc(Br)n1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Cc1cnc(C)cc1*|O=C(c1cc(Br)nc(OCCCC)c1)*|c1cc(C(=O)*)ncc1 O=C(NC(=O)C1CC(c2cccc(-c3ccncc3)c2)N(C(=O)c2ccncc2)C1c1ccccc1)c1ccccn1 7.7793660 7.7794 0.0879760 0.0880
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1c1ncc(*)cc1C#N|c1(C)oc(C)c(C)n1CCCC*|c1ccccc1C=C*|O=C(*)CC(O)C could not be converted
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1(*)cnccc1C|Oc1c(C)cc(C)cc1C* could not be converted
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccnc2)C(C(=O)N[*])C1*C(c1cncnc1CC)=O|C1CCc2c(C(=O)*)ccc3ncc(C)cc2c13 could not be converted
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccnc2)C(C(=O)N[*])C1c1c(C(=O)*)cc2ccc(C)nc2c1|Cc1c(C)nnc2ccccc12* could not be converted
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccnc2)C(C(=O)N[*])C1o1c2ccc(C)cc2n(Cc2ccc(-n3nc(C)cc3C)cc2)c1=O)CCCC(*)=O|c1c(C)c(C)ccc1C(*)=O could not be converted
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2sccc2)C(C(=O)N[*])C1FC1(F)c2c(C)c(C)ccc2OC2C1CCC2*|C1c2c(cc(-c3nnnc3C(=O)*)nc2C)C=CC1 could not be converted
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2sccc2)C(C(=O)N[*])C1c1c2c(ccnc2)n(C)c(=O)n1CCCC(=O)*|*C(Nc1ccccc1F)=O could not be converted
+18:19:51 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccoc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1n12c(ccn1)nnc2C(=O)*|c1c(OC)ccc(C)c1CC(=O)* could not be converted
+18:19:58 <INFO> Score: 4.82 Agent NLL: 32.29 Valid:  94% Step: 19
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups Scaffold DENV_Activity DENV_Activity (raw) QED QED (raw)
+ | 39.2519 82.7422 543.1243 5.2155541 Cc1ncccc1C#Cc1cccc(C2CC(C(=O)NC(=O)C3CCCCC3)C(c3ccc(N4CCCC4C)cc3)N2C(=O)c2ccccn2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C#Cc1cccnc1C|*C(c1ccccn1)=O|C1(C)CCCN1*|C1CCCC(C(=O)*)C1 O=C(NC(=O)C1CC(c2cccc(C#Cc3cccnc3)c2)N(C(=O)c2ccccn2)C1c1ccc(N2CCCC2)cc1)C1CCCCC1 7.7386584 7.7387 0.1693450 0.1693
+ | 32.8130 70.8020 537.6664 5.0705700 Cc1ccccc1-c1ccc(C2C(C(=O)NC(=O)c3snnc3C)CC(c3cccc(-c4cnccc4C)c3)N2C(=O)c2cccn2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *c1cnccc1C|*C(c1cccn1C)=O|c1(C)ccccc1*|Cc1nnsc1C(*)=O O=C(NC(=O)C1CC(c2cccc(-c3cccnc3)c2)N(C(=O)c2ccc[nH]2)C1c1ccc(-c2ccccc2)cc1)c1cnns1 7.5179844 7.5180 0.1757409 0.1757
+ | 25.8232 63.1896 554.4950 5.1473715 CCNC(=O)NC(=O)C1CC(c2cccc(-c3ccccc3C)c2)N(C(=O)CCCCc2cnccc2C)C1c1ccc(C(C)C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Cc1ccccc1*|c1nccc(C)c1CCCCC(*)=O|CC(C)*|*C(NCC)=O O=C(CCCCc1cccnc1)N1C(c2ccccc2)CCC1c1cccc(-c2ccccc2)c1 7.6407771 7.6408 0.1605598 0.1606
+ | 42.7385 95.1014 520.1609 5.1271865 Cc1cncc(C(=O)N2C(c3cccc(C#Cc4cccc(O)c4C)c3)CC(C(=O)NC(=O)C3CCOCC3)C2c2ccc(-c3ccccc3C)cc2)n1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 Oc1cccc(C#C*)c1C|O=C(c1cncc(C)n1)*|Cc1ccccc1*|C(=O)(C1CCOCC1)* O=C(NC(=O)C1CC(c2cccc(C#Cc3ccccc3)c2)N(C(=O)c2cnccn2)C1c1ccc(-c2ccccc2)cc1)C1CCOCC1 7.6203341 7.6203 0.1408907 0.1409
+ | 31.7049 73.6246 541.9336 5.1296520 CC(=O)NC(=O)C1CC(c2cccc(C#Cc3cccnc3)c2)N(C(=O)CCCCNc2nc(C)cc(C)n2)C1c1ccc(-c2cccc(C)c2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1(C#C*)cnccc1|n1c(C)cc(C)nc1NCCCCC(*)=O|c1(*)cccc(C)c1C|*C(C)=O O=C(CCCCNc1ncccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(C#Cc2cccnc2)c1 7.6384363 7.6384 0.1120829 0.1121
+ | 30.3789 90.4277 534.6155 5.2086933 CCC(=O)NC(=O)C1CC(c2cccc(C#Cc3ccc(C#Cc4cccnc4)cc3)c2)N(C(=O)c2ncc(F)cn2)C1c1ccc(-c2cccc(F)c2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1cc(C#Cc2cnccc2)ccc1C#C*|n1cc(F)cnc1C(=O)*|c1ccc(F)cc1*|O=C(*)CC O=C(c1ncccn1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(C#Cc2ccc(C#Cc3cccnc3)cc2)c1 7.7248492 7.7248 0.1763809 0.1764
+ | 33.2130 51.6588 567.1608 5.1568291 CCc1nc(C)cc(C)c1C(=O)N1C(c2cccc(-c3ccccn3)c2)CC(C(=O)NC(=O)NC)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1nc(*)ccc1|c1(CC)nc(C)cc(C)c1C(*)=O|c1ccccc1*|N(C)C(=O)* O=C(c1cccnc1)N1C(c2ccc(-c3ccccc3)cc2)CCC1c1cccc(-c2ccccn2)c1 7.6383853 7.6384 0.1937163 0.1937
+ | 47.7529 99.3689 -99.3689 0.0000000 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1c1ncc(*)cc1C#N|c1(C)oc(C)c(C)n1CCCC*|c1ccccc1C=C*|O=C(*)CC(O)C 0 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 c1ncc(*)cc1C#N|c1(C)oc(C)c(C)n1CCCC*|c1ccccc1C=C*|O=C(*)CC(O)C -- 0.0000000 0.0000 0.0000000 0.0000
+ | 33.0909 45.1465 570.3989 5.1295454 Cc1ccc(-c2cccc(C3CC(C(=O)NC(=O)CNc4ccncc4)C(c4ccccc4)N3C(=O)COc3ccccn3)c2)c(F)c1 1 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 Fc1cc(C)ccc1*|c1c(OCC(=O)*)nccc1|c1(NCC(=O)*)ccncc1 O=C(CNc1ccncc1)NC(=O)C1CC(c2cccc(-c3ccccc3)c2)N(C(=O)COc2ccccn2)C1c1ccccc1 7.5991206 7.5991 0.1903944 0.1904
+ | 30.3287 46.1390 -46.1390 0.0000000 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1(*)cnccc1C|Oc1c(C)cc(C)cc1C* 0 c1ccc([*])cc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1 c1(*)cnccc1C|Oc1c(C)cc(C)cc1C* -- 0.0000000 0.0000 0.0000000 0.0000
+18:19:59 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccnc2)C(C(=O)N[*])C1c1(C)nc(C)nc2cncc(C(=O)*)n12|C(=O)(c1cccc(C)n1)* could not be converted
+18:19:59 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1c1(N2c(C)ccnc2C)ncc(C)c(SCC(=O)*)n1|c1(NC)ccccc1C(*)=O could not be converted
+18:19:59 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccs2)C(C(=O)N[*])C1C1CCc2c(NC(Cn3ncc(CCCC(=O)*)n3)=O)ccc2C1|c1cc(COC(=O)*)ccc1 could not be converted
+18:19:59 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccs2)C(C(=O)N[*])C1c1(C)n(-c2ccc(OC)cc2)c(C)c(-c2nnc(Nc3cc(C)c(Cccc3C(=O)*)n3ccccc3=O)n2)c1|O=C(NCCCn1cnc2c1ncnc2)* could not be converted
+18:19:59 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccncc2)C(C(=O)N[*])C1n1cnc2ccc(S(=O)(=O)N)cn1c2*|c1cc(CC(=O)*)ccc1 could not be converted
+18:19:59 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccncc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1O=C(c1[nH]cnc(C)n1)*|c1(C)cc(C)ccc1CCNc1nc(NCCC2CC3CCCC3C2)nc(C(*)=O)c1 could not be converted
+18:20:06 <CRIT> Received exception ('CUDA driver error: out of memory'): saving checkpoint and then terminate
+[QSAR Scorer] ✓ Model loaded from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib
+[QSAR Scorer] Processing 120 SMILES strings
+[QSAR Scorer]   CCCCCC(=O)N1C(c2cccc(C)c2)CC(C(=O)NS(C)(=O)=O)C1c1 -> pIC50=7.7628
+[QSAR Scorer]   Cc1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C)c3)N2C(=O) -> pIC50=7.5960
+[QSAR Scorer]   CC(=O)OCC(=O)N1C(c2cccc(C(F)(F)F)c2)CC(C(=O)NS(C)( -> pIC50=7.7300
+[QSAR Scorer] Predictions: min=7.49, max=7.96, mean=7.64
+Traceback (most recent call last):
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent", line 7, in <module>
+    sys.exit(main_script())
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 194, in main_script
+    main(args)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 163, in main
+    runner(
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/run_staged_learning.py", line 366, in run_staged_learning
+    terminate = optimize(package.terminator)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/learning.py", line 146, in optimize
+    agent_lls, prior_lls, augmented_nll, loss = self.update(results)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/libinvent.py", line 23, in update
+    return self._update_common(results)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/learning.py", line 234, in _update_common
+    return self.reward_nlls(
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/reward.py", line 232, in __call__
+    loss.backward()
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/_tensor.py", line 572, in backward
+    return handle_torch_function(
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/overrides.py", line 1717, in handle_torch_function
+    result = mode.__torch_function__(public_api, types, args, kwargs)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/utils/_device.py", line 106, in __torch_function__
+    return func(*args, **kwargs)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/_tensor.py", line 581, in backward
+    torch.autograd.backward(
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/autograd/graph.py", line 825, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: CUDA driver error: out of memory

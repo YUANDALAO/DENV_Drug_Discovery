@@ -1,0 +1,167 @@
+# ============================================================
+# 临时文件和测试输出（补充）
+# ============================================================
+backup/
+backup_*.csv
+*_test_*.csv
+*_results_*.csv
+samples.csv
+generated_molecules.smi
+scaffold_*.csv
+scaffold_*.smi
+denv_*.csv
+denv_*.smi
+error_log.txt
+python_files_list.txt
+
+# 配置备份
+*.backup
+config_run*.toml
+
+# JSON输出
+_*.json
+
+# 测试文件
+新建*.txt
+
+# 大型依赖（如果不是核心）
+autogrow4/
+# External dependencies
+autogrow4/
+
+# External dependencies (embedded git repos)
+autogrow4/
+contrib/
+
+# 主目录下的大型结果文件
+denv_rl_full_results_1.csv
+backup_before_kill.csv
+denv_scaffold_*.csv
+qsar_test_1.csv
+test_simple_1.csv
+scaffold_*.csv
+*.smi
+!data/*.smi
+
+# 临时文件
+error_log.txt
+python_files_list.txt
+samples.csv
+generation_analysis.png
+promising_candidates.csv
+
+# ============================================================
+# 追加：绝对不能提交的超大文件
+# ============================================================
+
+# TensorBoard事件文件（几百MB到GB）
+**/events.out.tfevents.*
+tb_*/
+**/tensorboard*/
+
+# 所有checkpoint文件（100MB+）
+**/*.chkpt
+**/*.ckpt
+*.chkpt
+*.ckpt
+
+# 所有prior模型（77-91MB each）
+priors/*.prior
+priors/*.model
+!priors/.gitkeep
+!priors/README.md
+
+# 大型结果CSV
+experiments/runs/**/results_*.csv
+experiments/runs/**/candidates_*.csv
+experiments/runs/**/*_molecules*.csv
+experiments/runs/**/diagnostic_results/
+experiments/runs/**/full_evaluation/
+
+# 主目录大文件
+denv_*.csv
+backup_*.csv
+*_results_*.csv
+
+# 临时生成文件
+*.smi
+!data/*.smi
+!data/**/*.smi
+samples.csv
+generation_analysis.png
+
+# ============================================================
+# 超大文件排除（自动生成于2025-10-13）
+# ============================================================
+
+# TensorBoard（GB级）
+**/events.out.tfevents.*
+tb_*/
+**/tensorboard*/
+**/tensorboard_*/
+
+# Checkpoints（100MB+）
+**/*.chkpt
+**/*.ckpt
+
+# Prior models（77-91MB each）
+priors/*.prior
+priors/*.model
+!priors/.gitkeep
+
+# 大型CSV结果
+experiments/runs/**/results_*.csv
+experiments/runs/**/candidates_*.csv
+experiments/runs/**/*_molecules*.csv
+experiments/runs/**/checkpoint_*.chkpt
+experiments/runs/**/diagnostic_results/
+experiments/runs/**/full_evaluation/
+
+# 主目录临时文件
+denv_*.csv
+backup_*.csv
+*_results_*.csv
+*.smi
+!data/*.smi
+!data/**/*.smi
+
+# External repos
+autogrow4/
+contrib/
+
+# ============================================================
+# 超大文件排除
+# ============================================================
+
+# TensorBoard（GB级）
+**/events.out.tfevents.*
+**/tensorboard*/
+**/tensorboard_*/
+
+# Checkpoints（100MB+）
+**/*.chkpt
+**/*.ckpt
+
+# Prior models（77-91MB）
+priors/*.prior
+priors/*.model
+!priors/.gitkeep
+
+# 大型CSV
+experiments/runs/**/results_*.csv
+experiments/runs/**/candidates_*.csv
+experiments/runs/**/*_molecules*.csv
+experiments/runs/**/diagnostic_results/
+experiments/runs/**/full_evaluation/
+
+# 主目录临时文件
+denv_*.csv
+backup_*.csv
+*_results_*.csv
+*.smi
+!data/*.smi
+!data/**/*.smi
+
+# External
+autogrow4/
+contrib/

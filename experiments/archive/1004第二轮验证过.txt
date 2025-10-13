@@ -1,0 +1,160 @@
+REINVENT4 DENV抑制剂生成 - 项目完整文档
+日期: 2025-10-04
+状态: Run1/Run2已完成但有误，准备启动Run3
+
+1. 项目目标
+生成含特定骨架的DENV NS2B-NS3蛋白酶抑制剂，要求：
+
+高活性（pIC50 > 8.0）
+类药性好（QED > 0.6）
+可合成（SA Score < 4.0）
+分子量 250-800 Da
+
+
+2. 骨架定义（PI最终确认）
+吡咯烷型
+SMILES: CC1CC(C(N1)c1ccccc1)C(N)=O
+结构：5元含N环 + 苯基 + 酰胺基 + 甲基取代
+分子量：204.27
+环数：2（吡咯烷环 + 苯环）
+环丁烷型
+SMILES: CC1CC(C1c1ccccc1)C(N)=O
+结构：4元全碳环 + 苯基 + 酰胺基 + 甲基取代
+分子量：189.26
+环数：2（环丁烷环 + 苯环）
+关键：两个骨架是OR关系（二选一），不需要同时包含。
+
+3. 文件架构
+/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/
+│
+├── experiments/
+│   ├── INDEX.md                          # 实验索引
+│   ├── configs/
+│   │   ├── v1_scaffold_original.toml     # Run1配置（有误）
+│   │   └── v2_corrected_smarts.toml      # Run2配置（有误）
+│   └── runs/
+│       ├── run1_scaffold_original/
+│       │   ├── config.toml
+│       │   ├── results.csv               # 64000分子
+│       │   ├── top100.csv
+│       │   └── README.md
+│       ├── run2_corrected_smarts/
+│       │   ├── config.toml
+│       │   ├── logs/
+│       │   └── README.md
+│       └── run3/                         # 待创建
+│
+├── priors/
+│   └── denv_ultra_clean_model.model      # 预训练RNN模型
+│
+├── data/
+│   ├── denv_scaffolds_training.smi       # 旧种子（错误）
+│   └── scaffold_seeds_correct.smi        # 新种子（正确）✓
+│
+└── 02_ML_Modeling/models/
+    └── random_forest_champion.joblib     # QSAR模型
+
+4. 实验历史
+Run1 - scaffold_original (已完成)
+日期：2025-10-04
+配置：experiments/runs/run1_scaffold_original/config.toml
+SMARTS：
+  - Pyrrolidine: "c1ccccc1C1CNCC1" 
+  - Cyclobutane: "c1ccccc1C1CCC1"
+问题：
+  ✗ SMARTS缺少酰胺基约束
+  ✗ 与PI定义的骨架不符
+  ✗ 生成了桥环系统
+  ✗ 35000+分子误判为"同时匹配"
+结果：
+  - 64000个分子
+  - 最高Score: 0.847
+  - 平均pIC50: 7.65
+Run2 - corrected_smarts (已停止)
+日期：2025-10-04
+配置：experiments/runs/run2_corrected_smarts/config.toml
+SMARTS：
+  - Pyrrolidine: "[C;R1]-[C;R1]-[N;R1]-[C;R1]-[C;R1]-1"
+  - Cyclobutane: "[C;R1]-[C;R1]-[C;R1]-[C;R1]-1"
+问题：
+  ✗ SMARTS仍与PI定义不符
+  ✗ 缺少苯基和酰胺基约束
+  ✗ 匹配率仅40-50%
+结果：
+  - 训练至Step 3后停止
+
+5. Inception种子文件
+文件位置: data/scaffold_seeds_correct.smi
+内容（8个正确SMILES）:
+CC1CC(C(N1)c1ccccc1)C(N)=O
+CC1CC(C(N1)c1ccc(F)cc1)C(N)=O
+CC1CC(C(N1)c1ccc(Cl)cc1)C(N)=O
+CC1CC(C(N1)c1ccc(OC)cc1)C(N)=O
+CC1CC(C1c1ccccc1)C(N)=O
+CC1CC(C1c1ccc(F)cc1)C(N)=O
+CC1CC(C1c1ccc(Cl)cc1)C(N)=O
+CC1CC(C1c1ccc(OC)cc1)C(N)=O
+
+6. Run3配置需求
+核心参数
+
+评分函数：arithmetic_mean（OR逻辑）
+Batch size: 64
+Max steps: 2000
+分子量范围：250-800 Da
+Inception: scaffold_seeds_correct.smi
+
+SMARTS设计（待确定）
+需要匹配：
+
+吡咯烷环（5元含N）或环丁烷环（4元全C）
+苯基连接
+酰胺基 C(N)=O
+
+评分组件权重
+
+QSAR活性：1.5
+骨架匹配：2.0
+QED：0.5
+SA Score：0.4
+MW：0.3
+
+
+7. 关键文件路径
+bash# 预训练模型
+priors/denv_ultra_clean_model.model
+
+# QSAR模型
+/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib
+
+# Inception种子（新）
+data/scaffold_seeds_correct.smi
+
+# Run3工作目录
+experiments/runs/run3/
+
+8. 启动Run3前的检查清单
+
+ 骨架SMILES验证正确
+ Inception种子文件创建
+ SMARTS表达式设计
+ 配置文件生成
+ SMARTS匹配率测试
+ 启动训练
+
+
+9. 给新对话的启动信息
+项目：REINVENT4生成DENV抑制剂
+目标骨架：
+  - 吡咯烷型：CC1CC(C(N1)c1ccccc1)C(N)=O
+  - 环丁烷型：CC1CC(C1c1ccccc1)C(N)=O
+  
+种子文件：data/scaffold_seeds_correct.smi (8个SMILES)
+工作目录：experiments/runs/run3/
+
+需要：
+1. 设计精确SMARTS匹配这两个骨架
+2. 创建arithmetic_mean配置（OR逻辑）
+3. 分子量上限800
+4. 验证SMARTS能100%匹配种子文件
+5. 完整启动流程

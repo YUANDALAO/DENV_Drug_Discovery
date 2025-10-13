@@ -1,0 +1,13 @@
+12:00:53 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-04
+12:00:53 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent configs/scaffold_constrained_FINAL.toml
+12:00:53 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/configs/scaffold_constrained_FINAL.toml using format toml
+Traceback (most recent call last):
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent", line 7, in <module>
+    sys.exit(main_script())
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 194, in main_script
+    main(args)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 73, in main
+    input_config = config_parse.read_config(args.config_filename, fmt)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/utils/config_parse.py", line 251, in read_config
+    with open(filename, "rb") as tf:
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/configs/scaffold_constrained_FINAL.toml'

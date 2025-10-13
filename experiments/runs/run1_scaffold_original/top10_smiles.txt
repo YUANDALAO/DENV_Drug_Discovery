@@ -1,0 +1,30 @@
+#1 Score=0.910 pIC50=7.51
+COc1ccc(C23CCNC2CC3)cc1OC
+
+#2 Score=0.901 pIC50=7.53
+COc1ccc(C23CCNC2CC3)cc1
+
+#3 Score=0.894 pIC50=7.62
+CN1CCC23CCC12c1ccc(NC(=O)Cc2ccccc2)cc13
+
+#4 Score=0.893 pIC50=7.58
+CN1CCC23CCC12Cc1ccc(NC(=O)Cc2ccccc2)cc13
+
+#5 Score=0.893 pIC50=7.58
+CN1CCC23CCC12c1cccc(NC(=O)c2ccccc2)c13
+
+#6 Score=0.892 pIC50=7.40
+Cc1ccc(NCc2ccc3c(c2)C24CCN(C)C32CC4)cc1
+
+#7 Score=0.892 pIC50=7.62
+CN1CCC23CCC12c1cc(NC(=O)Cc2ccccc2)ccc13
+
+#8 Score=0.891 pIC50=7.56
+COc1cccc(C23CCNC2CC3)c1
+
+#9 Score=0.891 pIC50=7.54
+Cc1ccccc1NC(=O)Cc1ccc2c(c1)C13CCN(C)C21CC3
+
+#10 Score=0.891 pIC50=7.52
+CN1CCC23CCC12c1ccc(NCc2ccccc2)cc13
+

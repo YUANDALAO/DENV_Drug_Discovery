@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DENV抑制剂AI生成实验进展汇报 - Run9_T1200</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            padding: 60px 80px;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,90,158,0.1) 0%, rgba(0,40,80,0.1) 100%);
+            z-index: 0;
+        }
+        
+        .slide > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .slide-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #00d4ff;
+        }
+        
+        .slide-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0,212,255,0.5);
+        }
+        
+        .slide-subtitle {
+            font-size: 24px;
+            color: #9ca3af;
+            font-weight: 300;
+        }
+        
+        .progress-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Slide 1: 概述 */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+        }
+        
+        .info-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .info-card h3 {
+            font-size: 28px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            font-size: 18px;
+            line-height: 2;
+        }
+        
+        .info-card li::before {
+            content: "▸ ";
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .metric-highlight {
+            color: #fbbf24;
+            font-weight: 700;
+            font-size: 22px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        /* Slide 2: 方法学 */
+        .method-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            flex: 1;
+        }
+        
+        .scoring-strategy {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            overflow-y: auto;
+            max-height: 75vh;
+        }
+        
+        .strategy-section {
+            margin-bottom: 25px;
+        }
+        
+        .strategy-section h4 {
+            color: #fbbf24;
+            font-size: 22px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .component-item {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 12px 18px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border-left: 4px solid #00d4ff;
+            font-size: 16px;
+        }
+        
+        .weight-indicator {
+            color: #10b981;
+            font-weight: 700;
+            float: right;
+        }
+        
+        .tech-specs {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .spec-table td {
+            padding: 15px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 16px;
+        }
+        
+        .spec-table td:first-child {
+            color: #9ca3af;
+            font-weight: 600;
+        }
+        
+        .spec-table td:last-child {
+            color: #00d4ff;
+            font-weight: 700;
+            text-align: right;
+        }
+        
+        /* Slide 3: 结果 + 图片展示 */
+        .results-with-images {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 30px;
+            flex: 1;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 25px;
+        }
+        
+        .image-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .image-card h3 {
+            font-size: 24px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .image-placeholder {
+            flex: 1;
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px dashed rgba(0, 212, 255, 0.5);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .image-placeholder-text {
+            font-size: 18px;
+            color: #9ca3af;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .upload-instruction {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        .result-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .result-card h3 {
+            font-size: 24px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .chart-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .bar-chart {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .bar-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .bar-label {
+            width: 180px;
+            font-size: 15px;
+            color: #9ca3af;
+        }
+        
+        .bar-wrapper {
+            flex: 1;
+            height: 30px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #0ea5e9);
+            border-radius: 15px;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .distribution-table {
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .distribution-table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .distribution-table td {
+            padding: 12px 8px;
+        }
+        
+        .distribution-table td:first-child {
+            color: #9ca3af;
+        }
+        
+        .distribution-table td:nth-child(2) {
+            text-align: right;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+        
+        .distribution-table td:last-child {
+            text-align: right;
+            color: #fbbf24;
+        }
+        
+        /* Slide 4: 候选物 + 结构图 */
+        .candidates-layout {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            gap: 25px;
+            flex: 1;
+        }
+        
+        .criteria-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .criteria-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .criteria-card.gold {
+            border-color: #fbbf24;
+        }
+        
+        .criteria-card h3 {
+            font-size: 22px;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+        
+        .criteria-card.gold h3 {
+            color: #fbbf24;
+        }
+        
+        .big-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #10b981;
+            margin: 15px 0;
+        }
+        
+        .criteria-list {
+            font-size: 14px;
+            color: #9ca3af;
+            line-height: 1.8;
+            text-align: left;
+        }
+        
+        .structure-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .structure-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .structure-card h4 {
+            font-size: 18px;
+            color: #fbbf24;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .molecule-details {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .molecule-prop {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .molecule-prop:last-child {
+            border-bottom: none;
+        }
+        
+        .molecule-prop span:first-child {
+            color: #9ca3af;
+        }
+        
+        .molecule-prop span:last-child {
+            color: #00d4ff;
+            font-weight: 700;
+        }
+        
+        .navigation {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-dot.active {
+            background: #00d4ff;
+            width: 16px;
+            height: 16px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slideContainer">
+        <!-- Slide 1: 实验进展概述 -->
+        <div class="slide" id="slide1">
+            <div class="slide-header animate-in">
+                <h1 class="slide-title">🧬 DENV NS2B-NS3抑制剂AI生成</h1>
+                <p class="slide-subtitle">Run9_T1200 实验进展汇报 | LibInvent + QSAR引导生成</p>
+                <div class="progress-badge">⏳ 实验进行中: 2219 / 6000 步 (37%)</div>
+            </div>
+            
+            <div class="overview-grid">
+                <div class="info-card animate-in" style="animation-delay: 0.2s;">
+                    <h3>📋 项目目标</h3>
+                    <ul>
+                        <li>靶点：登革热病毒(DENV) NS2B-NS3蛋白酶</li>
+                        <li>设计策略：<span class="metric-highlight">双芳环吡咯烷骨架</span></li>
+                        <li>活性目标：pIC50 <span class="metric-highlight">≥ 8.0</span> (IC50 ≤ 10 nM)</li>
+                        <li>成药性：QED ≥ 0.7, SA ≤ 4.0</li>
+                        <li>当前规模：<span class="metric-highlight">113.6万</span>候选分子</li>
+                    </ul>
+                    <div class="status-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706);">⏳ 预计完成: ~160万分子</div>
+                </div>
+                
+                <div class="info-card animate-in" style="animation-delay: 0.4s;">
+                    <h3>🎯 当前成果 (中期数据)</h3>
+                    <ul>
+                        <li>金标准候选物：<span class="metric-highlight">96个</span> (去重后)</li>
+                        <li>活性范围：IC50 = <span class="metric-highlight">6.5-10 nM</span></li>
+                        <li>最优分子：IC50 = <span class="metric-highlight">6.5 nM</span></li>
+                        <li>高活性分子(pIC50≥7.5)：<span class="metric-highlight">110万</span> (97.5%)</li>
+                        <li>极高活性(IC50<10nM)：<span class="metric-highlight">2,170个</span></li>
+                    </ul>
+                    <div class="status-badge">✅ 成功率稳定 - 持续优化中</div>
+                </div>
+                
+                <div class="info-card animate-in" style="animation-delay: 0.6s;">
+                    <h3>📊 实验进展</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <td>当前步数</td>
+                            <td>~2219 / 6000</td>
+                        </tr>
+                        <tr>
+                            <td>完成度</td>
+                            <td>37%</td>
+                        </tr>
+                        <tr>
+                            <td>已生成分子</td>
+                            <td>113.6万</td>
+                        </tr>
+                        <tr>
+                            <td>去重后</td>
+                            <td>109.7万 (96.6%)</td>
+                        </tr>
+                        <tr>
+                            <td>R基团多样性</td>
+                            <td>111.9万组合</td>
+                        </tr>
+                        <tr>
+                            <td>预计最终</td>
+                            <td>~160万分子</td>
+                        </tr>
+                        <tr>
+                            <td>预计金标准</td>
+                            <td>~140个</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="info-card animate-in" style="animation-delay: 0.8s;">
+                    <h3>💡 技术亮点</h3>
+                    <ul>
+                        <li>QSAR模型：随机森林预测器 (R² = 0.85)</li>
+                        <li>生成策略：<span class="metric-highlight">LibInvent</span> 双R基团设计</li>
+                        <li>多目标优化：15个scoring components</li>
+                        <li>显存优化：batch_size 32 (适配4GB显存)</li>
+                        <li>化学稳定性：15种substructure alerts过滤</li>
+                    </ul>
+                    <div class="status-badge" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">🚀 生产级配置</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <span>DENV Drug Discovery Project | 实验进行中</span>
+                <span>Slide 1/4</span>
+                <span>Updated: 2025-01-10 | Progress: 33%</span>
+            </div>
+        </div>
+        
+        <!-- Slide 2: 方法学 (保持不变) -->
+        <div class="slide" id="slide2">
+            <div class="slide-header animate-in">
+                <h1 class="slide-title">⚙️ 方法学与实验设计</h1>
+                <p class="slide-subtitle">多层次评分策略 + QSAR引导优化</p>
+            </div>
+            
+            <div class="method-layout">
+                <div class="scoring-strategy animate-in" style="animation-delay: 0.2s;">
+                    <h3 style="color: #00d4ff; font-size: 26px; margin-bottom: 25px;">📐 评分组件架构 (15 Components)</h3>
+                    
+                    <div class="strategy-section">
+                        <h4>🎯 第一优先级：生物活性 (Weight: 2.5)</h4>
+                        <div class="component-item">
+                            <strong>QSARScorer</strong> - Random Forest pIC50预测
+                            <span class="weight-indicator">权重: 2.5</span>
+                            <div style="font-size: 14px; color: #9ca3af; margin-top: 8px;">
+                                Transform: double_sigmoid (4.0-9.0)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-section">
+                        <h4>🛡️ 第二优先级：化学稳定性 (Total: 1.6)</h4>
+                        <div class="component-item">
+                            CustomAlerts - 15种不稳定substructures
+                            <span class="weight-indicator">权重: 1.0</span>
+                            <div style="font-size: 13px; color: #9ca3af; margin-top: 5px;">
+                                [*;r8-10], [#8][#8], C#C, [NX3][NX3], halogen geminal, etc.
+                            </div>
+                        </div>
+                        <div class="component-item">
+                            NumAtomStereoCenters
+                            <span class="weight-indicator">权重: 0.6</span>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-section">
+                        <h4>💊 第三优先级：类药性 (Total: 0.7)</h4>
+                        <div class="component-item">
+                            QED - Drug-likeness
+                            <span class="weight-indicator">权重: 0.3</span>
+                        </div>
+                        <div class="component-item">
+                            SAScore - Synthetic Accessibility
+                            <span class="weight-indicator">权重: 0.4</span>
+                            <div style="font-size: 13px; color: #9ca3af; margin-top: 5px;">
+                                Transform: reverse_sigmoid (1.0-5.5)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-section">
+                        <h4>⚛️ 第四优先级：物理化学性质 (Total: 1.9)</h4>
+                        <div class="component-item">MW: 250-600 Da <span class="weight-indicator">0.5</span></div>
+                        <div class="component-item">LogP: 0.5-5.0 <span class="weight-indicator">0.3</span></div>
+                        <div class="component-item">TPSA: 30-120 Ų <span class="weight-indicator">0.2</span></div>
+                        <div class="component-item">HBA ≤ 8 <span class="weight-indicator">0.3</span></div>
+                        <div class="component-item">HBD ≤ 4 <span class="weight-indicator">0.2</span></div>
+                        <div class="component-item">Heavy Atoms: 18-45 <span class="weight-indicator">0.4</span></div>
+                    </div>
+                    
+                    <div class="strategy-section">
+                        <h4>🔗 第五优先级：结构复杂度 (Total: 0.55)</h4>
+                        <div class="component-item">Rotatable Bonds ≤ 9 <span class="weight-indicator">0.2</span></div>
+                        <div class="component-item">Ring Count: 2-5 <span class="weight-indicator">0.2</span></div>
+                        <div class="component-item">Aromatic Rings: 1-3 <span class="weight-indicator">0.15</span></div>
+                    </div>
+                    
+                    <div style="background: rgba(251, 191, 36, 0.1); padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #fbbf24;">
+                        <strong style="color: #fbbf24; font-size: 18px;">💡 评分策略关键点</strong>
+                        <ul style="margin-top: 10px; line-height: 2; font-size: 15px;">
+                            <li>采用算术平均 (arithmetic_mean)</li>
+                            <li>活性权重占比：2.5/7.25 = <strong>34.5%</strong></li>
+                            <li>稳定性+成药性：2.3/7.25 = <strong>31.7%</strong></li>
+                            <li>物化性质：1.9/7.25 = <strong>26.2%</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tech-specs animate-in" style="animation-delay: 0.4s;">
+                    <h3 style="color: #fbbf24; font-size: 26px; margin-bottom: 20px;">🔧 技术配置</h3>
+                    
+                    <table class="spec-table">
+                        <tr>
+                            <td>生成器</td>
+                            <td>LibInvent</td>
+                        </tr>
+                        <tr>
+                            <td>骨架</td>
+                            <td>双芳环吡咯烷</td>
+                        </tr>
+                        <tr>
+                            <td>Prior Model</td>
+                            <td>libinvent.prior</td>
+                        </tr>
+                        <tr>
+                            <td>Learning Rate</td>
+                            <td>0.0001</td>
+                        </tr>
+                        <tr>
+                            <td>Batch Size</td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>Sigma (DAP)</td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <td>Min Steps</td>
+                            <td>1,500</td>
+                        </tr>
+                        <tr>
+                            <td>Max Steps</td>
+                            <td>6,000</td>
+                        </tr>
+                        <tr>
+                            <td>Current</td>
+                            <td>~2,000 (33%)</td>
+                        </tr>
+                        <tr>
+                            <td>Target Score</td>
+                            <td>0.80</td>
+                        </tr>
+                        <tr>
+                            <td>Diversity Filter</td>
+                            <td>Murcko Scaffold</td>
+                        </tr>
+                        <tr>
+                            <td>Bucket Size</td>
+                            <td>8</td>
+                        </tr>
+                    </table>
+                    
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 10px; margin-top: 25px; border-left: 4px solid #10b981;">
+                        <strong style="color: #10b981; font-size: 18px;">✅ 显存优化策略</strong>
+                        <div style="margin-top: 12px; font-size: 15px; line-height: 1.8;">
+                            Batch size从64降至32，减少50%显存占用<br>
+                            Inception从100降至50，进一步优化内存<br>
+                            成功在<strong>4GB VRAM</strong>环境运行
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #8b5cf6;">
+                        <strong style="color: #8b5cf6; font-size: 18px;">🎯 QSAR模型</strong>
+                        <div style="margin-top: 12px; font-size: 15px; line-height: 1.8;">
+                            <strong>Random Forest Regressor</strong><br>
+                            特征：Morgan Fingerprint (r=2, 4096 bits)<br>
+                            训练集性能：R² = 0.85<br>
+                            预测范围：pIC50 4.0-9.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <span>配置文件: run9_t1200/config.toml</span>
+                <span>Slide 2/4</span>
+                <span>Scoring: Arithmetic Mean (15 components)</span>
+            </div>
+        </div>
+        
+        <!-- Slide 3: 结果 + 图片展示 -->
+        <div class="slide" id="slide3">
+            <div class="slide-header animate-in">
+                <h1 class="slide-title">📊 中期结果与可视化</h1>
+                <p class="slide-subtitle">113.6万分子 (33%进度) | 97.5%高活性 | 96个金标准候选物</p>
+            </div>
+            
+            <div class="results-with-images">
+                <div class="image-gallery animate-in" style="animation-delay: 0.2s;">
+                    <div class="image-card">
+                        <h3>📈 Generation Analysis</h3>
+                        <div class="image-placeholder">
+                            <img src="generation_analysis.png" alt="Generation Analysis">
+                                <span style="font-size: 14px;">
+                            </div>
+                            <div class="upload-instruction">
+                                包含9子图分析：<br>
+                                - 学习曲线<br>
+                                - 活性分布<br>
+                                - IC50分布<br>
+                                - QED/SA/MW分布<br>
+                                - LogP分布<br>
+                                - 活性vs成药性散点图</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="image-card">
+                        <h3>🧪 关键指标</h3>
+                        <table class="distribution-table" style="margin-top: 20px;">
+                            <tr>
+                                <td><strong>总分子数</strong></td>
+                                <td>113.6万</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>唯一分子</strong></td>
+                                <td>109.7万</td>
+                                <td>96.6%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IC50 < 10nM</strong></td>
+                                <td>2,170个</td>
+                                <td>0.2%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IC50 10-50nM</strong></td>
+                                <td>108.1万</td>
+                                <td>98.6%</td>
+                            </tr>
+                            <tr style="background: rgba(251, 191, 36, 0.1);">
+                                <td><strong>金标准</strong></td>
+                                <td>96个</td>
+                                <td>0.01%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 20px;">pIC50 ≥ 8.0</td>
+                                <td>8.00-8.19</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 20px;">QED</td>
+                                <td>0.70-0.86</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 20px;">SA</td>
+                                <td>3.44-4.00</td>
+                                <td></td>
+                            </tr>
+                            <tr style="background: rgba(0, 212, 255, 0.05);">
+                                <td><strong>高标准</strong></td>
+                                <td>28.9万</td>
+                                <td>26.4%</td>
+                            </tr>
+                            <tr style="background: rgba(0, 212, 255, 0.05);">
+                                <td><strong>中标准</strong></td>
+                                <td>60.8万</td>
+                                <td>55.4%</td>
+                            </tr>
+                        </table>
+                        
+                        <div style="background: rgba(251, 191, 36, 0.1); padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #fbbf24; font-size: 14px;">
+                            <strong style="color: #fbbf24;">⚠️ 数据说明</strong><br>
+                            以上为基于<strong>去重后</strong>数据的统计<br>
+                            103 vs 96的差异 = 7个重复SMILES
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-grid animate-in" style="animation-delay: 0.4s;">
+                    <div class="result-card">
+                        <h3>🎯 IC50活性分布</h3>
+                        <div class="chart-container">
+                            <div class="bar-chart">
+                                <div class="bar-item">
+                                    <span class="bar-label">0-10 nM (极高)</span>
+                                    <div class="bar-wrapper">
+                                        <div class="bar-fill" style="width: 20%; background: linear-gradient(90deg, #10b981, #059669);">
+                                            2,170 (0.2%)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bar-item">
+                                    <span class="bar-label">10-50 nM (高)</span>
+                                    <div class="bar-wrapper">
+                                        <div class="bar-fill" style="width: 100%; background: linear-gradient(90deg, #00d4ff, #0ea5e9);">
+                                            1,081,138 (98.6%)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bar-item">
+                                    <span class="bar-label">>50 nM (低)</span>
+                                    <div class="bar-wrapper">
+                                        <div class="bar-fill" style="width: 15%; background: linear-gradient(90deg, #ef4444, #dc2626);">
+                                            13,281 (1.2%)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #10b981; font-size: 15px;">
+                                <strong style="color: #10b981;">✅ 成功率：98.8%分子达到pIC50 ≥ 7.0</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3>⚛️ 物化性质统计</h3>
+                        <table class="distribution-table">
+                            <tr>
+                                <td><strong>分子量</strong></td>
+                                <td>486 ± 71 Da</td>
+                                <td>97.0%达标</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LogP</strong></td>
+                                <td>3.98 ± 1.31</td>
+                                <td>78.8%达标</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HBA</strong></td>
+                                <td>5.58 ± 1.45</td>
+                                <td>99.9%≤10</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HBD</strong></td>
+                                <td>1.35 ± 0.59</td>
+                                <td>100%≤5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TPSA</strong></td>
+                                <td>88.2 ± 23.7 Ų</td>
+                                <td>97.8%达标</td>
+                            </tr>
+                            <tr>
+                                <td><strong>QED</strong></td>
+                                <td>0.52 ± 0.15</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>SA Score</strong></td>
+                                <td>3.95 ± 0.53</td>
+                                <td>98.8%在1-6</td>
+                            </tr>
+                        </table>
+                        <div style="background: rgba(0, 212, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; border-left: 4px solid #00d4ff; font-size: 14px;">
+                            <strong style="color: #00d4ff;">📌 Lipinski Ro5</strong><br>
+                            违规率：0.64次/分子<br>
+                            完全符合：~36%
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3>🔄 实验进展预测</h3>
+                        <table class="distribution-table">
+                            <tr style="background: rgba(251, 191, 36, 0.1);">
+                                <td><strong>当前 (33%)</strong></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">总分子</td>
+                                <td>113.6万</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">金标准</td>
+                                <td>96个</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">去重率</td>
+                                <td>96.6%</td>
+                                <td></td>
+                            </tr>
+                            <tr style="background: rgba(0, 212, 255, 0.05);">
+                                <td><strong>预计 (100%)</strong></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">总分子</td>
+                                <td>~160万</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">金标准</td>
+                                <td>~140个</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">高标准</td>
+                                <td>~40万</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div style="background: rgba(251, 191, 36, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; border-left: 4px solid #fbbf24; font-size: 14px;">
+                            <strong style="color: #fbbf24;">📊 趋势分析</strong><br>
+                            金标准增长略缓于总量<br>
+                            高质量候选物占比稳定
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3>⚠️ 化学稳定性</h3>
+                        <table class="distribution-table">
+                            <tr>
+                                <td><strong>触发警报</strong></td>
+                                <td>5,740</td>
+                                <td>0.5%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">[*;r8]</td>
+                                <td>2,266次</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">[NX3][NX3]</td>
+                                <td>1,718次</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">[SH]</td>
+                                <td>975次</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">halogen</td>
+                                <td>323次</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">[#8][#8]</td>
+                                <td>218次</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; border-left: 4px solid #10b981; font-size: 14px;">
+                            <strong style="color: #10b981;">✅ 优秀表现</strong><br>
+                            99.5%分子通过稳定性检查<br>
+                            警报率低于行业平均水平
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <span>数据来源: results_1.csv (1,136,114行, 109.7万唯一分子)</span>
+                <span>Slide 3/4</span>
+                <span>中期数据 - 实验进行中</span>
+            </div>
+        </div>
+        
+        <!-- Slide 4: 金标准候选物 + 结构图 -->
+        <div class="slide" id="slide4">
+            <div class="slide-header animate-in">
+                <h1 class="slide-title">🏆 金标准候选物与结构展示</h1>
+                <p class="slide-subtitle">96个极高活性分子 (去重后) | IC50 6.5-10 nM | 无结构警报</p>
+            </div>
+            
+            <div class="candidates-layout">
+                <div class="criteria-cards animate-in" style="animation-delay: 0.2s;">
+                    <div class="criteria-card gold">
+                        <h3>💎 金标准</h3>
+                        <div class="big-number">96</div>
+                        <div class="criteria-list">
+                            ✓ pIC50 ≥ 8.0<br>
+                            ✓ IC50: 6.5-10 nM<br>
+                            ✓ QED ≥ 0.7<br>
+                            ✓ SA ≤ 4.0<br>
+                            ✓ MW: 300-500 Da<br>
+                            ✓ LogP: 1-4<br>
+                            ✓ 去重后唯一SMILES
+                        </div>
+                    </div>
+                    
+                    <div class="criteria-card">
+                        <h3>⭐ 高标准</h3>
+                        <div class="big-number" style="font-size: 36px;">289,397</div>
+                        <div class="criteria-list">
+                            ✓ pIC50 ≥ 7.5<br>
+                            ✓ IC50: 5.6-31.6 nM<br>
+                            ✓ QED ≥ 0.6<br>
+                            ✓ SA ≤ 4.5<br>
+                            ✓ MW: 250-550 Da<br>
+                            ✓ LogP: 0.5-5
+                        </div>
+                    </div>
+                    
+                    <div class="criteria-card">
+                        <h3>✓ 中标准</h3>
+                        <div class="big-number" style="font-size: 36px;">607,640</div>
+                        <div class="criteria-list">
+                            ✓ pIC50 ≥ 7.0<br>
+                            ✓ IC50: 5.6-45.5 nM<br>
+                            ✓ QED ≥ 0.5<br>
+                            ✓ SA ≤ 5.0<br>
+                            ✓ MW: 200-600 Da<br>
+                            ✓ LogP: 0-6
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="structure-gallery animate-in" style="animation-delay: 0.4s;">
+                    <div class="structure-card">
+                        <h4>💎 金标准 Top 10</h4>
+                        <div class="image-placeholder" style="min-height: 350px;">
+                            <div class="image-placeholder" style="min-height: 350px;">
+                                <img src='structures_gold_top10.png'>
+                            </div>
+                            <div class="upload-instruction">
+                               
+                            </div>
+                        </div>
+                        <div class="molecule-details">
+                            <div class="molecule-prop">
+                                <span>IC50范围</span>
+                                <span>6.5-10 nM</span>
+                            </div>
+                            <div class="molecule-prop">
+                                <span>平均QED</span>
+                                <span>0.79</span>
+                            </div>
+                            <div class="molecule-prop">
+                                <span>平均SA</span>
+                                <span>3.63</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-card">
+                        <h4>⭐ 高标准 Top 10</h4>
+                        <div class="image-placeholder" style="min-height: 350px;">
+                            <div class="image-placeholder" style="min-height: 350px;">
+                            <img src='structures_high_top10.png'>
+                            </div>
+                            <div class="upload-instruction">
+                                
+                            </div>
+                        </div>
+                        <div class="molecule-details">
+                            <div class="molecule-prop">
+                                <span>IC50范围</span>
+                                <span>5.6-31.6 nM</span>
+                            </div>
+                            <div class="molecule-prop">
+                                <span>平均QED</span>
+                                <span>0.69</span>
+                            </div>
+                            <div class="molecule-prop">
+                                <span>平均SA</span>
+                                <span>4.01</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-card">
+                        <h4>✓ 中标准 Top 10</h4>
+                        <div class="image-placeholder" style="min-height: 350px;">
+                            <div class="image-placeholder" style="min-height: 350px;">
+                                <img src='structures_good_top10.png'>
+                            </div>
+                            <div class="upload-instruction">
+                               
+                            </div>
+                        </div>
+                        <div class="molecule-details">
+                            <div class="molecule-prop">
+                                <span>IC50范围</span>
+                                <span>5.6-45.5 nM</span>
+                            </div>
+                            <div class="molecule-prop">
+                                <span>平均QED</span>
+                                <span>0.63</span>
+                            </div>
+                            <div class="molecule-prop">
+                                <span>平均SA</span>
+                                <span>4.03</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="animate-in" style="animation-delay: 0.6s;">
+                    <div style="background: rgba(139, 92, 246, 0.1); padding: 25px; border-radius: 15px; border-left: 4px solid #8b5cf6;">
+                        <h4 style="color: #8b5cf6; font-size: 22px; margin-bottom: 15px;">🔬 下一步工作</h4>
+                        <ul style="line-height: 2; font-size: 16px;">
+                            <li>✓ 等待实验完成 (预计4000步后稳定)</li>
+                            <li>✓ 从最终金标准中选择<strong>20-30个</strong>进行合成</li>
+                            <li>✓ 体外酶活性测定 (NS2B-NS3 protease)</li>
+                            <li>✓ 细胞毒性评估 (CC50)</li>
+                            <li>✓ 抗病毒活性测试 (EC50)</li>
+                            <li>✓ 分子对接验证结合模式</li>
+                            <li>✓ ADMET性质预测与优化</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 25px; border-radius: 15px; border-left: 4px solid #10b981;">
+                        <h4 style="color: #10b981; font-size: 22px; margin-bottom: 15px;">✅ 中期总结</h4>
+                        <ul style="line-height: 2; font-size: 16px;">
+                            <li>当前生成<strong>113.6万</strong>候选分子 (33%进度)</li>
+                            <li>获得<strong>96个金标准</strong>极高活性候选物</li>
+                            <li><strong>98.8%</strong>分子达到pIC50 ≥ 7.0</li>
+                            <li>化学稳定性优秀：仅<strong>0.5%</strong>警报</li>
+                            <li>成药性良好：平均QED=0.52, SA=3.95</li>
+                            <li>数据质量高：去重率<strong>96.6%</strong></li>
+                            <li>预计最终：<strong>~160万分子, ~140个金标准</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <span>候选物文件: candidates_gold_unique.csv (96个唯一SMILES)</span>
+                <span>Slide 4/4</span>
+                <span>实验进行中 (33%) | 预计IC50 < 10 nM</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <div class="nav-dot active" onclick="scrollToSlide(0)"></div>
+        <div class="nav-dot" onclick="scrollToSlide(1)"></div>
+        <div class="nav-dot" onclick="scrollToSlide(2)"></div>
+        <div class="nav-dot" onclick="scrollToSlide(3)"></div>
+    </div>
+    
+    <script>
+        function scrollToSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            slides[index].scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        const container = document.getElementById('slideContainer');
+        const navDots = document.querySelectorAll('.nav-dot');
+        
+        container.addEventListener('scroll', () => {
+            const scrollPosition = container.scrollTop;
+            const slideHeight = window.innerHeight;
+            const currentSlide = Math.round(scrollPosition / slideHeight);
+            
+            navDots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            const currentScroll = container.scrollTop;
+            const slideHeight = window.innerHeight;
+            
+            if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                e.preventDefault();
+                container.scrollTop = currentScroll + slideHeight;
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                container.scrollTop = currentScroll - slideHeight;
+            }
+        });
+    </script>
+</body>
+</html>

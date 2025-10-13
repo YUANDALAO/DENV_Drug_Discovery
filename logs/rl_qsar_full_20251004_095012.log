@@ -1,0 +1,138 @@
+09:50:18 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-04
+09:50:18 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent configs/final_rl_task.toml
+09:50:18 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/configs/final_rl_task.toml using format toml
+09:50:18 <INFO> User cheriong on host CS00050812
+09:50:18 <INFO> Python version 3.10.18
+09:50:18 <INFO> PyTorch version 2.5.1, git a8d6afb511a69687bbb2b7e88a3cf67917e1697e
+09:50:18 <INFO> PyTorch compiled with CUDA version 11.8
+09:50:18 <INFO> RDKit version 2025.03.2
+09:50:18 <INFO> Platform Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+09:50:19 <INFO> Number of PyTorch CUDA devices 1
+09:50:19 <WARN> 'use_cuda' is deprecated, use 'device' instead
+09:50:19 <INFO> Using CUDA device:0 NVIDIA T1200 Laptop GPU
+09:50:19 <INFO> GPU memory: 3295 MiB free, 4095 MiB total
+09:50:19 <INFO> Writing TensorBoard summary to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/tb_denv_rl_full
+09:50:19 <INFO> Writing JSON config file to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/_final_rl_full.json
+09:50:19 <INFO> Starting 1 stage of Reinforcement Learning
+09:50:20 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/denv_ultra_clean_model.model has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'aa84c49218d99ea72a8ba83042edd9fb',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.5.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1759055541.6721017]}
+09:50:20 <INFO> Number of network parameters: 5,805,602
+09:50:20 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+09:50:20 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/denv_ultra_clean_model.model has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'aa84c49218d99ea72a8ba83042edd9fb',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.5.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1759055541.6721017]}
+09:50:20 <INFO> Number of network parameters: 5,805,602
+09:50:20 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+09:50:20 <INFO> Using generator Reinvent
+09:50:20 <INFO> Prior read from priors/denv_ultra_clean_model.model
+09:50:20 <INFO> Agent read from priors/denv_ultra_clean_model.model
+09:50:20 <INFO> Using reward strategy dap
+09:50:20 <INFO> Using diversity filter IdenticalMurckoScaffold
+09:50:20 <INFO> Diversity filter memories are retained between stages
+09:50:20 <INFO> Inception SMILES read from data/denv_ultra_clean.tsv
+09:50:20 <INFO> Global SMILES deduplication for inception memory
+09:50:20 <INFO> Using inception memory
+09:50:20 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+09:50:20 <INFO> Registered scoring component GroupCount
+09:50:20 <INFO> Registered scoring component FragmentQed
+09:50:20 <INFO> Registered scoring component FragmentSlogP
+09:50:20 <INFO> Registered scoring component FragmentMolecularWeight
+09:50:20 <INFO> Registered scoring component FragmentTPSA
+09:50:20 <INFO> Registered scoring component FragmentDistanceMatrix
+09:50:20 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+09:50:20 <INFO> Registered scoring component FragmentHBondAcceptors
+09:50:20 <INFO> Registered scoring component FragmentHBondDonors
+09:50:20 <INFO> Registered scoring component FragmentNumRotBond
+09:50:20 <INFO> Registered scoring component FragmentCsp3
+09:50:20 <INFO> Registered scoring component Fragmentnumsp
+09:50:20 <INFO> Registered scoring component Fragmentnumsp2
+09:50:20 <INFO> Registered scoring component Fragmentnumsp3
+09:50:20 <INFO> Registered scoring component FragmentEffectiveLength
+09:50:20 <INFO> Registered scoring component FragmentGraphLength
+09:50:20 <INFO> Registered scoring component FragmentLengthRatio
+09:50:20 <INFO> Registered scoring component FragmentNumHeavyAtoms
+09:50:20 <INFO> Registered scoring component FragmentNumHeteroAtoms
+09:50:20 <INFO> Registered scoring component FragmentNumRings
+09:50:20 <INFO> Registered scoring component FragmentNumAromaticRings
+09:50:20 <INFO> Registered scoring component FragmentNumAliphaticRings
+09:50:20 <INFO> Registered scoring component FragmentSlogP
+09:50:20 <INFO> Registered scoring component MatchingSubstructure
+09:50:20 <INFO> Registered scoring component MolVolume
+09:50:20 <INFO> Registered scoring component Qed
+09:50:20 <INFO> Registered scoring component LargestRingSize
+09:50:20 <INFO> Registered scoring component MolecularWeight
+09:50:20 <INFO> Registered scoring component GraphLength
+09:50:20 <INFO> Registered scoring component NumAtomStereoCenters
+09:50:20 <INFO> Registered scoring component HBondAcceptors
+09:50:20 <INFO> Registered scoring component HBondDonors
+09:50:20 <INFO> Registered scoring component NumRotBond
+09:50:20 <INFO> Registered scoring component Csp3
+09:50:20 <INFO> Registered scoring component numsp
+09:50:20 <INFO> Registered scoring component numsp2
+09:50:20 <INFO> Registered scoring component numsp3
+09:50:20 <INFO> Registered scoring component NumHeavyAtoms
+09:50:20 <INFO> Registered scoring component NumHeteroAtoms
+09:50:20 <INFO> Registered scoring component NumRings
+09:50:20 <INFO> Registered scoring component NumAromaticRings
+09:50:20 <INFO> Registered scoring component NumAliphaticRings
+09:50:20 <INFO> Registered scoring component SlogP
+09:50:20 <INFO> Registered scoring component LargestRingSize
+09:50:20 <INFO> Registered scoring component PMI
+09:50:20 <INFO> Registered scoring component RDKitDescriptors
+09:50:20 <INFO> Registered scoring component TanimotoSimilarity
+09:50:20 <INFO> Registered scoring component TanimotoDistance
+09:50:20 <INFO> Registered scoring component TPSA
+09:50:20 <INFO> Registered scoring component SAScore
+09:50:21 <INFO> Registered scoring component Cazp
+09:50:21 <INFO> Registered scoring component ChemProp
+09:50:21 <INFO> Registered scoring component CustomAlerts
+09:50:21 <INFO> Registered scoring component DockStream
+09:50:21 <INFO> Registered scoring component ExternalProcess
+09:50:21 <INFO> Registered scoring component REST
+09:50:21 <INFO> Registered scoring component Icolos
+09:50:21 <INFO> Registered scoring component Maize
+09:50:21 <INFO> Registered scoring component MMP
+09:50:21 <INFO> Registered scoring component Qptuna
+09:50:21 <INFO> Registered scoring component ReactionFilter
+09:50:21 <INFO> Registered scoring component RingPrecedence
+Traceback (most recent call last):
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent", line 7, in <module>
+    sys.exit(main_script())
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 194, in main_script
+    main(args)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 163, in main
+    runner(
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/run_staged_learning.py", line 298, in run_staged_learning
+    packages = create_packages(reward_strategy, stages, rdkit_smiles_flags2)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/run_staged_learning.py", line 158, in create_packages
+    scoring_function = Scorer(stage.scoring)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/scoring/scorer.py", line 103, in __init__
+    self.components = get_components(config.component)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/scoring/config.py", line 53, in get_components
+    Component, ComponentParams = component_registry[component_type_lookup]
+KeyError: 'qsarscorer'

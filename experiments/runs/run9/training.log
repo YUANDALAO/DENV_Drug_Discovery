@@ -1,0 +1,229 @@
+18:02:16 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-08
+18:02:16 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent experiments/runs/run9/config.toml
+18:02:16 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run9/config.toml using format toml
+18:02:16 <INFO> User cheriong on host CS00050812
+18:02:16 <INFO> Python version 3.10.18
+18:02:16 <INFO> PyTorch version 2.5.1, git a8d6afb511a69687bbb2b7e88a3cf67917e1697e
+18:02:16 <INFO> PyTorch compiled with CUDA version 11.8
+18:02:16 <INFO> RDKit version 2025.03.2
+18:02:16 <INFO> Platform Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+18:02:18 <INFO> Number of PyTorch CUDA devices 1
+18:02:18 <WARN> 'use_cuda' is deprecated, use 'device' instead
+18:02:18 <INFO> Using CUDA device:0 NVIDIA T1200 Laptop GPU
+18:02:18 <INFO> GPU memory: 3295 MiB free, 4095 MiB total
+18:02:18 <INFO> Writing TensorBoard summary to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run9/tensorboard
+18:02:18 <INFO> Writing JSON config file to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run9/_config.json
+18:02:18 <INFO> Starting 1 stage of Reinforcement Learning
+18:02:18 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+18:02:18 <INFO> Number of network parameters: 23,686,692
+18:02:18 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+18:02:18 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+18:02:18 <INFO> Number of network parameters: 23,686,692
+18:02:18 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+18:02:18 <INFO> Using generator Libinvent
+18:02:18 <INFO> Prior read from priors/libinvent.prior
+18:02:18 <INFO> Agent read from priors/libinvent.prior
+18:02:18 <INFO> Input molecules/fragments read from file data/pyrrolidine_dual_aryl.smi
+18:02:18 <INFO> Using reward strategy dap
+18:02:18 <INFO> Using diversity filter IdenticalMurckoScaffold
+18:02:18 <INFO> Diversity filter memories are retained between stages
+18:02:18 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+18:02:18 <INFO> Registered scoring component GroupCount
+18:02:18 <INFO> Registered scoring component FragmentQed
+18:02:18 <INFO> Registered scoring component FragmentSlogP
+18:02:18 <INFO> Registered scoring component FragmentMolecularWeight
+18:02:18 <INFO> Registered scoring component FragmentTPSA
+18:02:18 <INFO> Registered scoring component FragmentDistanceMatrix
+18:02:18 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+18:02:18 <INFO> Registered scoring component FragmentHBondAcceptors
+18:02:18 <INFO> Registered scoring component FragmentHBondDonors
+18:02:18 <INFO> Registered scoring component FragmentNumRotBond
+18:02:18 <INFO> Registered scoring component FragmentCsp3
+18:02:18 <INFO> Registered scoring component Fragmentnumsp
+18:02:18 <INFO> Registered scoring component Fragmentnumsp2
+18:02:18 <INFO> Registered scoring component Fragmentnumsp3
+18:02:18 <INFO> Registered scoring component FragmentEffectiveLength
+18:02:18 <INFO> Registered scoring component FragmentGraphLength
+18:02:18 <INFO> Registered scoring component FragmentLengthRatio
+18:02:18 <INFO> Registered scoring component FragmentNumHeavyAtoms
+18:02:18 <INFO> Registered scoring component FragmentNumHeteroAtoms
+18:02:18 <INFO> Registered scoring component FragmentNumRings
+18:02:18 <INFO> Registered scoring component FragmentNumAromaticRings
+18:02:18 <INFO> Registered scoring component FragmentNumAliphaticRings
+18:02:18 <INFO> Registered scoring component FragmentSlogP
+18:02:18 <INFO> Registered scoring component MatchingSubstructure
+18:02:18 <INFO> Registered scoring component MolVolume
+18:02:18 <INFO> Registered scoring component Qed
+18:02:18 <INFO> Registered scoring component LargestRingSize
+18:02:18 <INFO> Registered scoring component MolecularWeight
+18:02:18 <INFO> Registered scoring component GraphLength
+18:02:18 <INFO> Registered scoring component NumAtomStereoCenters
+18:02:18 <INFO> Registered scoring component HBondAcceptors
+18:02:18 <INFO> Registered scoring component HBondDonors
+18:02:18 <INFO> Registered scoring component NumRotBond
+18:02:18 <INFO> Registered scoring component Csp3
+18:02:18 <INFO> Registered scoring component numsp
+18:02:18 <INFO> Registered scoring component numsp2
+18:02:18 <INFO> Registered scoring component numsp3
+18:02:18 <INFO> Registered scoring component NumHeavyAtoms
+18:02:18 <INFO> Registered scoring component NumHeteroAtoms
+18:02:18 <INFO> Registered scoring component NumRings
+18:02:18 <INFO> Registered scoring component NumAromaticRings
+18:02:18 <INFO> Registered scoring component NumAliphaticRings
+18:02:18 <INFO> Registered scoring component SlogP
+18:02:18 <INFO> Registered scoring component LargestRingSize
+18:02:18 <INFO> Registered scoring component PMI
+18:02:18 <INFO> Registered scoring component RDKitDescriptors
+18:02:18 <INFO> Registered scoring component TanimotoSimilarity
+18:02:18 <INFO> Registered scoring component TanimotoDistance
+18:02:18 <INFO> Registered scoring component TPSA
+18:02:18 <INFO> Registered scoring component SAScore
+18:02:19 <INFO> Registered scoring component Cazp
+18:02:19 <INFO> Registered scoring component ChemProp
+18:02:19 <INFO> Registered scoring component CustomAlerts
+18:02:19 <INFO> Registered scoring component DockStream
+18:02:19 <INFO> Registered scoring component ExternalProcess
+18:02:19 <INFO> Registered scoring component REST
+18:02:19 <INFO> Registered scoring component Icolos
+18:02:19 <INFO> Registered scoring component Maize
+18:02:19 <INFO> Registered scoring component MMP
+18:02:19 <INFO> Registered scoring component Qptuna
+18:02:19 <INFO> Registered scoring component QSARScorer
+18:02:19 <INFO> Registered scoring component ReactionFilter
+18:02:19 <INFO> Registered scoring component ScaffoldMatcher
+18:02:19 <INFO> Registered scoring component RingPrecedence
+18:02:19 <INFO> Creating scoring component QSARScorer
+18:02:19 <INFO> Creating scoring component NumAtomStereoCenters
+18:02:19 <INFO> Creating filter component CustomAlerts
+18:02:19 <INFO> Creating scoring component Qed
+18:02:19 <INFO> Creating scoring component SAScore
+18:02:19 <INFO> Creating scoring component MolecularWeight
+18:02:19 <INFO> Creating scoring component NumHeavyAtoms
+18:02:19 <INFO> Creating scoring component SlogP
+18:02:19 <INFO> Creating scoring component TPSA
+18:02:19 <INFO> Creating scoring component HBondAcceptors
+18:02:19 <INFO> Creating scoring component HBondDonors
+18:02:19 <INFO> Creating scoring component NumRotBond
+18:02:19 <INFO> Creating scoring component NumRings
+18:02:19 <INFO> Creating scoring component NumAromaticRings
+18:02:19 <INFO> Writing tabular data for stage to experiments/runs/run9/results_1.csv
+18:02:19 <INFO> Starting stage 1 <<<
+18:02:19 <INFO> Current GPU memory usage: 1152 MiB used, 2943 MiB free
+18:02:25 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2sccc2)C(C(=O)N[*])C1C1=N(C(=O)*)CCCCC1|O=S(=O)(C)* could not be converted
+18:03:04 <CRIT> Received exception ('CUDA driver error: out of memory'): saving checkpoint and then terminate
+[QSAR Scorer] ✓ Model loaded from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib
+[QSAR Scorer] Processing 702 SMILES strings
+[QSAR Scorer]   Cc1cccc(C2CC(C(=O)NC(=O)CCN)C(c3ccc(C(C)C)cc3)N2C( -> pIC50=7.7655
+[QSAR Scorer]   CCCCCC(=O)N1C(c2cccc(C)c2)CC(C(=O)NS(=O)(=O)c2ccc( -> pIC50=7.7645
+[QSAR Scorer]   CC(=O)N1C(c2cccc(C)c2)CC(C(=O)NS(C)(=O)=O)C1c1ccc( -> pIC50=7.5567
+[QSAR Scorer] Predictions: min=7.48, max=8.03, mean=7.64
+Traceback (most recent call last):
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent", line 7, in <module>
+    sys.exit(main_script())
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 194, in main_script
+    main(args)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 163, in main
+    runner(
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/run_staged_learning.py", line 366, in run_staged_learning
+    terminate = optimize(package.terminator)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/learning.py", line 146, in optimize
+    agent_lls, prior_lls, augmented_nll, loss = self.update(results)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/libinvent.py", line 23, in update
+    return self._update_common(results)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/learning.py", line 227, in _update_common
+    result = self._state.agent.likelihood_smiles(self.sampled)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/models/model_factory/libinvent_adapter.py", line 38, in likelihood_smiles
+    return self.likelihood_smiles_common(DecoratorDataset, sampled_sequence_list)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/models/model_factory/model_adapter.py", line 91, in likelihood_smiles_common
+    nlls = self.likelihood(*_input, *_output)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/models/model_factory/libinvent_adapter.py", line 31, in likelihood
+    return self.model.likelihood(
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/models/libinvent/models/model.py", line 130, in likelihood
+    logits = self.network(
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/models/libinvent/models/decorator.py", line 235, in forward
+    encoder_padded_seqs, hidden_states = self.forward_encoder(encoder_seqs, encoder_seq_lengths)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/models/libinvent/models/decorator.py", line 248, in forward_encoder
+    return self._encoder(padded_seqs, seq_lengths)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/models/libinvent/models/decorator.py", line 65, in forward
+    packed_seqs, (hs_h, hs_c) = self._rnn(packed_seqs, (hs_h, hs_c))
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/nn/modules/rnn.py", line 1135, in forward
+    result = _VF.lstm(
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/torch/utils/_device.py", line 106, in __torch_function__
+    return func(*args, **kwargs)
+RuntimeError: CUDA driver error: out of memory

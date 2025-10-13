@@ -1,0 +1,3 @@
+[console_scripts]
+reinvent = reinvent.Reinvent:main_script
+reinvent_datapre = reinvent.datapipeline.preprocess:main_script

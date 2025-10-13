@@ -1,0 +1,45 @@
+run_type = "reinforcement_learning"
+device = "cuda:0"
+tb_logdir = "tb_scaffold_rl"
+
+[parameters]
+agent = "priors/denv_ultra_clean_model.model"
+prior = "priors/reinvent.prior"
+n_steps = 500
+
+[parameters.diversity_filter]
+name = "IdenticalMurckoScaffold"
+bucket_size = 25
+minscore = 0.4
+
+[parameters.inception]
+memory_size = 100
+sample_size = 10
+
+[parameters.scoring_function]
+name = "custom_sum"
+
+    [[parameters.scoring_function.components]]
+    component_type = "matching_substructure"
+    name = "Scaffold_Match"
+    weight = 0.5
+    
+    [parameters.scoring_function.components.specific]
+    smiles = [
+        "O=C(*)C1C(*)NC(*)C1",
+        "O=C(*)C1C(*)C(*)C1"
+    ]
+
+    [[parameters.scoring_function.components]]
+    component_type = "qed_score"
+    name = "Drug_Likeness"
+    weight = 0.3
+
+    [[parameters.scoring_function.components]]
+    component_type = "molecular_weight"
+    name = "MW_Target"
+    weight = 0.2
+    
+    [parameters.scoring_function.components.specific]
+    high = 500
+    low = 200

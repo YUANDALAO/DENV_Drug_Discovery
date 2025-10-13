@@ -1,0 +1,15 @@
+run_type = "transfer_learning"
+device = "cuda:0"
+tb_logdir = "tb_ultra_clean"
+
+[parameters]
+num_epochs = 50
+save_every_n_epochs = 10
+batch_size = 64
+num_refs = 50
+sample_batch_size = 100
+
+input_model_file = "priors/reinvent.prior"
+smiles_file = "data/denv_ultra_clean.tsv"
+output_model_file = "priors/denv_ultra_clean_model.model"
+validation_smiles_file = "data/denv_ultra_clean.tsv"

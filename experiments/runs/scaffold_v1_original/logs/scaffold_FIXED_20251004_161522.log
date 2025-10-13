@@ -1,0 +1,152 @@
+16:15:28 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-04
+16:15:28 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent configs/scaffold_FIXED.toml
+16:15:28 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/configs/scaffold_FIXED.toml using format toml
+16:15:28 <INFO> User cheriong on host CS00050812
+16:15:28 <INFO> Python version 3.10.18
+16:15:28 <INFO> PyTorch version 2.5.1, git a8d6afb511a69687bbb2b7e88a3cf67917e1697e
+16:15:28 <INFO> PyTorch compiled with CUDA version 11.8
+16:15:28 <INFO> RDKit version 2025.03.2
+16:15:28 <INFO> Platform Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+16:15:29 <INFO> Number of PyTorch CUDA devices 1
+16:15:29 <WARN> 'use_cuda' is deprecated, use 'device' instead
+16:15:29 <INFO> Using CUDA device:0 NVIDIA T1200 Laptop GPU
+16:15:29 <INFO> GPU memory: 3295 MiB free, 4095 MiB total
+16:15:29 <INFO> Writing TensorBoard summary to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/tb_scaffold_FIXED
+16:15:29 <INFO> Writing JSON config file to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/_scaffold_FIXED.json
+16:15:29 <INFO> Starting 1 stage of Reinforcement Learning
+16:15:29 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/denv_ultra_clean_model.model has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'aa84c49218d99ea72a8ba83042edd9fb',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.5.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1759055541.6721017]}
+16:15:30 <INFO> Number of network parameters: 5,805,602
+16:15:30 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+16:15:30 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/denv_ultra_clean_model.model has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'aa84c49218d99ea72a8ba83042edd9fb',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.5.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1759055541.6721017]}
+16:15:30 <INFO> Number of network parameters: 5,805,602
+16:15:30 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+16:15:30 <INFO> Using generator Reinvent
+16:15:30 <INFO> Prior read from priors/denv_ultra_clean_model.model
+16:15:30 <INFO> Agent read from priors/denv_ultra_clean_model.model
+16:15:30 <INFO> Using reward strategy dap
+16:15:30 <INFO> Using diversity filter IdenticalMurckoScaffold
+16:15:30 <INFO> Purging diversity filter memories after each stage
+16:15:30 <INFO> Inception SMILES read from data/denv_scaffolds_training.smi
+16:15:30 <INFO> Global SMILES deduplication for inception memory
+16:15:30 <INFO> Using inception memory
+16:15:30 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+16:15:30 <INFO> Registered scoring component GroupCount
+16:15:30 <INFO> Registered scoring component FragmentQed
+16:15:30 <INFO> Registered scoring component FragmentSlogP
+16:15:30 <INFO> Registered scoring component FragmentMolecularWeight
+16:15:30 <INFO> Registered scoring component FragmentTPSA
+16:15:30 <INFO> Registered scoring component FragmentDistanceMatrix
+16:15:30 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+16:15:30 <INFO> Registered scoring component FragmentHBondAcceptors
+16:15:30 <INFO> Registered scoring component FragmentHBondDonors
+16:15:30 <INFO> Registered scoring component FragmentNumRotBond
+16:15:30 <INFO> Registered scoring component FragmentCsp3
+16:15:30 <INFO> Registered scoring component Fragmentnumsp
+16:15:30 <INFO> Registered scoring component Fragmentnumsp2
+16:15:30 <INFO> Registered scoring component Fragmentnumsp3
+16:15:30 <INFO> Registered scoring component FragmentEffectiveLength
+16:15:30 <INFO> Registered scoring component FragmentGraphLength
+16:15:30 <INFO> Registered scoring component FragmentLengthRatio
+16:15:30 <INFO> Registered scoring component FragmentNumHeavyAtoms
+16:15:30 <INFO> Registered scoring component FragmentNumHeteroAtoms
+16:15:30 <INFO> Registered scoring component FragmentNumRings
+16:15:30 <INFO> Registered scoring component FragmentNumAromaticRings
+16:15:30 <INFO> Registered scoring component FragmentNumAliphaticRings
+16:15:30 <INFO> Registered scoring component FragmentSlogP
+16:15:30 <INFO> Registered scoring component MatchingSubstructure
+16:15:30 <INFO> Registered scoring component MolVolume
+16:15:30 <INFO> Registered scoring component Qed
+16:15:30 <INFO> Registered scoring component LargestRingSize
+16:15:30 <INFO> Registered scoring component MolecularWeight
+16:15:30 <INFO> Registered scoring component GraphLength
+16:15:30 <INFO> Registered scoring component NumAtomStereoCenters
+16:15:30 <INFO> Registered scoring component HBondAcceptors
+16:15:30 <INFO> Registered scoring component HBondDonors
+16:15:30 <INFO> Registered scoring component NumRotBond
+16:15:30 <INFO> Registered scoring component Csp3
+16:15:30 <INFO> Registered scoring component numsp
+16:15:30 <INFO> Registered scoring component numsp2
+16:15:30 <INFO> Registered scoring component numsp3
+16:15:30 <INFO> Registered scoring component NumHeavyAtoms
+16:15:30 <INFO> Registered scoring component NumHeteroAtoms
+16:15:30 <INFO> Registered scoring component NumRings
+16:15:30 <INFO> Registered scoring component NumAromaticRings
+16:15:30 <INFO> Registered scoring component NumAliphaticRings
+16:15:30 <INFO> Registered scoring component SlogP
+16:15:30 <INFO> Registered scoring component LargestRingSize
+16:15:30 <INFO> Registered scoring component PMI
+16:15:30 <INFO> Registered scoring component RDKitDescriptors
+16:15:30 <INFO> Registered scoring component TanimotoSimilarity
+16:15:30 <INFO> Registered scoring component TanimotoDistance
+16:15:30 <INFO> Registered scoring component TPSA
+16:15:30 <INFO> Registered scoring component SAScore
+16:15:30 <INFO> Registered scoring component Cazp
+16:15:31 <INFO> Registered scoring component ChemProp
+16:15:31 <INFO> Registered scoring component CustomAlerts
+16:15:31 <INFO> Registered scoring component DockStream
+16:15:31 <INFO> Registered scoring component ExternalProcess
+16:15:31 <INFO> Registered scoring component REST
+16:15:31 <INFO> Registered scoring component Icolos
+16:15:31 <INFO> Registered scoring component Maize
+16:15:31 <INFO> Registered scoring component MMP
+16:15:31 <INFO> Registered scoring component Qptuna
+16:15:31 <INFO> Registered scoring component QSARScorer
+16:15:31 <INFO> Registered scoring component ReactionFilter
+16:15:31 <INFO> Registered scoring component ScaffoldMatcher
+16:15:31 <INFO> Registered scoring component RingPrecedence
+16:15:31 <INFO> Creating scoring component ScaffoldMatcher
+16:15:31 <INFO> Creating scoring component ScaffoldMatcher
+16:15:31 <INFO> Creating scoring component QSARScorer
+16:15:31 <INFO> Creating scoring component Qed
+16:15:31 <INFO> Creating scoring component SAScore
+16:15:31 <INFO> Writing tabular data for stage to scaffold_FIXED_1.csv
+16:15:31 <INFO> Starting stage 1 <<<
+16:15:31 <INFO> Current GPU memory usage: 900 MiB used, 3195 MiB free
+16:15:31 <CRIT> Received exception ('expected str, bytes or os.PathLike object, not NoneType'): saving checkpoint and then terminate
+[QSAR Scorer] ✓ Model loaded from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib
+Traceback (most recent call last):
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent", line 7, in <module>
+    sys.exit(main_script())
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 194, in main_script
+    main(args)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 163, in main
+    runner(
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/RL/run_staged_learning.py", line 360, in run_staged_learning
+    handler.out_filename = package.out_state_filename
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/runmodes/handler.py", line 93, in out_filename
+    self._out_filename = Path(new_out_filename).absolute()
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/pathlib.py", line 960, in __new__
+    self = cls._from_parts(args)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/pathlib.py", line 594, in _from_parts
+    drv, root, parts = self._parse_args(args)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/pathlib.py", line 578, in _parse_args
+    a = os.fspath(a)
+TypeError: expected str, bytes or os.PathLike object, not NoneType

@@ -1,0 +1,117 @@
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "tb_run2_final"
+json_out_config = "_run2_final.json"
+
+[parameters]
+summary_csv_prefix = "run2_final"
+use_checkpoint = false
+prior_file = "../../../priors/denv_ultra_clean_model.model"
+agent_file = "../../../priors/denv_ultra_clean_model.model"
+batch_size = 64
+unique_sequences = true
+randomize_smiles = true
+
+[learning_strategy]
+type = "dap"
+sigma = 120
+rate = 0.0001
+
+[diversity_filter]
+type = "IdenticalMurckoScaffold"
+bucket_size = 20
+minscore = 0.30
+minsimilarity = 0.4
+
+[inception]
+smiles_file = "../../../data/denv_scaffolds_training.smi"
+memory_size = 100
+sample_size = 10
+
+[[stage]]
+max_score = 0.65
+min_steps = 500
+max_steps = 2000
+chkpt_file = "checkpoints/run2_final.chkpt"
+
+[stage.scoring]
+type = "arithmetic_mean"
+
+#═══════════════════════════════════════════════════════════
+# 使用Run1验证过的ScaffoldMatcher
+#═══════════════════════════════════════════════════════════
+[[stage.scoring.component]]
+[stage.scoring.component.ScaffoldMatcher]
+[[stage.scoring.component.ScaffoldMatcher.endpoint]]
+name = "Pyrrolidine_Scaffold"
+weight = 1.0
+params.smarts = "c1ccccc1C1CNCC1"
+params.use_chirality = false
+
+[[stage.scoring.component]]
+[stage.scoring.component.ScaffoldMatcher]
+[[stage.scoring.component.ScaffoldMatcher.endpoint]]
+name = "Cyclobutane_Scaffold"
+weight = 1.0
+params.smarts = "c1ccccc1C1CCC1"
+params.use_chirality = false
+
+[[stage.scoring.component]]
+[stage.scoring.component.QSARScorer]
+[[stage.scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 1.5
+[stage.scoring.component.QSARScorer.endpoint.params]
+model_path = "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib"
+[stage.scoring.component.QSARScorer.endpoint.transform]
+type = "double_sigmoid"
+low = 6.5
+high = 8.5
+coef_div = 8.5
+coef_si = 4.0
+coef_se = 4.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "Drug_Likeness"
+weight = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "Synthetic_Accessibility"
+weight = 0.4
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1.0
+high = 8.0
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "Molecular_Weight"
+weight = 0.3
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 250.0
+high = 500.0
+coef_div = 500.0
+coef_si = 15.0
+coef_se = 15.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Unwanted_Structures"
+weight = 1.0
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "[*;r8]",
+    "[*;r9]",
+    "[*;r10]",
+    "[#8][#8]",
+    "[#6;+]",
+    "[#16][#16]"
+]

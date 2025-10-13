@@ -1,0 +1,46 @@
+18:29:58 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-09-28
+18:29:58 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent -l logs/full_training.log configs/full_transfer_learning.toml
+18:29:58 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/configs/full_transfer_learning.toml using format toml
+18:29:58 <INFO> User cheriong on host CS00050812
+18:29:58 <INFO> Python version 3.10.18
+18:29:58 <INFO> PyTorch version 2.5.1, git a8d6afb511a69687bbb2b7e88a3cf67917e1697e
+18:29:58 <INFO> PyTorch compiled with CUDA version 11.8
+18:29:58 <INFO> RDKit version 2025.03.2
+18:29:58 <INFO> Platform Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+18:29:59 <INFO> Number of PyTorch CUDA devices 1
+18:29:59 <WARN> 'use_cuda' is deprecated, use 'device' instead
+18:29:59 <INFO> Using CUDA device:0 NVIDIA T1200 Laptop GPU
+18:29:59 <INFO> GPU memory: 3295 MiB free, 4095 MiB total
+18:29:59 <INFO> Writing TensorBoard summary to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/tb_full_denv
+18:29:59 <INFO> Writing JSON config file to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/json_full_training.json
+18:29:59 <INFO> Starting Transfer Learning
+18:29:59 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/reinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '173568c36e1fc3d95cab289c7d31ce0b',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': []}
+18:29:59 <INFO> Number of network parameters: 5,805,602
+18:29:59 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+18:29:59 <INFO> Using generator Reinvent
+18:29:59 <INFO> Applying filter default to input SMILES
+18:30:00 <WARN> "default" filter: Cc1ccc(NC(S)=NNc2ccc([N+](=O)[O-])cc2S(=O)(=O)Nc2ccccc2C(=O)O)cc1C is invalid
+18:30:00 <WARN> "default" filter: OB1OCc2ccccc21 is invalid
+18:30:00 <WARN> "default" filter: Sc1nnc(-c2ccco2)n1/N=C/C(Cl)=C/c1ccccc1 is invalid
+18:30:00 <WARN> "default" filter: CCC(=O)Nc1ccc2nc3c(O)nc(S)nc3nc2c1 is invalid
+18:30:00 <WARN> "default" filter: Oc1ccc(/C=N/NP(=S)(c2ccccc2)c2ccccc2)c(O)c1O is invalid
+18:30:00 <WARN> "default" filter: Oc1nc(S)nc2c1C(c1ccc(Br)cc1)c1c(O)nc(S)nc1O2 is invalid
+18:30:00 <WARN> "default" filter: CC(C)OP(=O)(OC(C)C)C1(NS(=O)(=O)c2ccccc2)C=C(Br)C(=O)c2ccccc21 is invalid
+18:30:00 <WARN> "default" filter: OB1OCc2cc(F)ccc21 is invalid
+18:30:00 <WARN> "default" filter: O=C(Nc1ccc(I)cc1)c1nc2cc(O)c(O)cc2s1 is invalid
+18:30:00 <WARN> "default" filter: Ic1ccc(-c2ncc(OCCC3CCNCC3)nc2-c2ccc(I)cc2)cc1 is invalid
+18:30:00 <WARN> "default" filter: O=C(Nc1nc2ccc([N+](=O)[O-])cc2s1)c1ccc(I)cc1 is invalid

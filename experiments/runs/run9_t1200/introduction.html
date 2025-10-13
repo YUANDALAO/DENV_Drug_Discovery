@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DENV抑制剂AI发现项目前言</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', 'Microsoft YaHei', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .slide {
+            width: 1920px;
+            height: 1080px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(calc(100vh / 1080));
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 80px;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        /* 页眉 */
+        .slide-header {
+            margin-bottom: 60px;
+            border-bottom: 4px solid #3b82f6;
+            padding-bottom: 25px;
+        }
+        
+        .slide-number {
+            font-size: 28px;
+            color: #64748b;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .slide-title {
+            font-size: 72px;
+            font-weight: 700;
+            color: #3b82f6;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .slide-subtitle {
+            font-size: 36px;
+            color: #94a3b8;
+            font-weight: 300;
+        }
+        
+        /* 内容区 */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        /* 第1页：问题与背景 */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            flex: 1;
+        }
+        
+        .content-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .content-box h3 {
+            font-size: 42px;
+            color: #3b82f6;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .content-box ul {
+            list-style: none;
+            font-size: 28px;
+            line-height: 2;
+            flex: 1;
+        }
+        
+        .content-box li {
+            margin: 20px 0;
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .content-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 32px;
+        }
+        
+        .highlight {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+        
+        .stat-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 5px solid #3b82f6;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        .stat-box strong {
+            color: #fbbf24;
+            font-size: 32px;
+        }
+        
+        /* 第2页：REINVENT4介绍 */
+        .full-width-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .timeline-item {
+            text-align: center;
+            position: relative;
+        }
+        
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            top: 45px;
+            right: -15px;
+            width: 30px;
+            height: 3px;
+            background: #3b82f6;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .timeline-year {
+            font-size: 36px;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-version {
+            font-size: 28px;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-desc {
+            font-size: 22px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 28px;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .feature-desc {
+            font-size: 22px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+        
+        .method-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 15px;
+        }
+        
+        .method-box {
+            flex: 1;
+            text-align: center;
+            padding: 25px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            border-radius: 15px;
+            margin: 0 10px;
+        }
+        
+        .method-box.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            transform: scale(1.05);
+        }
+        
+        .method-title {
+            font-size: 32px;
+            color: #3b82f6;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .method-desc {
+            font-size: 22px;
+            color: #cbd5e1;
+        }
+        
+        .arrow {
+            font-size: 48px;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+        
+        /* 页脚 */
+        .slide-footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            justify-content: space-between;
+            font-size: 24px;
+            color: #64748b;
+        }
+        
+        /* 导航 */
+        .navigation {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(59, 130, 246, 0.3);
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 28px;
+            color: #3b82f6;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(59, 130, 246, 0.6);
+            transform: scale(1.1);
+        }
+        
+        .nav-dots {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+        
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background: #3b82f6;
+            width: 40px;
+            border-radius: 10px;
+        }
+        
+        @media print {
+            .slide {
+                transform: none;
+                position: relative;
+                top: 0;
+                left: 0;
+                page-break-after: always;
+            }
+            .navigation, .nav-dots {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- 第1页：研究背景与问题 -->
+        <div class="slide active" id="slide1">
+            <div class="slide-header">
+                <div class="slide-number">前言 | Part 1/2</div>
+                <h1 class="slide-title">研究背景与动机</h1>
+                <p class="slide-subtitle">登革热：全球性公共卫生威胁与药物发现挑战</p>
+            </div>
+            
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="content-box">
+                        <h3>🦟 登革热：被忽视的全球威胁</h3>
+                        <ul>
+                            <li><span class="highlight">3.9亿</span>人/年感染，遍布129国家</li>
+                            <li>WHO列为<span class="highlight">十大全球健康威胁</span></li>
+                            <li>气候变化加剧传播：预计2050年<span class="highlight">+20亿</span>风险人口</li>
+                            <li><span class="highlight">无特效药</span>，仅支持性治疗</li>
+                            <li>疫苗效力有限（Dengvaxia仅60%，有副作用风险）</li>
+                        </ul>
+                        
+                        <div class="stat-box">
+                            <strong>关键靶点：NS2B-NS3蛋白酶</strong><br>
+                            <span style="font-size: 24px; color: #cbd5e1;">病毒复制必需 | 保守性高 | 成药性好</span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-box">
+                        <h3>💊 传统药物发现的困境</h3>
+                        <ul>
+                            <li><span class="highlight">时间长</span>：10-15年从发现到上市</li>
+                            <li><span class="highlight">成本高</span>：平均26亿美元/新药</li>
+                            <li><span class="highlight">成功率低</span>：仅0.01%化合物进入临床</li>
+                            <li><span class="highlight">化学空间巨大</span>：10<sup>60</sup>种类药分子</li>
+                            <li>高通量筛选局限：仅能覆盖10<sup>6</sup>-10<sup>7</sup>化合物</li>
+                        </ul>
+                        
+                        <div class="stat-box">
+                            <strong>DENV抑制剂现状（2024）：</strong><br>
+                            <span style="font-size: 24px; color: #cbd5e1;">
+                            • 临床试验：0个进入III期<br>
+                            • 已报道抑制剂：IC50普遍>1μM<br>
+                            • 成药性差：类药性/合成难度高
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="full-width-box" style="padding: 35px; background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.5);">
+                    <h3 style="font-size: 38px; color: #fbbf24; margin-bottom: 20px;">
+                        💡 为什么选择AI驱动的从头药物设计？
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; font-size: 26px; line-height: 1.8;">
+                        <div>
+                            <strong style="color: #fbbf24;">✓ 突破化学空间限制</strong><br>
+                            <span style="color: #cbd5e1;">生成式AI可探索未知化学结构</span>
+                        </div>
+                        <div>
+                            <strong style="color: #fbbf24;">✓ 多目标同步优化</strong><br>
+                            <span style="color: #cbd5e1;">活性+成药性+可合成性一体化设计</span>
+                        </div>
+                        <div>
+                            <strong style="color: #fbbf24;">✓ 数据驱动+知识引导</strong><br>
+                            <span style="color: #cbd5e1;">结合QSAR模型与药物化学规则</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>DENV NS2B-NS3抑制剂AI发现</span>
+                <span>2025年1月</span>
+            </div>
+        </div>
+        
+        <!-- 第2页：REINVENT4与方法选择 -->
+        <div class="slide" id="slide2">
+            <div class="slide-header">
+                <div class="slide-number">前言 | Part 2/2</div>
+                <h1 class="slide-title">REINVENT4：强化学习驱动的分子生成</h1>
+                <p class="slide-subtitle">从通用工具到靶向设计：LibInvent策略的选择逻辑</p>
+            </div>
+            
+            <div class="content-area">
+                <!-- REINVENT发展史 -->
+                <div class="full-width-box" style="padding: 30px;">
+                    <h3 style="font-size: 36px; color: #3b82f6; margin-bottom: 25px;">🔬 REINVENT系列：AstraZeneca的开源贡献</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2017</div>
+                            <div class="timeline-version">REINVENT 1.0</div>
+                            <div class="timeline-desc">RNN-based<br>SMILES生成<br>基础RL框架</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-version">REINVENT 2.0</div>
+                            <div class="timeline-desc">LibInvent<br>LinkInvent<br>骨架装饰</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2021</div>
+                            <div class="timeline-version">REINVENT 3.0</div>
+                            <div class="timeline-desc">多组件评分<br>课程学习<br>生产级工具</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-version">REINVENT 4.0</div>
+                            <div class="timeline-desc">模块化架构<br>Transformer<br>插件系统</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- REINVENT4核心优势 -->
+                <div class="full-width-box" style="padding: 30px;">
+                    <h3 style="font-size: 36px; color: #3b82f6; margin-bottom: 25px;">⚡ REINVENT4核心优势：为什么选择它？</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <div class="feature-title">强化学习引导</div>
+                            <div class="feature-desc">DAP/SDAP算法，平衡探索与利用，避免mode collapse</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧩</div>
+                            <div class="feature-title">模块化评分</div>
+                            <div class="feature-desc">15+组件：活性/ADMET/合成/结构，可自定义权重组合</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔌</div>
+                            <div class="feature-title">插件生态系统</div>
+                            <div class="feature-desc">支持QSAR/对接/QM/自定义评分，易于扩展</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <div class="feature-title">多种生成模式</div>
+                            <div class="feature-desc">De novo/Scaffold/Linker/R-group，适配不同设计需求</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <div class="feature-title">工业验证</div>
+                            <div class="feature-desc">AstraZeneca内部使用，多个项目进入临床前</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🆓</div>
+                            <div class="feature-title">开源免费</div>
+                            <div class="feature-desc">MIT协议，完整文档，活跃社区，持续更新</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 方法选择流程 -->
+                <div class="full-width-box" style="padding: 30px;">
+                    <h3 style="font-size: 36px; color: #3b82f6; margin-bottom: 25px;">🔄 项目策略：为什么用LibInvent而非De Novo？</h3>
+                    <div class="method-flow">
+                        <div class="method-box">
+                            <div class="method-title">Reinvent</div>
+                            <div class="method-desc">完全从头设计<br>化学空间无限<br><span style="color: #ef4444;">风险：难收敛</span></div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="method-box">
+                            <div class="method-title">LibInvent</div>
+                            <div class="method-desc">骨架约束设计<br>双芳环吡咯烷<br><span style="color: #10b981;">平衡：可控+新颖</span></div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="method-box active">
+                            <div class="method-title">本项目</div>
+                            <div class="method-desc">LibInvent + QSAR<br>2个R位点探索<br><span style="color: #fbbf24;">优势：高效聚焦</span></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding: 25px; background: rgba(59, 130, 246, 0.1); border-radius: 10px; border-left: 5px solid #3b82f6;">
+                        <strong style="font-size: 28px; color: #3b82f6;">决策依据：</strong>
+                        <ul style="margin-top: 15px; font-size: 24px; line-height: 2; color: #cbd5e1;">
+                            <li style="margin-left: 40px;">✓ 文献已报道该骨架有中等活性（pIC50 ~6.0），但成药性差</li>
+                            <li style="margin-left: 40px;">✓ 晶体结构显示骨架结合稳定，R基团伸向溶剂可及区</li>
+                            <li style="margin-left: 40px;">✓ LibInvent可同时优化2个R位点，探索10<sup>10</sup>+组合空间</li>
+                            <li style="margin-left: 40px;">✓ 避免从头设计的高风险（60%分子可能违反Lipinski规则）</li>
+                            <li style="margin-left: 40px;">✓ QSAR模型基于该骨架训练（R²=0.85），预测准确性高</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>方法学基础：强化学习 + 骨架约束 + QSAR引导</span>
+                <span>REINVENT 4.0 | LibInvent Mode</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 导航控制 -->
+    <div class="navigation">
+        <div class="nav-btn" onclick="prevSlide()">◀</div>
+        <div class="nav-btn" onclick="nextSlide()">▶</div>
+    </div>
+    
+    <div class="nav-dots">
+        <div class="dot active" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        function goToSlide(n) {
+            showSlide(n);
+        }
+        
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown') nextSlide();
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+        });
+        
+        // 打印样式
+        window.addEventListener('beforeprint', () => {
+            slides.forEach(slide => slide.classList.add('active'));
+        });
+        
+        window.addEventListener('afterprint', () => {
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>

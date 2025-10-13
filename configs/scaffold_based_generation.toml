@@ -1,0 +1,11 @@
+run_type = "sampling"
+device = "cuda:0"
+
+[parameters]
+model_file = "priors/libinvent.prior"
+num_smiles = 500
+output_file = "scaffold_based_molecules.smi"
+
+# LibInvent特定参数
+scaffold_file = "data/denv_scaffolds.smi"
+decoration_file = "data/decorations.smi"

@@ -1,0 +1,180 @@
+
+run_type = "scoring"
+device = "cuda:0"
+json_out_config = "experiments/runs/run11_run7_moresteps/_scoring.json"
+
+[parameters]
+smiles_file = "experiments/runs/run11_run7_moresteps/smiles_for_scoring.smi"
+output_csv = "experiments/runs/run11_run7_moresteps/rescored_results.csv"
+
+[scoring]
+type = "arithmetic_mean"
+
+# 使用与训练时完全相同的评分组件
+[[scoring.component]]
+[scoring.component.QSARScorer]
+[[scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 1.5
+[scoring.component.QSARScorer.endpoint.params]
+model_path = "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib"
+[scoring.component.QSARScorer.endpoint.transform]
+type = "double_sigmoid"
+low = 5.0
+high = 9.0
+coef_div = 9.0
+coef_si = 10.0
+coef_se = 10.0
+
+[[scoring.component]]
+[scoring.component.NumAtomStereoCenters]
+[[scoring.component.NumAtomStereoCenters.endpoint]]
+name = "Stereo_Centers"
+weight = 1.0
+[scoring.component.NumAtomStereoCenters.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 2
+k = 1.5
+
+[[scoring.component]]
+[scoring.component.CustomAlerts]
+[[scoring.component.CustomAlerts.endpoint]]
+name = "Stability_Alerts"
+weight = 1.0
+[scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "[*;r8]", "[*;r9]", "[*;r10]",
+    "[#8][#8]", "[#6;+]", "C#C", "[NX3][NX3]", "[SH]",
+    "C(=O)OC(=O)", "[N+](=O)[O-]", "S(=O)(=O)Cl",
+    "[F,Cl,Br,I][C,c][F,Cl,Br,I]",
+    "c1ccc2c(c1)C(=O)c1c(C2=O)cccc1",
+    "C1=CC(=O)C=CC1=O",
+    "[C;R1]1[C;R1][C;R1][N;R1][C;R1]1([!#1])([!#1])([!#1])",
+    "[C;R1]1[C;R1]([!#1])([!#1])[C;R1]([!#1])([!#1])[N;R1][C;R1]1",
+    "C(=O)N([!#1])C(=O)",
+]
+
+[[scoring.component]]
+[scoring.component.Qed]
+[[scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.5
+
+[[scoring.component]]
+[scoring.component.SAScore]
+[[scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.6
+[scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1.0
+high = 4.5
+k = 1.0
+
+[[scoring.component]]
+[scoring.component.MolecularWeight]
+[[scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.4
+[scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 300.0
+high = 500.0
+coef_div = 500.0
+coef_si = 20.0
+coef_se = 20.0
+
+[[scoring.component]]
+[scoring.component.NumHeavyAtoms]
+[[scoring.component.NumHeavyAtoms.endpoint]]
+name = "Heavy_Atoms"
+weight = 0.3
+[scoring.component.NumHeavyAtoms.endpoint.transform]
+type = "double_sigmoid"
+low = 20
+high = 35
+coef_div = 35.0
+coef_si = 5.0
+coef_se = 5.0
+
+[[scoring.component]]
+[scoring.component.SlogP]
+[[scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.4
+[scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 1.0
+high = 4.0
+coef_div = 4.0
+coef_si = 10.0
+coef_se = 10.0
+
+[[scoring.component]]
+[scoring.component.TPSA]
+[[scoring.component.TPSA.endpoint]]
+name = "TPSA"
+weight = 0.3
+[scoring.component.TPSA.endpoint.transform]
+type = "double_sigmoid"
+low = 40.0
+high = 100.0
+coef_div = 100.0
+coef_si = 20.0
+coef_se = 20.0
+
+[[scoring.component]]
+[scoring.component.HBondAcceptors]
+[[scoring.component.HBondAcceptors.endpoint]]
+name = "HBA"
+weight = 0.4
+[scoring.component.HBondAcceptors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 7
+k = 0.5
+
+[[scoring.component]]
+[scoring.component.HBondDonors]
+[[scoring.component.HBondDonors.endpoint]]
+name = "HBD"
+weight = 0.3
+[scoring.component.HBondDonors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 3
+k = 0.5
+
+[[scoring.component]]
+[scoring.component.NumRotBond]
+[[scoring.component.NumRotBond.endpoint]]
+name = "Rotatable_Bonds"
+weight = 0.3
+[scoring.component.NumRotBond.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 7
+k = 0.5
+
+[[scoring.component]]
+[scoring.component.NumRings]
+[[scoring.component.NumRings.endpoint]]
+name = "Ring_Count"
+weight = 0.3
+[scoring.component.NumRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 4
+k = 0.5
+
+[[scoring.component]]
+[scoring.component.NumAromaticRings]
+[[scoring.component.NumAromaticRings.endpoint]]
+name = "Aromatic_Rings"
+weight = 0.2
+[scoring.component.NumAromaticRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1
+high = 3
+k = 0.5

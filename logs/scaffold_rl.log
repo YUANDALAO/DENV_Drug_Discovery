@@ -1,0 +1,3 @@
+15:37:42 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-09-29
+15:37:42 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent -l logs/scaffold_rl.log configs/scaffold_rl.toml
+15:37:42 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/configs/scaffold_rl.toml using format toml

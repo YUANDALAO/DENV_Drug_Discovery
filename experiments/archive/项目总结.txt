@@ -1,0 +1,54 @@
+# REINVENT4 DENV抑制剂生成 - Run3启动
+
+## 项目背景
+目标：生成含特定骨架的DENV NS2B-NS3蛋白酶抑制剂
+
+## 骨架定义（PI确认）
+
+骨架1 - 吡咯烷型：
+- 5元含N环（吡咯烷）
+- C2位（环外）连苯环
+- C3位连酰胺 C(=O)-NH-R¹
+- C5位可有取代基R²
+- 环上NH是仲胺
+
+骨架2 - 环丁烷型：
+- 4元全碳环
+- C2位（环外）连苯环
+- C1位连酰胺 C(=O)-NH-R¹
+- C3位可有取代基R²
+
+关键：两个骨架是"二选一"（OR逻辑），不需要同时包含。
+
+## 已完成实验
+
+Run1：
+- 路径：experiments/runs/run1_scaffold_original/
+- SMARTS缺少酰胺约束
+- 生成了桥环系统
+- 结果：results.csv (64000分子), Score 0.847, pIC50平均7.65
+
+Run2：
+- 路径：experiments/runs/run2_corrected_smarts/
+- SMARTS缺少苯环连接约束
+- 匹配率仅40-50%
+- 状态：已停止，配置有误
+
+## 文件位置
+
+- 预训练模型：priors/denv_ultra_clean_model.model
+- Inception种子：data/denv_scaffolds_training.smi（内容正确）
+- QSAR模型：/mnt/c/Users/.../random_forest_champion.joblib
+
+## Run3需求
+
+1. 使用arithmetic_mean（OR逻辑）
+2. SMARTS必须包含：环结构 + 苯基连接 + 酰胺基
+3. 验证SMARTS能匹配inception种子（8个测试SMILES）
+4. 训练2000步，batch_size=64
+
+请帮我：
+1. 设计正确的SMARTS表达式
+2. 创建Run3配置文件
+3. 验证SMARTS正确性
+4. 提供完整启动步骤

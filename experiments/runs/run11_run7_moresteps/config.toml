@@ -1,0 +1,243 @@
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "experiments/runs/run7_optimized/tensorboard"
+json_out_config = "experiments/runs/run7_optimized/_config.json"
+
+[parameters]
+summary_csv_prefix = "experiments/runs/run7_optimized/results"
+use_checkpoint = false
+purge_memories = false
+
+prior_file = "priors/libinvent.prior"
+agent_file = "priors/libinvent.prior"
+smiles_file = "data/pyrrolidine_libinvent.smi"
+
+batch_size = 64
+unique_sequences = true
+randomize_smiles = false
+
+[learning_strategy]
+type = "dap"
+sigma = 120
+rate = 0.0001
+
+[diversity_filter]
+type = "IdenticalMurckoScaffold"
+bucket_size = 25
+minscore = 0.5
+
+[inception]
+smiles_file = "data/pyrrolidine_libinvent.smi"
+memory_size = 50
+sample_size = 5
+
+[[stage]]
+max_score = 0.90
+min_steps = 500
+max_steps = 1500
+chkpt_file = "experiments/runs/run7_optimized/checkpoint.chkpt"
+
+[stage.scoring]
+type = "arithmetic_mean"
+
+# ========================================
+# ç¬¬ä¸€ä¼˜å…ˆçº§ï¼šæ´»æ€§ï¼ˆé™ä½Žæƒé‡ï¼‰
+# ========================================
+[[stage.scoring.component]]
+[stage.scoring.component.QSARScorer]
+[[stage.scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 1.5  # ä»Ž2.0é™ä½Žåˆ°1.5
+[stage.scoring.component.QSARScorer.endpoint.params]
+model_path = "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib"
+[stage.scoring.component.QSARScorer.endpoint.transform]
+type = "double_sigmoid"
+low = 5.0
+high = 9.0
+coef_div = 9.0
+coef_si = 10.0
+coef_se = 10.0
+
+# ========================================
+# ç¬¬äºŒä¼˜å…ˆçº§ï¼šåŒ–å­¦ç¨³å®šæ€§å’Œå¤æ‚åº¦
+# ========================================
+
+# ç«‹ä½“ä¸­å¿ƒ - æœ€å…³é”®çš„çº¦æŸï¼
+[[stage.scoring.component]]
+[stage.scoring.component.NumAtomStereoCenters]
+[[stage.scoring.component.NumAtomStereoCenters.endpoint]]
+name = "Stereo_Centers"
+weight = 1.0  # ä»Ž0.6æé«˜åˆ°1.0
+[stage.scoring.component.NumAtomStereoCenters.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 2  # ä»Ž3é™ä½Žåˆ°2ï¼Œæ›´ä¸¥æ ¼
+k = 1.5   # å¢žåŠ é™¡å³­åº¦
+
+# ä¸è‰¯ç»“æž„ - æ‰©å±•åˆ°å¡å’¯çƒ·ç‰¹å®šè§„åˆ™
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Stability_Alerts"
+weight = 1.0
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    # åŸºç¡€ä¸ç¨³å®šç»“æž„
+    "[*;r8]", "[*;r9]", "[*;r10]",
+    "[#8][#8]",
+    "[#6;+]",
+    "C#C",
+    "[NX3][NX3]",
+    "[SH]",
+    "C(=O)OC(=O)",
+    "[N+](=O)[O-]",
+    "S(=O)(=O)Cl",
+    "[F,Cl,Br,I][C,c][F,Cl,Br,I]",
+    "c1ccc2c(c1)C(=O)c1c(C2=O)cccc1",
+    "C1=CC(=O)C=CC1=O",
+    
+    # å¡å’¯çƒ·ç‰¹å®šè§„åˆ™ï¼ˆæ–°å¢žï¼‰
+    "[C;R1]1[C;R1][C;R1][N;R1][C;R1]1([!#1])([!#1])([!#1])",
+    "[C;R1]1[C;R1]([!#1])([!#1])[C;R1]([!#1])([!#1])[N;R1][C;R1]1",
+    "C(=O)N([!#1])C(=O)",
+]
+
+# ========================================
+# ç¬¬ä¸‰ä¼˜å…ˆçº§ï¼šç±»è¯æ€§
+# ========================================
+
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.6  # ä»Ž0.5æé«˜
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1.0
+high = 4.5  # ä»Ž5.0é™ä½Žï¼Œæ›´ä¸¥æ ¼
+k = 1.0
+
+# ========================================
+# ç¬¬å››ä¼˜å…ˆçº§ï¼šç‰©ç†åŒ–å­¦æ€§è´¨
+# ========================================
+
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.4
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 300.0
+high = 500.0  # ä»Ž550é™ä½Ž
+coef_div = 500.0
+coef_si = 20.0
+coef_se = 20.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumHeavyAtoms]
+[[stage.scoring.component.NumHeavyAtoms.endpoint]]
+name = "Heavy_Atoms"
+weight = 0.3
+[stage.scoring.component.NumHeavyAtoms.endpoint.transform]
+type = "double_sigmoid"
+low = 20
+high = 35  # ä»Ž40é™ä½Ž
+coef_div = 35.0
+coef_si = 5.0
+coef_se = 5.0
+
+# LogPçº¦æŸï¼ˆæ–°å¢žï¼‰
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.4
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 1.0
+high = 4.0
+coef_div = 4.0
+coef_si = 10.0
+coef_se = 10.0
+
+# TPSAçº¦æŸï¼ˆæ–°å¢žï¼‰
+[[stage.scoring.component]]
+[stage.scoring.component.TPSA]
+[[stage.scoring.component.TPSA.endpoint]]
+name = "TPSA"
+weight = 0.3
+[stage.scoring.component.TPSA.endpoint.transform]
+type = "double_sigmoid"
+low = 40.0
+high = 100.0
+coef_div = 100.0
+coef_si = 20.0
+coef_se = 20.0
+
+# æ°¢é”®å—ä½“ï¼ˆæ–°å¢žï¼‰
+[[stage.scoring.component]]
+[stage.scoring.component.HBondAcceptors]
+[[stage.scoring.component.HBondAcceptors.endpoint]]
+name = "HBA"
+weight = 0.4
+[stage.scoring.component.HBondAcceptors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 7
+k = 0.5
+
+# æ°¢é”®ä¾›ä½“ï¼ˆæ–°å¢žï¼‰
+[[stage.scoring.component]]
+[stage.scoring.component.HBondDonors]
+[[stage.scoring.component.HBondDonors.endpoint]]
+name = "HBD"
+weight = 0.3
+[stage.scoring.component.HBondDonors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 3
+k = 0.5
+
+# ========================================
+# ç¬¬äº”ä¼˜å…ˆçº§ï¼šç»“æž„å¤æ‚åº¦
+# ========================================
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumRotBond]
+[[stage.scoring.component.NumRotBond.endpoint]]
+name = "Rotatable_Bonds"
+weight = 0.3
+[stage.scoring.component.NumRotBond.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 7  # ä»Ž8é™ä½Ž
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumRings]
+[[stage.scoring.component.NumRings.endpoint]]
+name = "Ring_Count"
+weight = 0.3
+[stage.scoring.component.NumRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 4
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumAromaticRings]
+[[stage.scoring.component.NumAromaticRings.endpoint]]
+name = "Aromatic_Rings"
+weight = 0.2
+[stage.scoring.component.NumAromaticRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1
+high = 3
+k = 0.5

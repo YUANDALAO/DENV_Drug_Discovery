@@ -1,0 +1,44 @@
+# scaffold_hopping.toml
+# FINAL CONFIGURATION for scaffold decoration
+
+[run]
+run_type = "reinforcement_learning"
+device = "cuda:0"
+logging_path = "../rl_scaffold_hopping.log" # Save log file in parent dir
+
+[parameters]
+agent = "priors/denv_finetuned.model"
+prior = "priors/denv_finetuned.model"
+
+[parameters.diversity_filter]
+name = "IdenticalMurckoScaffold"
+bucket_size = 50
+minscore = 0.4
+
+[parameters.inception]
+memory_size = 200
+sample_size = 20
+smiles = []
+
+[parameters.scoring_function]
+name = "custom_sum"
+parallel = true
+
+    [[parameters.scoring_function.components]]
+    # 1. Scaffold Constraint
+    component_type = "matching_substructure"
+    name = "Scaffold_Constraint"
+    weight = 1
+    [parameters.scoring_function.components.specific]
+    smiles = [
+        "c1ccccc1C1CCNC(C1)C(=O)N",  # Pyrrolidine Scaffold Pattern
+        "c1ccccc1C1CC(C1)C(=O)N"   # Cyclobutane Scaffold Pattern
+    ]
+
+    [[parameters.scoring_function.components]]
+    # 2. QSAR Activity Optimization
+    component_type = "my_denv_qsar_model"
+    name = "DENV_pIC50"
+    weight = 0.6
+    [parameters.scoring_function.components.params]
+    # --- CRITICAL: Using t

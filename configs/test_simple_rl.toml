@@ -1,0 +1,167 @@
+# REINVENT4 强化学习配置文件 - DENV NS2B-NS3蛋白酶抑制剂生成
+# 项目目标：在指定骨架（吡咯烷和环丁烷）上生成高活性、高类药性、高可合成性的候选分子
+
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "tb_denv_rl"
+json_out_config = "_final_rl_task.json"
+
+[parameters]
+
+summary_csv_prefix = "denv_rl_results"
+use_checkpoint = false
+purge_memories = false
+
+# 使用您训练好的DENV专家模型
+prior_file = "priors/denv_ultra_clean_model.model"
+agent_file = "priors/denv_ultra_clean_model.model"
+
+batch_size = 64
+unique_sequences = true
+randomize_smiles = true
+
+[learning_strategy]
+
+type = "dap"
+sigma = 120
+rate = 0.0001
+
+[diversity_filter]
+
+type = "IdenticalMurckoScaffold"
+bucket_size = 25
+minscore = 0.5
+minsimilarity = 0.4
+
+[inception]
+
+smiles_file = "data/denv_ultra_clean.tsv"
+memory_size = 100
+sample_size = 10
+
+# 注意：这里必须使用双方括号 [[stage]]，因为stage是一个列表
+[[stage]]
+
+max_score = 0.85
+min_steps = 500
+max_steps = 2000
+chkpt_file = "denv_rl_final.chkpt"
+
+[stage.scoring]
+
+type = "geometric_mean"
+
+# 组件1: 类药性评分 (QED)
+[[stage.scoring.component]]
+
+[stage.scoring.component.QED]
+
+[[stage.scoring.component.QED.endpoint]]
+name = "Drug_Likeness"
+weight = 1.0
+
+# 组件2: 合成可及性评分 (SAScore)
+[[stage.scoring.component]]
+
+[stage.scoring.component.SAScore]
+
+[[stage.scoring.component.SAScore.endpoint]]
+name = "Synthetic_Accessibility"
+weight = 0.6
+
+# 反向转换：SA分数越低越好（1-10，1最容易合成）
+transform.type = "reverse_sigmoid"
+transform.low = 1.0
+transform.high = 7.0
+transform.k = 1.0
+
+# 组件3: 分子量约束
+[[stage.scoring.component]]
+
+[stage.scoring.component.MolecularWeight]
+
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "Molecular_Weight"
+weight = 0.5
+
+transform.type = "double_sigmoid"
+transform.low = 250.0
+transform.high = 500.0
+transform.coef_div = 500.0
+transform.coef_si = 20.0
+transform.coef_se = 20.0
+
+# 组件4: LogP约束
+[[stage.scoring.component]]
+
+[stage.scoring.component.MolLogP]
+
+[[stage.scoring.component.MolLogP.endpoint]]
+name = "LogP"
+weight = 0.4
+
+transform.type = "double_sigmoid"
+transform.low = 1.0
+transform.high = 5.0
+transform.coef_div = 5.0
+transform.coef_si = 20.0
+transform.coef_se = 20.0
+
+# 组件5: 氢键供体数
+[[stage.scoring.component]]
+
+[stage.scoring.component.NumHDonors]
+
+[[stage.scoring.component.NumHDonors.endpoint]]
+name = "H_Bond_Donors"
+weight = 0.3
+
+transform.type = "step"
+transform.high = 5.0
+
+# 组件6: 氢键受体数
+[[stage.scoring.component]]
+
+[stage.scoring.component.NumHAcceptors]
+
+[[stage.scoring.component.NumHAcceptors.endpoint]]
+name = "H_Bond_Acceptors"
+weight = 0.3
+
+transform.type = "step"
+transform.high = 10.0
+
+# 组件7: 不良结构过滤
+[[stage.scoring.component]]
+
+[stage.scoring.component.custom_alerts]
+
+[[stage.scoring.component.custom_alerts.endpoint]]
+name = "Unwanted_SMARTS"
+weight = 1.0
+
+params.smarts = [
+    "[*;r8]",
+    "[*;r9]",
+    "[*;r10]",
+    "[*;r11]",
+    "[*;r12]",
+    "[*;r13]",
+    "[*;r14]",
+    "[*;r15]",
+    "[*;r16]",
+    "[*;r17]",
+    "[#8][#8]",
+    "[#6;+]",
+    "[#16][#16]",
+    "[#7;!n][S;!$(S(=O)=O)]",
+    "[#7;!n][#7;!n]",
+    "C#C",
+    "C(=[O,S])[O,S]",
+    "[#7;!n][C;!$(C(=[O,N])[N,O])][#16;!s]",
+    "[#7;!n][C;!$(C(=[O,N])[N,O])][#7;!n]",
+    "[#7;!n][C;!$(C(=[O,N])[N,O])][#8;!o]",
+    "[#8;!o][C;!$(C(=[O,N])[N,O])][#16;!s]",
+    "[#8;!o][C;!$(C(=[O,N])[N,O])][#8;!o]",
+    "[#16;!s][C;!$(C(=[O,N])[N,O])][#16;!s]"
+]

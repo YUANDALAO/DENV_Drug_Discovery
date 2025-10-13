@@ -1,0 +1,470 @@
+18:15:40 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-04
+18:15:40 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent config.toml
+18:15:40 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run2_corrected_smarts/config.toml using format toml
+18:15:40 <INFO> User cheriong on host CS00050812
+18:15:40 <INFO> Python version 3.10.18
+18:15:40 <INFO> PyTorch version 2.5.1, git a8d6afb511a69687bbb2b7e88a3cf67917e1697e
+18:15:40 <INFO> PyTorch compiled with CUDA version 11.8
+18:15:40 <INFO> RDKit version 2025.03.2
+18:15:40 <INFO> Platform Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+18:15:42 <INFO> Number of PyTorch CUDA devices 1
+18:15:42 <WARN> 'use_cuda' is deprecated, use 'device' instead
+18:15:42 <INFO> Using CUDA device:0 NVIDIA T1200 Laptop GPU
+18:15:42 <INFO> GPU memory: 3295 MiB free, 4095 MiB total
+18:15:42 <INFO> Writing TensorBoard summary to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run2_corrected_smarts/tb_run2_corrected
+18:15:42 <INFO> Writing JSON config file to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run2_corrected_smarts/_run2_corrected.json
+18:15:42 <INFO> Starting 1 stage of Reinforcement Learning
+18:15:42 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/denv_ultra_clean_model.model has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'aa84c49218d99ea72a8ba83042edd9fb',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.5.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1759055541.6721017]}
+18:15:42 <INFO> Number of network parameters: 5,805,602
+18:15:42 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+18:15:42 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/denv_ultra_clean_model.model has valid hash:
+{ 'comments': ['TL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'aa84c49218d99ea72a8ba83042edd9fb',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.5.0',
+  'model_id': '55d68f8a81c04f5a86304ebe1723a0ea',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 25',
+  'updates': [1759055541.6721017]}
+18:15:42 <INFO> Number of network parameters: 5,805,602
+18:15:42 <INFO> Network architecture:
+RNN(
+  (_embedding): Embedding(34, 256)
+  (_rnn): LSTM(256, 512, num_layers=3, batch_first=True)
+  (_linear): Linear(in_features=512, out_features=34, bias=True)
+)
+18:15:42 <INFO> Using generator Reinvent
+18:15:42 <INFO> Prior read from ../../../priors/denv_ultra_clean_model.model
+18:15:42 <INFO> Agent read from ../../../priors/denv_ultra_clean_model.model
+18:15:42 <INFO> Using reward strategy dap
+18:15:42 <INFO> Using diversity filter IdenticalMurckoScaffold
+18:15:42 <INFO> Purging diversity filter memories after each stage
+18:15:42 <INFO> Inception SMILES read from ../../../data/denv_scaffolds_training.smi
+18:15:42 <INFO> Global SMILES deduplication for inception memory
+18:15:42 <INFO> Using inception memory
+18:15:42 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+18:15:42 <INFO> Registered scoring component GroupCount
+18:15:42 <INFO> Registered scoring component FragmentQed
+18:15:42 <INFO> Registered scoring component FragmentSlogP
+18:15:42 <INFO> Registered scoring component FragmentMolecularWeight
+18:15:42 <INFO> Registered scoring component FragmentTPSA
+18:15:42 <INFO> Registered scoring component FragmentDistanceMatrix
+18:15:42 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+18:15:42 <INFO> Registered scoring component FragmentHBondAcceptors
+18:15:42 <INFO> Registered scoring component FragmentHBondDonors
+18:15:42 <INFO> Registered scoring component FragmentNumRotBond
+18:15:42 <INFO> Registered scoring component FragmentCsp3
+18:15:42 <INFO> Registered scoring component Fragmentnumsp
+18:15:42 <INFO> Registered scoring component Fragmentnumsp2
+18:15:42 <INFO> Registered scoring component Fragmentnumsp3
+18:15:42 <INFO> Registered scoring component FragmentEffectiveLength
+18:15:42 <INFO> Registered scoring component FragmentGraphLength
+18:15:42 <INFO> Registered scoring component FragmentLengthRatio
+18:15:42 <INFO> Registered scoring component FragmentNumHeavyAtoms
+18:15:42 <INFO> Registered scoring component FragmentNumHeteroAtoms
+18:15:42 <INFO> Registered scoring component FragmentNumRings
+18:15:42 <INFO> Registered scoring component FragmentNumAromaticRings
+18:15:42 <INFO> Registered scoring component FragmentNumAliphaticRings
+18:15:42 <INFO> Registered scoring component FragmentSlogP
+18:15:42 <INFO> Registered scoring component MatchingSubstructure
+18:15:42 <INFO> Registered scoring component MolVolume
+18:15:42 <INFO> Registered scoring component Qed
+18:15:42 <INFO> Registered scoring component LargestRingSize
+18:15:42 <INFO> Registered scoring component MolecularWeight
+18:15:42 <INFO> Registered scoring component GraphLength
+18:15:42 <INFO> Registered scoring component NumAtomStereoCenters
+18:15:42 <INFO> Registered scoring component HBondAcceptors
+18:15:42 <INFO> Registered scoring component HBondDonors
+18:15:42 <INFO> Registered scoring component NumRotBond
+18:15:42 <INFO> Registered scoring component Csp3
+18:15:42 <INFO> Registered scoring component numsp
+18:15:42 <INFO> Registered scoring component numsp2
+18:15:42 <INFO> Registered scoring component numsp3
+18:15:42 <INFO> Registered scoring component NumHeavyAtoms
+18:15:42 <INFO> Registered scoring component NumHeteroAtoms
+18:15:42 <INFO> Registered scoring component NumRings
+18:15:42 <INFO> Registered scoring component NumAromaticRings
+18:15:42 <INFO> Registered scoring component NumAliphaticRings
+18:15:42 <INFO> Registered scoring component SlogP
+18:15:42 <INFO> Registered scoring component LargestRingSize
+18:15:42 <INFO> Registered scoring component PMI
+18:15:42 <INFO> Registered scoring component RDKitDescriptors
+18:15:42 <INFO> Registered scoring component TanimotoSimilarity
+18:15:42 <INFO> Registered scoring component TanimotoDistance
+18:15:42 <INFO> Registered scoring component TPSA
+18:15:42 <INFO> Registered scoring component SAScore
+18:15:43 <INFO> Registered scoring component Cazp
+18:15:43 <INFO> Registered scoring component ChemProp
+18:15:43 <INFO> Registered scoring component CustomAlerts
+18:15:43 <INFO> Registered scoring component DockStream
+18:15:43 <INFO> Registered scoring component ExternalProcess
+18:15:43 <INFO> Registered scoring component REST
+18:15:43 <INFO> Registered scoring component Icolos
+18:15:43 <INFO> Registered scoring component Maize
+18:15:43 <INFO> Registered scoring component MMP
+18:15:43 <INFO> Registered scoring component Qptuna
+18:15:43 <INFO> Registered scoring component QSARScorer
+18:15:43 <INFO> Registered scoring component ReactionFilter
+18:15:44 <INFO> Registered scoring component ScaffoldMatcher
+18:15:44 <INFO> Registered scoring component RingPrecedence
+18:15:44 <INFO> Creating penalty component MatchingSubstructure
+18:15:44 <INFO> Creating penalty component MatchingSubstructure
+18:15:44 <INFO> Creating scoring component QSARScorer
+18:15:44 <INFO> Creating scoring component Qed
+18:15:44 <INFO> Creating scoring component SAScore
+18:15:44 <INFO> Creating scoring component MolecularWeight
+18:15:44 <INFO> Creating filter component CustomAlerts
+18:15:44 <INFO> Writing tabular data for stage to run2_corrected_1.csv
+18:15:44 <INFO> Starting stage 1 <<<
+18:15:44 <INFO> Current GPU memory usage: 900 MiB used, 3195 MiB free
+18:15:49 <INFO> Score: 0.18 Agent NLL: 19.42 Valid:  98% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 22.7955 22.7955 1.3723 0.2013985 Cc1c(C)c2c(c(C)c1O)CC(C(C(=O)O)c1ccccc1)O2 1 c1ccc(CC2Cc3ccccc3O2)cc1 0.7168345 7.6428 0.9101987 0.9102 0.8718429 3.3342 0.9867186 312.3650 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 26.2129 26.2129 -6.3093 0.1658635 CCCCCCC1c2cc(OC)c(OC)cc2C(=O)N(c2ccc(OC)cc2)C1c1ccccc1O 1 O=C1c2ccccc2CC(c2ccccc2)N1c1ccccc1 0.7158083 7.6475 0.3146922 0.3147 0.8966120 3.1866 0.6720734 489.6120 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 13.7886 13.7886 9.0580 0.1903882 CCCC(=O)NC1=C(Cl)C(=O)C(NC(=O)CC)=C(Cl)C1=O 1 O=C1C=CC(=O)C=C1 0.6706026 7.1561 0.7456249 0.7456 0.9460826 2.7581 0.9968123 333.1710 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.2772 23.2772 -0.8818 0.1866285 CCc1ccccc1NC(=O)COC(=O)c1c(NC(=O)C2CCCO2)sc2c1CCC(C)C2 1 O=C(COC(=O)c1c(NC(=O)C2CCCO2)sc2c1CCCC2)Nc1ccccc1 0.7307363 7.5786 0.5870826 0.5871 0.9018068 3.1518 0.8840651 470.5910 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.5040 22.5040 -3.2600 0.1603664 CCCCCCCn1cc(C(c2ccc(N)cc2)c2ccc(OCC(=O)O)cc2)c2ccccc21 1 c1ccc(C(c2ccccc2)c2c[nH]c3ccccc23)cc1 0.6687711 7.8516 0.1755375 0.1755 0.9396480 2.8308 0.8839092 470.6130 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.6863 15.6863 7.1702 0.1904710 O=C1C(O)=C(C2CC(=O)c3c(O)cc(O)cc3O2)C(=O)c2ccccc21 1 O=C1CC(C2=CC(=O)c3ccccc3C2=O)Oc2ccccc21 0.6931445 7.2520 0.7199051 0.7199 0.8941830 3.2024 0.9991475 352.2980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.6098 7.6098 16.0016 0.1967622 Cc1ccc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)s1 1 O=C1CCCC(=O)C1C(c1cccs1)C1C(=O)CCCC1=O 0.7417845 7.4739 0.7245632 0.7246 0.8755218 3.3140 0.9995474 388.5290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.9782 15.9782 6.8029 0.1898420 CCOc1cc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)ccc1O 1 O=C1CCCC(=O)C1C(c1ccccc1)C1C(=O)CCCC1=O 0.6901457 7.7610 0.7114742 0.7115 0.9036876 3.1387 0.9928773 428.5250 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 12.0596 12.0596 11.8048 0.1988699 CC1CC(=O)C(C(C2=C(O)CCCC2=O)c2ccccc2)C(=O)C1 1 O=C1CCCC=C1C(c1ccccc1)C1C(=O)CCCC1=O 0.7136572 7.6572 0.8627580 0.8628 0.8686369 3.3515 0.9949181 326.3920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.4373 22.4373 -1.5005 0.1744741 N=C(N)NC1CCC(c2ccc(NC(=O)c3ccc(Br)cc3)cc2)CC1 1 O=C(Nc1ccc(C2CCCCC2)cc1)c1ccccc1 0.6470170 7.9408 0.4454586 0.4455 0.9798208 2.1393 0.9971240 415.3350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:15:53 <INFO> Score: 0.18 Agent NLL: 19.01 Valid:  97% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 18.8156 18.7863 5.0368 0.1985252 Cn1cccc1C(c1ccc(Cl)cc1)C(C#N)C#N 1 c1ccc(Cc2ccc[nH]2)cc1 0.7468202 7.5017 0.8565559 0.8566 0.8916941 3.2182 0.7962865 269.7350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.0250 20.0327 3.4447 0.1956447 CC(C)C(=O)Nc1ccc(N=C(Cc2ccccc2)C(=O)O)c(O)c1 1 C(Cc1ccccc1)=Nc1ccccc1 0.7170594 7.6418 0.7019363 0.7019 0.9674682 2.4373 0.9980600 340.3790 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 27.8602 27.7667 -5.7535 0.1834430 Cc1c(O)cc2c(C(=O)Nc3ccc(O)cc3)c(O)[nH]c(=O)c2c1C 1 O=C(Nc1ccccc1)c1c[nH]c(=O)c2ccccc12 0.7133569 7.6586 0.4587839 0.4588 0.9558525 2.6303 0.9980541 340.3350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.2141 8.1963 14.8216 0.1918160 CCN(CC)Cc1cc(O)c(CN(CC)CC)cc1O 1 c1ccccc1 0.7052126 7.3050 0.7188881 0.7189 0.9676413 2.4340 0.8909795 280.4120 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.9545 24.9363 -3.5586 0.1781477 COc1ccccc1NC(=O)CC(=O)NN=Cc1ccc(O)c(O)c1 1 O=C(CC(=O)Nc1ccccc1)NN=Cc1ccccc1 0.7299403 7.4176 0.2746697 0.2747 0.9805610 2.1161 0.9984182 343.3390 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.6931 7.7077 13.0963 0.1733663 CC(C)CN(CC(C)C)c1ccc(C=C2C(=O)NC(=S)NC2=O)cc1[N+](=O)[O-] 1 O=C1NC(=S)NC(=O)C1=Cc1ccccc1 0.7188782 7.3665 0.2379868 0.2380 0.9386341 2.8416 0.9986380 404.4920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.6792 18.6401 1.2071 0.1653934 Cc1ccc2oc3ccccc3c(=O)c2c1 1 O=c1c2ccccc2oc2ccccc12 0.7371851 7.4518 0.5329744 0.5330 0.9897720 1.7200 0.0602520 210.2320 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.5350 7.5129 14.6914 0.1850361 O=C(O)CCn1cc(C=C2C(=O)NC(=S)NC2=O)c(-c2cccc(Cl)c2)n1 1 O=C1NC(=S)NC(=O)C1=Cc1c[nH]nc1-c1ccccc1 0.7461255 7.5051 0.3960074 0.3960 0.9540409 2.6559 0.9986054 404.8350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.5378 21.5232 0.2798 0.1816916 N=C1NC(N)=NC1(c1cc(C2=CCOCC2)nc(C(F)(F)F)c1)C(F)F 1 N=C1NC=NC1c1ccnc(C2=CCOCC2)c1 0.7314984 7.5751 0.7063922 0.7064 0.5297012 4.4277 0.9998184 375.3010 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.5082 23.4190 1.0628 0.2040147 COc1c(Cl)cccc1C1N=C(N)CC1c1cccc(Cl)c1 1 C1=NC(c2ccccc2)C(c2ccccc2)C1 0.7423090 7.4764 0.8918528 0.8919 0.8619975 3.3861 0.9972345 335.2340 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:15:57 <INFO> Score: 0.18 Agent NLL: 17.61 Valid: 100% Step: 3
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 10.6413 10.6340 12.6605 0.1941203 O=C1OC(c2ccccc2)C(C(=O)c2ccc(Br)cc2)=C1O 1 O=C1C=C(C(=O)c2ccccc2)C(c2ccccc2)O1 0.7210312 7.6237 0.6699259 0.6699 0.9503719 2.7050 0.9994697 359.1750 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 11.4903 11.4344 9.2624 0.1724739 O=C(O)c1cccc(N2C(=O)C=CC2=O)c1 1 O=C1C=CC(=O)N1c1ccccc1 0.7137693 7.6567 0.7437574 0.7438 0.9800523 2.1321 0.0938824 217.1800 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.5955 20.5554 1.2424 0.1816483 CC(C)(C)C(=O)c1ccc(O)c(C2OC(CO)C(O)C(O)C2O)c1 1 c1ccc(C2CCCCO2)cc1 0.7372308 7.4521 0.4951086 0.4951 0.7724578 3.7569 0.9980591 340.3720 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.4545 21.5493 0.2782 0.1818961 O=C(Cc1ccccc1)NC(Cc1ccccc1)C(=O)Nc1ccc(C(=O)O)cc1 1 O=C(Cc1ccccc1)NC(Cc1ccccc1)C(=O)Nc1ccccc1 0.6694696 7.8486 0.5387599 0.5388 0.9781211 2.1895 0.9988170 402.4500 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.0531 16.0161 4.5220 0.1711509 Cc1cc(C)c(C(=O)O)cc1C 1 c1ccccc1 0.7372425 7.5479 0.6911156 0.6911 0.9905242 1.6731 0.0026605 164.2040 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 34.0316 34.0504 -11.8832 0.1847268 O=C(c1cc(OC2CCNCC2)c2ccccc2n1)c1cccc2occc12 1 O=C(c1cc(OC2CCNCC2)c2ccccc2n1)c1cccc2occc12 0.6935315 7.7463 0.5399219 0.5399 0.9621387 2.5329 0.9997876 372.4240 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.2832 20.4390 0.8706 0.1775804 COC1=C(OC)C(=C2C(=O)NC(=O)NC2=O)CC1=O 1 O=C1C=CC(=C2C(=O)NC(=O)NC2=O)C1 0.7255892 7.3974 0.4960269 0.4960 0.8882312 3.2397 0.7539292 266.2090 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.0431 24.1456 -9.4069 0.1228225 CC1(C)C(O)C(O)CC2(C)C3C4=CCC5C6(C)CCC(O)C(C)(C)C6CCC5(C)C4(C)CCC3(C(=O)O)CCC12 1 C1=C2C(CCC3CCC4CCCCC4C23)C2CCC3CCCCC3C2C1 0.7243909 7.6082 0.2731911 0.2732 0.2437417 5.1884 0.0193497 556.8280 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 14.2265 14.2965 9.8203 0.2009740 COc1cc2ncnc(N3CCCCC3)c2cc1OC 1 c1ccc2c(N3CCCCC3)ncnc2c1 0.7311211 7.4232 0.8600324 0.8600 0.9842867 1.9844 0.8336880 273.3360 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.1167 7.1120 15.4066 0.1876550 COc1ccc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)cc1CO 1 O=C1CCCC(=O)C1C(c1ccccc1)C1C(=O)CCCC1=O 0.6712635 7.8412 0.7219156 0.7219 0.9023947 3.1477 0.9928773 428.5250 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:01 <INFO> Score: 0.18 Agent NLL: 18.60 Valid: 100% Step: 4
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 23.3647 23.2188 -0.9542 0.1855387 CCC1(O)C(=O)C2=COC(c3ccc(OC)c(Br)c3)=CC2=C(Br)C1=O 1 O=C1C=C2C=C(c3ccccc3)OC=C2C(=O)C1 0.7318446 7.4266 0.6836935 0.6837 0.7449564 3.8483 0.8874066 470.1130 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 33.3955 33.3457 -12.2790 0.1755554 CC1(C)CC(=O)C(C(=O)C2=C(O)C3CCC2(C)C3(C)C)C1 1 O=C1CCCC1C(=O)C1=CC2CCC1C2 0.7308271 7.5782 0.7863350 0.7863 0.3098372 4.9869 0.9421843 290.4030 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 9.6984 9.6879 11.0549 0.1728568 CCOC(=O)c1c(NC(=O)C2C3C=CC(C3)C2C(=O)O)sc2c1CCC(CC)C2 1 O=C(Nc1cc2c(s1)CCCC2)C1CC2C=CC1C2 0.7347538 7.5597 0.5408874 0.5409 0.4882062 4.5287 0.9966553 417.5270 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.3990 21.3424 0.8977 0.1853340 CCCc1cc(=O)oc2cc(C)cc(OC(=O)CC)c12 1 O=c1ccc2ccccc2o1 0.7445563 7.5127 0.4870424 0.4870 0.9709817 2.3656 0.8428636 274.3160 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.3782 15.4701 7.1901 0.1888356 O=C(Oc1ccc(Cc2sc(=O)[nH]c2O)cc1)c1ccccc1 1 O=C(Oc1ccc(Cc2c[nH]c(=O)s2)cc1)c1ccccc1 0.7091833 7.6773 0.5702308 0.5702 0.9799024 2.1367 0.9952455 327.3610 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.5707 22.4365 1.8066 0.2020264 CC(=O)C1=C(C)C(=O)C(C(=O)Nc2ccccc2)S1(=O)=O 1 O=C1C=CS(=O)(=O)C1C(=O)Nc1ccccc1 0.7414197 7.5279 0.8350581 0.8351 0.8945974 3.1997 0.9812936 307.3270 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.0622 7.0373 15.7319 0.1897438 COc1ccc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)cc1 1 O=C1CCCC(=O)C1C(c1ccccc1)C1C(=O)CCCC1=O 0.6801731 7.8036 0.7183957 0.7184 0.9251134 2.9715 0.9990993 398.4990 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.6585 19.7739 3.7010 0.1956243 O=C1c2ccc(C3=NCCN3)cc2S(=O)(=O)c2cc(C3=NCCN3)ccc21 1 O=C1c2ccc(C3=NCCN3)cc2S(=O)(=O)c2cc(C3=NCCN3)ccc21 0.7394162 7.5375 0.6838696 0.6839 0.9044019 3.1337 0.9997413 380.4290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.5618 25.5126 -2.0207 0.1957656 Cc1c(Cl)cc(C(=O)Nc2cc(O)c(Cl)cc2Cl)c(O)c1Cl 1 O=C(Nc1ccccc1)c1ccccc1 0.7294163 7.5848 0.6638824 0.6639 0.9707095 2.3715 0.9997301 381.0420 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 42.1432 42.2981 -23.4581 0.1570000 COC1=C(C(=O)c2ccccc2)C2(O)c3ccccc3C(Cl)=C(OC(=O)Nc3ccccc3C)C2(C)O1 1 O=C(Nc1ccccc1)OC1=Cc2ccccc2C2C(C(=O)c3ccccc3)=COC12 0.7464129 7.4963 0.4102570 0.4103 0.7589318 3.8027 0.2242654 517.9650 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:05 <INFO> Score: 0.18 Agent NLL: 17.87 Valid: 100% Step: 5
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 23.2379 23.2721 -1.5856 0.1807206 COC(=O)C1=C(C(=O)OC)N2C(=O)C(OC)=C(COC(C)=O)C2C1C 1 O=C1C=CC2CC=CN12 0.7385846 7.5415 0.4983564 0.4984 0.7374140 3.8722 0.9992060 353.3270 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.1739 20.1974 -0.5511 0.1637197 CCCC(=O)c1cccc(N)c1C 1 c1ccccc1 0.7251054 7.6049 0.5692219 0.5692 0.9848664 1.9612 0.0065248 177.2470 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.9532 21.1007 -1.0688 0.1669331 Cc1ccc(C(=O)NCCCCCN)cc1 1 c1ccccc1 0.6748569 7.8261 0.7188379 0.7188 0.9924304 1.5353 0.1140020 220.3160 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.7527 18.8607 5.2113 0.2005999 CCN1C(NCCO)=NC(c2ccccc2)C(C(=O)OC)=C1C 1 C1=CC(c2ccccc2)N=CN1 0.7333062 7.5665 0.8041628 0.8042 0.9181638 3.0300 0.9905764 317.3890 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.2035 8.1055 8.2583 0.1363651 Nc1ccc(C(=O)Oc2cc(N)n(S(=O)(=O)c3ccc(Oc4ccccc4)cc3)n2)cc1 1 O=C(Oc1ccn(S(=O)(=O)c2ccc(Oc3ccccc3)cc2)n1)c1ccccc1 0.4179014 8.8058 0.3368476 0.3368 0.9674035 2.4386 0.9683543 450.4760 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.9928 7.9787 10.6243 0.1550247 NCc1ccc(-c2ncc(NCC3CCNCC3)nc2-c2ccc(-c3ccoc3)cc2)cc1 1 c1ccc(-c2ncc(NCC3CCNCC3)nc2-c2ccc(-c3ccoc3)cc2)cc1 0.5395758 8.3536 0.3779209 0.3779 0.9512138 2.6940 0.9848552 439.5630 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 31.3804 31.2747 -8.8577 0.1868086 N#Cc1cc(Oc2c(C#N)cccc2C2CC2)cc(C(=O)Nc2ccc(C(=O)O)cc2)c1 1 O=C(Nc1ccccc1)c1cccc(Oc2ccccc2C2CC2)c1 0.6974037 7.7294 0.5717628 0.5718 0.9676298 2.4342 0.9949806 423.4280 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.1834 7.1725 15.9153 0.1923983 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 1 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 0.7159069 7.3530 0.8001594 0.8002 0.9635772 2.5085 0.7284364 264.2840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.2563 7.6098 16.0016 0.1967622 Cc1ccc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)s1 1 O=C1CCCC(=O)C1C(c1cccs1)C1C(=O)CCCC1=O 0.7417845 7.4739 0.7245632 0.7246 0.8755218 3.3140 0.9995474 388.5290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.5707 18.5001 3.4416 0.1828480 CCCCCCC1=CC(=CC(=O)O)c2ccccc21 1 C=C1C=Cc2ccccc21 0.7380766 7.5439 0.5997736 0.5998 0.9635007 2.5098 0.6078532 256.3450 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:09 <INFO> Score: 0.18 Agent NLL: 17.56 Valid: 100% Step: 6
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 25.9046 25.7630 -2.8707 0.1907690 Cc1ccc2c(c1Br)CCC=C2N=NC(N)=S 1 C1=Cc2ccccc2CC1 0.7465613 7.4970 0.6343584 0.6344 0.8197368 3.5791 0.9846300 310.2200 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 9.6627 9.6879 11.0549 0.1728568 CCOC(=O)c1c(NC(=O)C2C3C=CC(C3)C2C(=O)O)sc2c1CCC(CC)C2 1 O=C(Nc1cc2c(s1)CCCC2)C1CC2C=CC1C2 0.7347538 7.5597 0.5408874 0.5409 0.4882062 4.5287 0.9966553 417.5270 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.5655 17.5483 4.3885 0.1828068 COC(=O)C1Nc2c(ccc(C)c2Cl)C2CCC1N2C 1 c1ccc2c(c1)NCC1CCC2N1 0.7342041 7.5623 0.8088348 0.8088 0.4540106 4.6122 0.9566211 294.7820 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.8706 16.7043 3.5247 0.1685745 CCCCCCC1=C(C)C(=O)CCC1(C)C 1 O=C1C=CCCC1 0.7255441 7.6028 0.6181099 0.6181 0.9612210 2.5481 0.1291523 222.3720 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.0752 17.7434 5.9779 0.1976774 Cc1ccc(NC2=NC(c3ccc(C(=O)O)cc3)C3=C(CC(C)(C)CC3=O)O2)cc1 1 O=C1CCCC2=C1C(c1ccccc1)N=C(Nc1ccccc1)O2 0.7328805 7.5686 0.7614993 0.7615 0.8881325 3.2403 0.9986405 404.4660 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.9144 8.0292 15.7888 0.1984839 O=C1C(O)=CC(=C(c2ccccc2)c2ccccc2)c2ccccc21 1 O=C1C=CC(=C(c2ccccc2)c2ccccc2)c2ccccc21 0.7378403 7.5450 0.6957487 0.6957 0.9768544 2.2245 0.9941644 324.3790 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.6103 7.6144 14.8688 0.1873599 O=C1NC(=O)C(=Cc2c[nH]nc2-c2ccccc2)C(=O)N1 1 O=C1NC(=O)C(=Cc2c[nH]nc2-c2ccccc2)C(=O)N1 0.7290655 7.5865 0.5601358 0.5601 0.9474762 2.7413 0.9027686 282.2590 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.0045 6.9787 16.0307 0.1917456 NS(=O)(=O)c1ccc(-c2ccc(C=C3C(=O)NC(=O)NC3=O)o2)cc1 1 O=C1NC(=O)C(=Cc2ccc(-c3ccccc3)o2)C(=O)N1 0.7457719 7.5068 0.5301831 0.5302 0.9681009 2.4250 0.9995432 361.3350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.2462 25.5165 -3.1313 0.1865429 CC1C(=O)SC(C)(CC(C)c2ccccc2)C1=O 1 O=C1CC(=O)C(CCc2ccccc2)S1 0.7359812 7.5539 0.7827397 0.7827 0.7721290 3.7580 0.7015658 262.3740 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.4410 18.3431 -2.7469 0.1299680 NCC1(O)C(O)C(O)C(O)C1CO 1 C1CCCC1 0.7198792 7.6289 0.2686134 0.2686 0.4592838 4.5992 0.0193851 193.1990 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:13 <INFO> Score: 0.18 Agent NLL: 18.27 Valid: 100% Step: 7
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 25.1622 24.9141 -2.2790 0.1886261 O=C(O)CSc1nc(C(=O)O)c(N=Nc2ccccc2Br)s1 1 c1ccc(N=Nc2cncs2)cc1 0.7289141 7.5872 0.5533998 0.5534 0.9186034 3.0265 0.9988331 402.2510 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.9885 21.1589 0.8752 0.1836178 CCCCCNC(=O)c1c(O)c(O)cc(Br)c1O 1 c1ccccc1 0.7379737 7.5444 0.3813690 0.3814 0.9702681 2.3809 0.9910650 318.1670 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.5551 19.2378 3.3226 0.1880037 O=S(=O)(c1ccc(C(F)(F)F)cc1)c1c[nH]c2c1nc(O)c1ccccc12 1 O=S(=O)(c1ccccc1)c1c[nH]c2c1ncc1ccccc12 0.7210635 7.6235 0.5336246 0.5336 0.9555225 2.6351 0.9994105 392.3580 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.9496 21.5105 -0.8004 0.1725839 CC(C)(C)c1ccc(C(=O)Nc2ccc3nc(N4CCC(O)(c5ccccc5)CC4)ncc3c2)cc1 1 O=C(Nc1ccc2nc(N3CCC(c4ccccc4)CC3)ncc2c1)c1ccccc1 0.6951392 7.7393 0.3936299 0.3936 0.9666783 2.4524 0.7923708 480.6120 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.5804 18.5347 2.1507 0.1723783 NCCCC(=O)NC1C(=O)N2C(C(=O)O)=C(CO)CSC12 1 O=C1CC2SCC=CN12 0.6676093 7.8564 0.4363487 0.4363 0.8633682 3.3791 0.9891672 315.3510 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.5459 24.0638 -0.1501 0.1992812 OCC(C=Cc1ccccc1)=C1SCCCS1 1 C(=Cc1ccccc1)C=C1SCCCS1 0.7422110 7.5241 0.8970719 0.8971 0.9282954 2.9430 0.7302228 264.4150 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.9348 22.0571 0.2873 0.1862029 Cc1ccccc1C(=O)Oc1cncc(Cl)c1 1 O=C(Oc1cccnc1)c1ccccc1 0.7309029 7.5779 0.7649335 0.7649 0.9853985 1.9391 0.4600377 247.6810 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.0410 7.1725 15.9153 0.1923983 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 1 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 0.7159069 7.3530 0.8001594 0.8002 0.9635772 2.5085 0.7284364 264.2840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 12.4837 12.6226 5.6596 0.1523517 O=C1C=CCC(=O)C1 1 O=C1C=CCC(=O)C1 0.7182621 7.3637 0.4247248 0.4247 0.8890599 3.2346 0.0000636 110.1120 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 9.7202 9.7332 14.2672 0.2000028 Cc1ccc(C)c(S(=O)(=O)ON2C(=O)c3ccccc3C2=O)c1 1 O=C1c2ccccc2C(=O)N1OS(=O)(=O)c1ccccc1 0.7121890 7.3362 0.8056853 0.8057 0.9749699 2.2733 0.9963863 331.3490 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:17 <INFO> Score: 0.18 Agent NLL: 16.82 Valid: 100% Step: 8
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 22.5045 22.5990 1.7286 0.2027301 O=C(O)CSC(C(=O)O)c1ccc(Br)cc1 1 c1ccccc1 0.7184769 7.6353 0.8734584 0.8735 0.9538598 2.6584 0.9783223 305.1490 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.9758 17.1562 5.2510 0.1867265 CN(C)CCCOc1ccc(C=C2C(=O)NC(=O)NC2=O)cc1 1 O=C1NC(=O)C(=Cc2ccccc2)C(=O)N1 0.7330794 7.5676 0.4595133 0.4595 0.9752660 2.2658 0.9905480 317.3450 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 9.8726 10.0228 8.2405 0.1521942 N=C(N)Nc1ccc(C(=O)Oc2cccc(NC(=N)N)c2)cc1 1 O=C(Oc1ccccc1)c1ccccc1 0.5655165 8.2567 0.2179098 0.2179 0.9761513 2.2431 0.9866896 312.3330 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.0484 16.7889 3.7176 0.1708873 NCc1ccc(-c2cc(CNCC3CCNCC3)sc2-c2cccc(C(N)=O)c2)cc1 1 c1ccc(-c2cc(CNCC3CCNCC3)sc2-c2ccccc2)cc1 0.6320545 8.0007 0.4346050 0.4346 0.9585998 2.5895 0.9891968 434.6090 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.1245 8.0113 14.8065 0.1901482 CCC(=O)NC1=C(Cl)C(=O)C(NC(=O)CC)=C(Cl)C1=O 1 O=C1C=CC(=O)C=C1 0.6665288 7.1391 0.7588447 0.7588 0.9422306 2.8026 0.9916433 319.1440 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 10.3071 10.2600 13.1601 0.1951673 NS(=O)(=O)c1ccc(N=Nc2c(O)c(C(=O)O)cc3ccccc23)cc1 1 c1ccc(N=Nc2cccc3ccccc23)cc1 0.7467517 7.4980 0.6029882 0.6030 0.9656349 2.4718 0.9997717 371.3740 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.6415 8.5553 14.3643 0.1909960 COc1cc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)ccc1O 1 O=C1CCCC(=O)C1C(c1ccccc1)C1C(=O)CCCC1=O 0.6820885 7.7955 0.7557293 0.7557 0.9064344 3.1193 0.9972851 414.4980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.6475 8.5486 13.9493 0.1874825 Cc1coc2c(O)cc3c(c12)OC1(N2CCCCC2)C(=O)NCCCC31 1 O=C1NCCCC2c3ccc4occc4c3OC12N1CCCCC1 0.6990504 7.2778 0.8215141 0.8215 0.6641781 4.0854 0.9993587 356.4220 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.7209 22.0674 -1.3493 0.1726506 CC(=O)N(C(C)=O)N1C(=O)C2C3C=C(Cl)C(c4ccc5ccccc5c43)C2C1=O 1 O=C1NC(=O)C2C3C=CC(c4ccc5ccccc5c43)C12 0.7294536 7.5846 0.6795027 0.6795 0.3281152 4.9358 0.9981616 408.8410 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.9473 7.1725 15.9153 0.1923983 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 1 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 0.7159069 7.3530 0.8001594 0.8002 0.9635772 2.5085 0.7284364 264.2840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:21 <INFO> Score: 0.18 Agent NLL: 18.24 Valid:  98% Step: 9
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 21.5216 21.1062 2.1500 0.1938010 Cc1nc(NS(=O)(=O)c2ccc(O)c(Br)c2)c(C(=O)O)cc1O 1 O=S(=O)(Nc1ccccn1)c1ccccc1 0.7352066 7.5576 0.6133839 0.6134 0.9598088 2.5707 0.9987533 403.2100 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.8857 24.7328 -5.1650 0.1630648 Nc1ccc(S(=O)(=O)Nc2nc(Cl)sc2C(=O)NC(Cc2ccccc2)C(=O)O)cc1 1 O=C(NCCc1ccccc1)c1scnc1NS(=O)(=O)c1ccccc1 0.6474460 7.9390 0.3614245 0.3614 0.9317129 2.9111 0.7884459 480.9550 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.8491 24.7672 -0.9168 0.1987535 O=C(O)c1ccc(N(C2=NCCO2)C2=C(N3CCOCC3)C(=O)c3ccccc3C2=O)cc1 1 O=C1C(N2CCOCC2)=C(N(C2=NCCO2)c2ccccc2)C(=O)c2ccccc21 0.7360616 7.4465 0.7600180 0.7600 0.9254607 2.9684 0.9741746 447.4470 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 31.0720 31.6773 -10.6457 0.1752629 CC(=S)C1C(=N)N(c2ccccc2)NC1=O 1 N=C1CC(=O)NN1c1ccccc1 0.7340906 7.5628 0.7614407 0.7614 0.8476219 3.4566 0.2397827 233.2960 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.1812 20.0878 4.1403 0.2019010 COCC1CN(Cc2cc(OC)c(O)c(OC)c2)Cc2nccn21 1 c1ccc(CN2CCn3ccnc3C2)cc1 0.7242730 7.6087 0.8694228 0.8694 0.9008794 3.1581 0.9968596 333.3880 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.6825 15.8450 3.5214 0.1613867 CCC1(O)C(=O)OCc2c1cc1n(c2=O)Cc2c-1nc1ccccc1c2C=C1C(=O)NC(=O)NC1=O 1 O=C1NC(=O)C(=Cc2c3c(nc4ccccc24)-c2cc4c(c(=O)n2C3)COC(=O)C4)C(=O)N1 0.7326334 7.4303 0.2136523 0.2137 0.8041760 3.6411 0.7184309 486.4400 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.9836 6.9787 16.0307 0.1917456 NS(=O)(=O)c1ccc(-c2ccc(C=C3C(=O)NC(=O)NC3=O)o2)cc1 1 O=C1NC(=O)C(=Cc2ccc(-c3ccccc3)o2)C(=O)N1 0.7457719 7.5068 0.5301831 0.5302 0.9681009 2.4250 0.9995432 361.3350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.8251 7.1725 15.9153 0.1923983 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 1 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 0.7159069 7.3530 0.8001594 0.8002 0.9635772 2.5085 0.7284364 264.2840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.0863 22.9091 1.4816 0.2032565 O=S(=O)(NCCC1=CCCCC1)c1cc(Cl)cc(Cl)c1O 1 O=S(=O)(NCCC1=CCCCC1)c1ccccc1 0.7421138 7.5245 0.7925626 0.7926 0.9650319 2.4828 0.9990193 350.2670 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.9179 7.7614 13.7365 0.1791491 N#CC(=C1C=C(Br)C(=NO)C=C1Cl)c1ccc(Cl)cc1 1 N=C1C=CC(=Cc2ccccc2)C=C1 0.7059673 7.6917 0.4360981 0.4361 0.8947126 3.1990 0.9997495 370.0330 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:25 <INFO> Score: 0.17 Agent NLL: 19.29 Valid:  97% Step: 10
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 13.5566 13.6165 8.4112 0.1835649 CC1CCc2c(sc(NC(=O)C3C4C=CC(C4)C3C(=O)O)c2C#N)C1 1 O=C(Nc1cc2c(s1)CCCC2)C1CC2C=CC1C2 0.7245785 7.6073 0.8138645 0.8139 0.4722318 4.5676 0.9993598 356.4470 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.4932 25.7121 -4.4505 0.1771800 CC(C)CC(N)C(CC1CCCCC1)C(=O)O 1 C1CCCCC1 0.7138822 7.6562 0.7509874 0.7510 0.9015869 3.1533 0.3553066 241.3750 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.5471 24.6704 -1.2021 0.1955692 CCCC(CC)C(=O)Nc1cc2n(n1)CCN(C(=O)NC(C)C)C2 1 c1cc2n(n1)CCNC2 0.6890044 7.7659 0.8384110 0.8384 0.9006329 3.1598 0.9972757 335.4520 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.3080 22.7447 1.8001 0.2045404 Cn1c(CCCc2ccccc2)nc(Cl)c1C(=O)O 1 c1ccc(CCCc2ncc[nH]2)cc1 0.7311731 7.5766 0.9147551 0.9148 0.9778193 2.1980 0.8792366 278.7390 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 27.1100 27.0147 -27.0147 0.0000000 C(NC1=c2c(c(=CCC(=O)O)c(O)n2-c2ccccc2)=C2CCCN1C2=O)(=O)c1ccccc1 0 -- 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 None
+ | 32.3089 32.4482 -15.9794 0.1372392 NCc1ccc(NC(=O)c2cc(C(=O)Nc3cccc(C(=O)O)c3)n(CCC(O)CCCC(=O)O)n2)cc1 1 O=C(Nc1ccccc1)c1cc(C(=O)Nc2ccccc2)[nH]n1 0.6445960 7.9505 0.1949006 0.1949 0.9213665 3.0036 0.1643102 523.5460 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 12.5260 12.4645 10.3662 0.1902563 O=C1NC(=O)C(=Cc2c(Cl)cccc2Cl)C(=O)N1 1 O=C1NC(=O)C(=Cc2ccccc2)C(=O)N1 0.7241029 7.6095 0.6093211 0.6093 0.9709226 2.3669 0.9186134 285.0860 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.9537 20.1285 4.7422 0.2072560 Cc1cccc(CN2C(=O)SC(=Cc3ccc(O)cc3)C2=O)c1 1 O=C1SC(=Cc2ccccc2)C(=O)N1Cc1ccccc1 0.7415230 7.5274 0.8685907 0.8686 0.9835457 2.0129 0.9945555 325.3890 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.9677 6.9787 16.0307 0.1917456 NS(=O)(=O)c1ccc(-c2ccc(C=C3C(=O)NC(=O)NC3=O)o2)cc1 1 O=C1NC(=O)C(=Cc2ccc(-c3ccccc3)o2)C(=O)N1 0.7457719 7.5068 0.5301831 0.5302 0.9681009 2.4250 0.9995432 361.3350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 13.5665 13.8145 7.2579 0.1756036 O=C1c2ccc(Cl)cc2S(=O)(=O)c2cc(-c3ccc(F)cc3OCc3ccccc3)ccc21 1 O=C1c2ccccc2S(=O)(=O)c2cc(-c3ccccc3OCc3ccccc3)ccc21 0.7396939 7.5362 0.3128214 0.3128 0.9682751 2.4216 0.8108590 478.9280 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:29 <INFO> Score: 0.18 Agent NLL: 19.44 Valid:  97% Step: 11
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 19.8378 19.7648 3.0240 0.1899069 CCC1(C)C(=O)NN(C(Cc2ccccc2)C(=O)O)C1=O 1 O=C1CC(=O)N(CCc2ccccc2)N1 0.6894142 7.7641 0.7911643 0.7912 0.8468268 3.4603 0.9418674 290.3190 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.2328 22.1305 -1.0513 0.1756601 O=C1C(=Cc2ccc(Oc3ccc([N+](=O)[O-])cc3)cc2)SC(=S)N1CC1CC1 1 O=C1C(=Cc2ccc(Oc3ccccc3)cc2)SC(=S)N1CC1CC1 0.7094653 7.6761 0.2877673 0.2878 0.9743927 2.2875 0.9976355 412.4920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.6381 16.6966 4.4298 0.1760536 CCCCOc1ccc(C=C2C(=O)NC(=O)NC2=O)cc1[N+](=O)[O-] 1 O=C1NC(=O)C(=Cc2ccccc2)C(=O)N1 0.7206163 7.6256 0.2670056 0.2670 0.9697475 2.3917 0.9968405 333.3000 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.6818 20.0713 4.1329 0.2017019 O=C1CC(=NCCc2ccccc2)C(=O)c2ccccc21 1 O=C1CC(=NCCc2ccccc2)C(=O)c2ccccc21 0.7305071 7.4203 0.8648832 0.8649 0.9740998 2.2946 0.8684595 277.3230 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 9.3669 9.1956 8.1210 0.1443052 Cc1ccc(C(=O)Oc2cc(N)n(S(=O)(=O)c3ccc(C(F)(F)F)cc3)n2)cc1 1 O=C(Oc1ccn(S(=O)(=O)c2ccccc2)n1)c1ccccc1 0.3681518 8.9985 0.6437974 0.6438 0.9652312 2.4792 0.9942570 425.3880 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.0183 17.5244 5.7492 0.1939467 O=C(c1ccc([N+](=O)[O-])cc1)N1CC=C(c2ccccc2)CC1 1 O=C(c1ccccc1)N1CC=C(c2ccccc2)CC1 0.7229515 7.6148 0.6434468 0.6434 0.9842859 1.9844 0.9825323 308.3370 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.7997 17.1761 5.7759 0.1912664 Cc1coc2c(C)c3oc(=O)c(CC(=O)NCc4ccccc4)c(C)c3cc12 1 O=C(Cc1cc2cc3ccoc3cc2oc1=O)NCc1ccccc1 0.7394077 7.5375 0.5392065 0.5392 0.9675425 2.4359 0.9998169 375.4240 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 33.2748 32.6669 -10.4664 0.1850040 O=C(c1ccc(Oc2ccc(Br)cc2)cc1)c1cn(-c2cccnn2)c(O)c1O 1 O=C(c1ccc(Oc2ccccc2)cc1)c1ccn(-c2cccnn2)c1 0.7393004 7.5381 0.4341876 0.4342 0.9567403 2.6174 0.9643425 452.2640 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.4596 16.5205 3.7129 0.1686116 Cc1ccc(C=C2C(=O)NC(=O)NC2=O)nc1 1 O=C1NC(=O)C(=Cc2ccccn2)C(=O)N1 0.7376899 7.5458 0.5311916 0.5312 0.9612985 2.5468 0.2145189 231.2110 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.9531 17.7296 5.7126 0.1953518 CCn1c(=N)n(Cc2ccc(C)cc2)c2ccccc21 1 N=c1[nH]c2ccccc2n1Cc1ccccc1 0.7443584 7.4863 0.7537354 0.7537 0.9838193 2.0025 0.7428873 265.3600 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:33 <INFO> Score: 0.18 Agent NLL: 20.65 Valid:  97% Step: 12
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 20.1090 20.6967 2.4294 0.1927169 CC(C)c1ccccc1N=C(N)Nc1cccc(Br)c1 1 C(=Nc1ccccc1)Nc1ccccc1 0.7155273 7.6488 0.6358479 0.6358 0.9778673 2.1967 0.9966024 332.2450 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 14.8187 14.9178 8.8103 0.1977348 COc1ccc(-n2[nH]c(C)c(C(c3ccc(Cl)cc3)C(C#N)C#N)c2=O)cc1 1 O=c1c(Cc2ccccc2)c[nH]n1-c1ccccc1 0.7456535 7.5074 0.7111372 0.7111 0.9041744 3.1353 0.9993903 392.8460 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.8612 18.4559 2.4549 0.1742566 N#CCc1c(C(=O)O)[nH]c2ccccc12 1 c1ccc2[nH]ccc2c1 0.7299344 7.5824 0.7770597 0.7771 0.9730557 2.3193 0.0310604 200.1970 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 26.8312 26.7523 -2.7037 0.2004053 CC(C)n1c2nc(SCC(=O)O)nc-2nc2ccccc21 1 c1ccc2[nH]c3ncnc-3nc2c1 0.7420857 7.4753 0.7462555 0.7463 0.9649264 2.4847 0.9738353 302.3590 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.2405 20.6789 -1.6474 0.1585955 N=C(N)c1cccc(S(=O)(=O)Nc2cccc(S(=O)(=O)Nc3ccccc3C(=O)O)c2)c1 1 O=S(=O)(Nc1cccc(S(=O)(=O)Nc2ccccc2)c1)c1ccccc1 0.6287144 8.0139 0.2451802 0.2452 0.9780068 2.1927 0.8532218 474.5200 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 30.4435 30.5219 -8.2849 0.1853083 Cc1cc(-c2ccsc2)ccc1-c1noc(CCC2CCNCC2)n1 1 c1cc(-c2ccc(-c3noc(CCC4CCNCC4)n3)cc2)cs1 0.6372665 7.9799 0.7218332 0.7218 0.9618710 2.5374 0.9992149 353.4910 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 40.4155 40.2697 -21.9421 0.1527300 CCCCCCCCCC1=NCCCC2C13CC[N+]2(C)CCc1ccc(O)c(O)c13 1 C1=NCCCC2[NH+]3CCc4ccccc4C12CC3 0.7183920 7.6357 0.3364642 0.3365 0.2610772 5.1326 0.9974434 413.6260 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.9144 23.8900 -1.5350 0.1862918 NC(=O)c1cccc(NS(=O)(=O)c2ccc(-c3ccc(Br)cc3)s2)c1 1 O=S(=O)(Nc1ccccc1)c1ccc(-c2ccccc2)s1 0.6719391 7.8383 0.6306148 0.6306 0.9816008 2.0820 0.9869831 437.3400 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.7937 17.8673 3.8414 0.1809059 O=C(O)CSCc1ccccc1Cl 1 c1ccccc1 0.7404835 7.5324 0.8410329 0.8410 0.9880788 1.8141 0.0910367 216.6890 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.7331 16.8533 6.1176 0.1914237 C(=Nn1cnnc1)c1cn(Cc2ccccc2)c2ccccc12 1 C(=Nn1cnnc1)c1cn(Cc2ccccc2)c2ccccc12 0.7436104 7.5173 0.5435843 0.5436 0.9714181 2.3562 0.9720051 301.3530 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:38 <INFO> Score: 0.17 Agent NLL: 19.25 Valid:  97% Step: 13
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 11.1914 11.3693 8.8107 0.1681666 O=C(Nc1nc2cc(O)c(O)cc2s1)c1ccc(Br)cc1 1 O=C(Nc1nc2ccccc2s1)c1ccccc1 0.5477621 8.3231 0.6047710 0.6048 0.9806891 2.1120 0.9996504 365.2080 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.0613 23.0088 1.1871 0.2016324 C=C1CC(Cc2ccccc2)Nc2cccc(C(=O)O)c21 1 C=C1CC(Cc2ccccc2)Nc2ccccc21 0.7276438 7.5931 0.8974889 0.8975 0.9308726 2.9191 0.8835685 279.3390 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.9108 22.1525 -3.8702 0.1523523 CCCCC1C(CO)NC(=O)NC1C(=O)O 1 O=C1NCCCN1 0.6908512 7.7579 0.5305816 0.5306 0.7068166 3.9650 0.2037022 230.2640 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.6320 24.2770 -7.5202 0.1396399 N=C(N)NC(=O)CCCCCCCCN 1  0.6402090 7.9682 0.2711487 0.2711 0.9718055 2.3476 0.0783362 214.3130 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 29.2792 30.3977 -6.4027 0.1999575 CCCN(c1ccccc1)C1CCN(C(=O)c2ccccc2OC)CC1 1 O=C(c1ccccc1)N1CCC(Nc2ccccc2)CC1 0.7174855 7.6399 0.7803752 0.7804 0.9834456 2.0166 0.9991580 352.4780 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.1732 8.3114 13.9171 0.1852371 C=CCOc1cccc(C2C(C(=O)c3ccc(C)o3)=C(O)C(=O)N2c2nccs2)c1 1 O=C(C1=CC(=O)N(c2nccs2)C1c1ccccc1)c1ccco1 0.7429784 7.4796 0.4483310 0.4483 0.9083432 3.1055 0.9953030 422.4620 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 27.8627 28.2470 -11.8855 0.1363458 C=C(C)C1CCC2(C)CCC3(C)C(CCC4C5(C)CCC(O)C(C)(C(O)c6ccccc6)C5CCC43C)C12 1 c1ccc(CC2CCCC3C2CCC2C4CCC5CCCC5C4CCC32)cc1 0.7261420 7.6001 0.3927271 0.3927 0.3068292 4.9955 0.2140887 518.8260 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 14.5434 14.7522 8.6346 0.1948906 Cc1ccc2cccc(OCCOc3ccccc3)c2n1 1 c1ccc(OCCOc2cccc3cccnc23)cc1 0.7422594 7.4762 0.6614290 0.6614 0.9891100 1.7585 0.8835685 279.3390 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.7072 24.7454 -0.5437 0.2016809 C=C(Br)COc1nc(C)c(OC)c(OC)n1 1 c1cncnc1 0.7385604 7.4584 0.8304290 0.8304 0.9348470 2.8805 0.9371997 289.1290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.6913 8.5553 14.3643 0.1909960 COc1cc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)ccc1O 1 O=C1CCCC(=O)C1C(c1ccccc1)C1C(=O)CCCC1=O 0.6820885 7.7955 0.7557293 0.7557 0.9064344 3.1193 0.9972851 414.4980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:42 <INFO> Score: 0.18 Agent NLL: 19.07 Valid:  98% Step: 14
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 20.9107 22.1997 2.6780 0.2073141 CN1CCc2nc(C(=O)Nc3ccccc3C(=O)O)sc2C1 1 O=C(Nc1ccccc1)c1nc2c(s1)CNCC2 0.7326553 7.5696 0.9054788 0.9055 0.9752533 2.2662 0.9905641 317.3700 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.1343 20.5432 -0.6230 0.1660021 Cc1cc(O)cc(C)c1CC(=O)NC(Cc1ccc(NC(=N)N)cc1)C(=O)O 1 O=C(Cc1ccccc1)NCCc1ccccc1 0.6389278 7.9733 0.3158559 0.3159 0.9415146 2.8105 0.9996589 384.4360 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.0830 21.8592 0.2680 0.1843930 CCCCCCCCCCCC=Cc1c(C)c(O)c2ccccc2c(O)c1=O 1 O=c1cccc2ccccc2c1 0.7327954 7.5690 0.4176184 0.4176 0.9588298 2.5860 0.9997007 382.5440 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.1664 24.3474 -2.9107 0.1786390 CCN(CCCCCOc1ccc2c(C)cc(=O)oc2c1)CCCOc1ccccc1 1 O=c1ccc2ccc(OCCCCCNCCCOc3ccccc3)cc2o1 0.7366425 7.5507 0.2705638 0.2706 0.9764376 2.2356 0.9949372 423.5530 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.5147 7.8897 14.0932 0.1831904 O=C1NC(=O)C(=Cc2ccc(Oc3ccc([N+](=O)[O-])cc3)cc2)C(=O)N1 1 O=C1NC(=O)C(=Cc2ccc(Oc3ccccc3)cc2)C(=O)N1 0.7337162 7.5646 0.3750325 0.3750 0.9765112 2.2337 0.9992040 353.2900 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 14.1531 14.4049 7.6061 0.1834254 Cc1cccc(OCCn2cc(C=C3C(=O)NC(=S)NC3=O)c3ccccc32)c1 1 O=C1NC(=S)NC(=O)C1=Cc1cn(CCOc2ccccc2)c2ccccc12 0.7338616 7.5639 0.3889664 0.3890 0.9653901 2.4763 0.9985421 405.4790 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.9269 18.8706 2.1900 0.1755045 CCC(CC)(c1ccc(OCC(O)C(C)(C)C)c(C)c1)c1ccc(OC2CCC2)c(C(C)(C)C)c1 1 c1ccc(Cc2ccc(OC3CCC3)cc2)cc1 0.7381913 7.4566 0.3937474 0.3937 0.8849753 3.2594 0.7909923 480.7330 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.9326 17.4979 3.1004 0.1716525 COc1cccc2c1CC(N)CC2 1 c1ccc2c(c1)CCCC2 0.7438184 7.5163 0.7053844 0.7054 0.9586738 2.5884 0.0065248 177.2470 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.7685 7.1263 16.5261 0.1971035 CC1(C)CC(=O)C(C(C2=C(O)CC(C)(C)CC2=O)c2cccs2)C(=O)C1 1 O=C1CCCC=C1C(c1cccs1)C1C(=O)CCCC1=O 0.7402860 7.4667 0.7845444 0.7845 0.8151785 3.5977 0.9998160 374.5020 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.2861 17.1705 6.8598 0.2002523 CCc1ccc(CNc2ccc(C(=O)OC)cc2)cc1 1 c1ccc(CNc2ccccc2)cc1 0.7381554 7.4565 0.8419967 0.8420 0.9923315 1.5433 0.7918703 269.3440 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:46 <INFO> Score: 0.17 Agent NLL: 17.24 Valid:  97% Step: 15
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 9.7106 9.6036 10.4487 0.1671029 Cc1[nH]n(-c2ncc(-c3ccccc3)s2)c(=O)c1C(c1ccc(Br)cc1)C(C#N)C#N 1 O=c1c(Cc2ccccc2)c[nH]n1-c1ncc(-c2ccccc2)s1 0.7049429 7.3038 0.4181513 0.4182 0.8504163 3.4434 0.6601836 490.3860 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 10.0372 9.9365 10.0801 0.1668051 O=C(O)c1cccc2c1NC(C(=O)O)C1CC(Sc3ccccc3[N+](=O)[O-])C(Cl)C21 1 c1ccc(SC2CC3CNc4ccccc4C3C2)cc1 0.7119571 7.3351 0.3546233 0.3546 0.6619513 4.0914 0.9715562 448.8840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 12.7404 12.5866 8.7893 0.1781324 O=C1NC(=O)C(=Cc2c[nH]c3ccccc23)C(=O)N1 1 O=C1NC(=O)C(=Cc2c[nH]c3ccccc23)C(=O)N1 0.7314904 7.5751 0.5223394 0.5223 0.9715126 2.3541 0.5893993 255.2330 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 10.7920 11.1072 -11.1072 0.0000000 O=C1NC(=O)C(=Cc2c[nH]c3ccccc23)C(=O)N1 2 O=C1NC(=O)C(=Cc2c[nH]c3ccccc23)C(=O)N1 0.0000000 7.5751 0.0000000 0.5223 0.0000000 2.3541 0.0000000 255.2330 0.0000000 0.5000 0.0000000 0.5000 0.0000000 1.0000 []
+ | 21.1838 21.2025 1.1307 0.1861104 O=C1CCC(=O)C(c2c[nH]c3ccccc23)=C1O 1 O=C1C=C(c2c[nH]c3ccccc23)C(=O)CC1 0.7441745 7.4854 0.8047595 0.8048 0.9634259 2.5111 0.3532681 241.2460 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.8739 24.1698 -2.9658 0.1767002 C=C(c1cccc2c1OCCC2)C1C=CCCC1 1 C=C(c1cccc2c1OCCC2)C1C=CCCC1 0.7448065 7.5115 0.6969389 0.6969 0.8523107 3.4343 0.3391969 240.3460 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.8701 17.5790 5.9889 0.1963991 CN1CCC(=C2c3ccc(Cl)cc3CCc3cccnc32)CC1 1 c1ccc2c(c1)CCc1cccnc1C2=C1CCNCC1 0.7195062 7.3694 0.7154367 0.7154 0.9645682 2.4911 0.9943521 324.8550 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.1872 23.6184 -1.6891 0.1827446 Fc1ccc(CC23Cc4cnn(-c5ccc(F)cc5)c4C=C2CCC(N2CCOCC2)C3)cc1 1 C1=C2CCC(N3CCOCC3)CC2(Cc2ccccc2)Cc2cnn(-c3ccccc3)c21 0.7307187 7.5787 0.5348485 0.5348 0.8245806 3.5590 0.9343564 461.5560 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.1679 21.3379 -2.5352 0.1566893 CC(C)Sc1ccccc1C(=O)Nc1nc2ccc([N+](=O)[O-])cc2s1 1 O=C(Nc1nc2ccccc2s1)c1ccccc1 0.5384316 8.3578 0.3881337 0.3881 0.9764727 2.2347 0.9998023 373.4590 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.6680 26.0243 -3.7551 0.1855766 C=C1C(=O)OC(c2cccc(C(=O)O)c2)C1C(C)C 1 C=C1CC(c2ccccc2)OC1=O 0.7466248 7.5027 0.6701362 0.6701 0.8701323 3.3435 0.6705644 260.2890 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:50 <INFO> Score: 0.17 Agent NLL: 20.18 Valid:  98% Step: 16
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 30.3077 31.0589 -13.7798 0.1439929 CSc1nn(-c2ccccc2)c2nc(=O)c(C(c3ccccc3Br)c3cc(Cl)cc(Br)c3O)nn12 1 O=c1nc2n(-c3ccccc3)ncn2nc1C(c1ccccc1)c1ccccc1 0.7416086 7.5270 0.2370429 0.2370 0.8103995 3.6168 0.0000972 633.7530 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 9.5417 9.6879 11.0549 0.1728568 CCOC(=O)c1c(NC(=O)C2C3C=CC(C3)C2C(=O)O)sc2c1CCC(CC)C2 1 O=C(Nc1cc2c(s1)CCCC2)C1CC2C=CC1C2 0.7347538 7.5597 0.5408874 0.5409 0.4882062 4.5287 0.9966553 417.5270 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.9215 26.5776 -4.7309 0.1820563 CCC(CC)C(=O)N1c2ccccc2CC1C(=O)NCC1CCNCC1 1 O=C(NCC1CCNCC1)C1Cc2ccccc2N1 0.5894519 8.1662 0.8222546 0.8223 0.9277028 2.9484 0.9994047 357.4980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 31.4276 31.6177 -10.4795 0.1761512 CCC(=NO)C(C)N1CCc2cc(OC)c(OC)cc2C1Cc1ccc(OC)c(OC)c1 1 c1ccc(CC2NCCc3ccccc32)cc1 0.7297419 7.5833 0.3504296 0.3504 0.8454322 3.4669 0.9814414 442.5560 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 32.2089 31.7255 -12.4466 0.1606579 CC1(OC(=O)CCC(=O)O)C(=O)C=C2C=C(OC(=O)c3cccc(C(C)(C)Cl)c3)C(=O)C=C2C1=O 1 O=C1C=C2C=C(OC(=O)c3ccccc3)C(=O)C=C2C(=O)C1 0.7467818 7.5019 0.3394145 0.3394 0.7495481 3.8335 0.4846870 500.8870 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.2444 16.5321 6.9804 0.1959372 CCOC(=O)Cn1nc(NS(=O)(=O)c2ccccc2)c2ccccc21 1 O=S(=O)(Nc1n[nH]c2ccccc12)c1ccccc1 0.7217060 7.6206 0.6826650 0.6827 0.9809675 2.1030 0.9994782 359.4070 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 29.0980 30.1171 -14.5955 0.1293466 Cc1cccc(-c2ccc3c(c2)c2cc(-c4cccc(N5CCNCC5)c4)ccc2n3S(=O)(=O)c2ccc(C(F)(F)F)cc2)c1 1 O=S(=O)(c1ccccc1)n1c2ccc(-c3ccccc3)cc2c2cc(-c3cccc(N4CCNCC4)c3)ccc21 0.6084975 8.0930 0.2104363 0.2104 0.9473205 2.7432 0.0001693 625.7160 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 11.3780 11.4883 7.2201 0.1559032 N=C(N)Nc1ccc(C(=O)Oc2ccc(N)cc2)cc1 1 O=C(Oc1ccccc1)c1ccccc1 0.6249598 8.0287 0.2230834 0.2231 0.9850898 1.9520 0.8024569 270.2920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.4274 7.6144 14.8688 0.1873599 O=C1NC(=O)C(=Cc2c[nH]nc2-c2ccccc2)C(=O)N1 1 O=C1NC(=O)C(=Cc2c[nH]nc2-c2ccccc2)C(=O)N1 0.7290655 7.5865 0.5601358 0.5601 0.9474762 2.7413 0.9027686 282.2590 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.1644 7.0373 15.7319 0.1897438 COc1ccc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)cc1 1 O=C1CCCC(=O)C1C(c1ccccc1)C1C(=O)CCCC1=O 0.6801731 7.8036 0.7183957 0.7184 0.9251134 2.9715 0.9990993 398.4990 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:53 <INFO> Score: 0.18 Agent NLL: 18.29 Valid:  97% Step: 17
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 10.0599 9.9925 13.2155 0.1933999 O=C(NNc1cc(Br)c(O)c(Br)c1)c1ccccc1 1 O=C(NNc1ccccc1)c1ccccc1 0.7449623 7.5107 0.5575304 0.5575 0.9815603 2.0834 0.9996188 386.0430 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.5650 25.1863 -2.0442 0.1928505 Brc1ccc2nc(OC3CCNCC3)c3c[nH]nc3c2c1 1 c1ccc2c(c1)nc(OC1CCNCC1)c1c[nH]nc12 0.6924992 7.7508 0.7481620 0.7482 0.9257984 2.9655 0.9987895 347.2160 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.2201 25.3450 -2.7187 0.1885526 Cc1c([N+](=O)[O-])ccc(C(=O)O)c1Br 1 c1ccccc1 0.7469659 7.4990 0.6532874 0.6533 0.9730885 2.3185 0.6667997 260.0430 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.6420 16.6712 4.3266 0.1749820 CCCCOC(=O)C1=C(C)N=C(C)C(C(=O)OC)C1c1cccc([N+](=O)[O-])c1 1 C1=CC(c2ccccc2)CC=N1 0.7171390 7.6414 0.3057823 0.3058 0.9033512 3.1411 0.9995508 388.4200 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.3951 21.2055 2.7174 0.1993579 CCOC(=O)c1sc(NC(=O)C2COc3ccccc3O2)c(C(=O)OCC)c1C 1 O=C(Nc1cccs1)C1COc2ccccc2O1 0.7450998 7.4899 0.7178783 0.7179 0.9440546 2.7819 0.9961807 419.4550 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.5244 18.9744 3.4786 0.1871079 Cc1cccc(-c2nc(C(=O)NCC3CCNCC3)c(C)o2)c1 1 O=C(NCC1CCNCC1)c1coc(-c2ccccc2)n1 0.5864660 8.1776 0.9105095 0.9105 0.9738095 2.3015 0.9876245 313.4010 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.0624 19.9158 3.2602 0.1931334 CC(=O)c1ccc(-c2cccc(C(=O)O)c2)cc1O 1 c1ccc(-c2ccccc2)cc1 0.7298576 7.5828 0.8277499 0.8277 0.9881471 1.8106 0.6064031 256.2570 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 10.6882 10.8381 9.2995 0.1678133 O=C1NC(=O)C(=Cc2cccs2)C(=O)N1 1 O=C1NC(=O)C(=Cc2cccs2)C(=O)N1 0.7469426 7.4989 0.5362840 0.5363 0.9635591 2.5088 0.1280146 222.2250 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 28.9425 28.6579 -11.7146 0.1411939 C=C(C)C1CCC2(O)C(C(C3=C(O)CC(C)(C)CC3=O)c3ccc(O)c([N+](=O)[O-])c3)=C(O)CC(=O)C12 1 O=C1CCCC=C1C(C1=CCC(=O)C2CCCC12)c1ccccc1 0.7156879 7.6480 0.2587269 0.2587 0.3982644 4.7509 0.5423121 497.5440 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.7461 7.0738 16.2665 0.1945022 Cc1ccc(C(C2=C(O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)s1 1 O=C1CCCC=C1C(c1cccs1)C1C(=O)CCCC1=O 0.7381324 7.4564 0.7464883 0.7465 0.8007920 3.6541 0.9995474 388.5290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:16:57 <INFO> Score: 0.17 Agent NLL: 17.49 Valid:  97% Step: 18
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 34.1989 34.5401 -12.8037 0.1811368 CN1C(O)C(Cc2ccc(O)cc2)C2CN(C(=O)Nc3cccc(F)c3)CCC2S1(=O)=O 1 O=C(Nc1ccccc1)N1CCC2C(C1)C(Cc1ccccc1)CNS2(=O)=O 0.7235284 7.6122 0.6465861 0.6466 0.6751231 4.0553 0.9254761 463.5310 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 13.5431 13.7619 5.3873 0.1595764 CCCC(=O)Nc1nc2cc(O)c(O)cc2s1 1 c1ccc2scnc2c1 0.5366853 8.3643 0.7326318 0.7326 0.9755394 2.2589 0.5395504 252.2950 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.2005 20.6947 1.0162 0.1809237 C=CCOc1cccc(C2CCCN2CCCN=c2ccc(C)c[nH]2)c1 1 c1ccc(C2CCCN2CCCN=c2cccc[nH]2)cc1 0.6851245 7.7825 0.5764241 0.5764 0.8458676 3.4648 0.9990989 351.4940 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 10.7737 10.4474 11.8698 0.1859766 O=C1C=CC(=O)N1c1ccc(N2CCOCC2)c([N+](=O)[O-])c1 1 O=C1C=CC(=O)N1c1ccc(N2CCOCC2)cc1 0.7303871 7.5803 0.4669301 0.4669 0.9672048 2.4424 0.9753984 303.2740 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 10.2930 11.1983 12.5274 0.1977137 Cc1ccc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)o1 1 O=C1CCCC(=O)C1C(c1ccco1)C1C(=O)CCCC1=O 0.7384165 7.5423 0.7535067 0.7535 0.8774849 3.3029 0.9997881 372.4610 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.2889 23.0506 -3.5239 0.1627224 C1CCC(C2CCOC2)NC1 1 C1CCC(C2CCOC2)NC1 0.7353277 7.5570 0.6133629 0.6134 0.8682476 3.3536 0.0014342 155.2410 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 27.7391 28.1900 -5.7372 0.1871062 NC(=O)c1c[nH]c2cccc(C3CCC(N)CC3)c12 1 c1cc(C2CCCCC2)c2cc[nH]c2c1 0.7080781 7.6823 0.7704600 0.7705 0.9654544 2.4751 0.6240613 257.3370 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.4675 23.2801 -1.3612 0.1826579 CCC(C)C(NC(=O)c1sc(SC(C)C)c(C#N)c1-c1ccc(C)cc1)C(=O)O 1 c1ccc(-c2ccsc2)cc1 0.7014734 7.7116 0.5528786 0.5529 0.8662958 3.3639 0.9917914 430.5950 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.7817 20.0423 4.2901 0.2027694 CC(=O)Nc1ccc(S(=O)(=O)NN=C2CCC(C)CC2)cc1 1 O=S(=O)(NN=C1CCCCC1)c1ccccc1 0.7234316 7.6126 0.8344855 0.8345 0.9734747 2.3095 0.9937663 323.4180 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 27.5522 26.7633 -3.6664 0.1924745 Cc1c(N=Cc2ccc(Br)s2)c(=O)n(-c2ccccc2)n1C 1 O=c1c(N=Cc2cccs2)c[nH]n1-c1ccccc1 0.7181194 7.3630 0.6357592 0.6358 0.9593105 2.5785 0.9998058 376.2790 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:02 <INFO> Score: 0.18 Agent NLL: 19.46 Valid: 100% Step: 19
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 27.4442 27.3438 -9.4709 0.1489404 CC(=O)Nc1ccc(NC(=O)C2CCCN2C(=O)C(C)NS(=O)(=O)c2ccc3ccccc3c2)cc1 1 O=C(Nc1ccccc1)C1CCCN1C(=O)CNS(=O)(=O)c1ccc2ccccc2c1 0.6023194 8.1169 0.4524000 0.4524 0.9304166 2.9234 0.3557022 508.6000 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 29.9887 30.9225 -7.0363 0.1990510 COCOC1CCN(C(=O)Cc2ccc(-n3ccnc3)cc2)CC1 1 O=C(Cc1ccc(-n2ccnc2)cc1)N1CCCCC1 0.7211362 7.6232 0.7610625 0.7611 0.9718882 2.3458 0.9958676 329.4000 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.4536 24.8880 -2.0622 0.1902149 CC=CC1CCc2c(cnc(C(=O)OC)c2C(=O)OC)C1 1 c1cc2c(cn1)CCCC2 0.7414582 7.5277 0.6309225 0.6309 0.8631701 3.3801 0.9380158 289.3310 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.6523 17.1592 4.9774 0.1844717 CCC(=O)C1=CC(=C(Br)Br)OC1=O 1 C=C1C=CC(=O)O1 0.7407219 7.5312 0.5809759 0.5810 0.7385561 3.8686 0.9843357 309.9410 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 27.7926 28.2284 -6.1133 0.1842925 CCCN(CC)CCCC1=C(C)C(=Cc2ccc(S(C)(=O)=O)cc2)c2ccc(Cl)cc21 1 C1=Cc2ccccc2C1=Cc1ccccc1 0.7399077 7.5351 0.4261822 0.4262 0.9577569 2.6023 0.9476796 458.0670 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 42.7259 43.9043 -27.0799 0.1402028 COc1cc(O)c(C(c2cc(Br)ccc2O)c2sc3ccc(CCCN(C)C)cc3c2[N+](=O)[O-])c(OC)c1 1 c1ccc(C(c2ccccc2)c2cc3ccccc3s2)cc1 0.7352193 7.5575 0.1544685 0.1545 0.8346443 3.5157 0.0008996 601.5190 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.4172 19.6495 4.6202 0.2022473 Cc1cc(OCC(=O)Nc2ccc(S(N)(=O)=O)cc2)cc(C)c1Cl 1 O=C(COc1ccccc1)Nc1ccccc1 0.7112370 7.6681 0.8469207 0.8469 0.9850913 1.9519 0.9997279 368.8420 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.6371 23.9024 -2.2113 0.1807594 CCOC(=O)c1c(NC(=O)C(=O)c2ccc(S(N)(=O)=O)cc2)sc2c1CCCC2 1 O=C(Nc1cc2c(s1)CCCC2)C(=O)c1ccccc1 0.7095405 7.6757 0.4054541 0.4055 0.9721364 2.3402 0.9876986 436.5110 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.8575 6.9787 16.0307 0.1917456 NS(=O)(=O)c1ccc(-c2ccc(C=C3C(=O)NC(=O)NC3=O)o2)cc1 1 O=C1NC(=O)C(=Cc2ccc(-c3ccccc3)o2)C(=O)N1 0.7457719 7.5068 0.5301831 0.5302 0.9681009 2.4250 0.9995432 361.3350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 36.0808 35.7911 -15.0907 0.1725032 COC(=O)C1=C(C)C2=CC(=O)C3(OCCCC3=O)N2CC1 1 O=C1C=C2C=CCCN2C12OCCCC2=O 0.7391459 7.4612 0.5235054 0.5235 0.5222992 4.4457 0.9454793 291.3030 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:06 <INFO> Score: 0.18 Agent NLL: 18.39 Valid: 100% Step: 20
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 7.6239 7.3694 9.7223 0.1424307 COC(=O)CCC(=O)OC1(C)C(=O)C2=CN(Cc3ccccc3)C(c3ccc(OC)cc3)=CC2=C(Br)C1=O 1 O=C1C=C2C=C(c3ccccc3)N(Cc3ccccc3)C=C2C(=O)C1 0.6969788 7.7313 0.3329389 0.3329 0.8128979 3.6069 0.0038494 580.4310 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.6290 25.7336 -1.2317 0.2041824 CCc1cc2c(c(-c3ccc(Cl)cc3)c1)C(=O)C(OC)=CC2=O 1 O=C1C=CC(=O)c2c1cccc2-c1ccccc1 0.7334151 7.4340 0.8349326 0.8349 0.9726632 2.3283 0.9950514 326.7790 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.2494 21.1160 1.3391 0.1871253 CCCCNC(=O)c1cccc(N=Nc2ccccc2C(=O)O)c1O 1 c1ccc(N=Nc2ccccc2)cc1 0.7151216 7.6506 0.5210496 0.5210 0.9707238 2.3712 0.9981878 341.3670 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 51.4537 54.1859 -38.2995 0.1323869 CC1CCCN(C23CCC(c4oc5c(c4C2=O)C(=O)CC(C)(C)C5)C(S(=O)(=O)c2ccccc2)C3C)C1=O 1 O=C1CCCc2oc3c(c21)C(=O)C1(N2CCCCC2=O)CCC3C(S(=O)(=O)c2ccccc2)C1 0.7088267 7.6789 0.5470683 0.5471 0.1807887 5.4187 0.0689647 537.6780 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.3720 7.1725 15.9153 0.1923983 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 1 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 0.7159069 7.3530 0.8001594 0.8002 0.9635772 2.5085 0.7284364 264.2840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.1567 8.0623 14.7665 0.1902401 O=C1NC(=O)C(=Cc2csc3ccccc23)C(=O)N1 1 O=C1NC(=O)C(=Cc2csc3ccccc23)C(=O)N1 0.7442303 7.4857 0.6119730 0.6120 0.9631220 2.5163 0.8233765 272.2850 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.6821 19.7435 4.2933 0.2003064 Cc1cccc(NC(=O)c2nc(NC(=O)C3CCCCC3)cn2C)c1 1 O=C(Nc1ccccc1)c1nc(NC(=O)C2CCCCC2)c[nH]1 0.6839259 7.7877 0.8942045 0.8942 0.9772447 2.2139 0.9980665 340.4270 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.1850 7.6098 16.0016 0.1967622 Cc1ccc(C(C2C(=O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)s1 1 O=C1CCCC(=O)C1C(c1cccs1)C1C(=O)CCCC1=O 0.7417845 7.4739 0.7245632 0.7246 0.8755218 3.3140 0.9995474 388.5290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 31.0220 30.8559 -14.9438 0.1326003 CC1=C(NC(=O)C(N)c2ccccc2)C2N(C1C(=O)O)C(C(=O)NC(=O)C(C)c1ccccc1)C(C)(C)S2(=O)=O 1 O=C(Cc1ccccc1)NC(=O)C1CS(=O)(=O)C2C(NC(=O)Cc3ccccc3)=CCN12 0.6885380 7.7679 0.3821877 0.3822 0.5139738 4.4660 0.0086432 568.6520 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.9904 22.4254 -2.5107 0.1659561 CC1CC(=O)C(C(=O)C2(C)CC2)C(=O)C1 1 O=C1CCCC(=O)C1C(=O)C1CC1 0.7260879 7.6003 0.6466611 0.6467 0.9099268 3.0938 0.0529751 208.2570 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:10 <INFO> Score: 0.18 Agent NLL: 19.81 Valid: 100% Step: 21
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 20.7408 21.0668 1.9646 0.1919280 CN(C(=O)CCl)c1ccc(Br)cc1 1 c1ccccc1 0.7290218 7.5867 0.7505079 0.7505 0.9821846 2.0620 0.7038747 262.5340 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.6734 26.2562 -8.1350 0.1510107 NCCCCC(NC(=O)c1ccccc1)C(=O)Nc1ccc(-c2nc3ccccc3o2)cc1 1 O=C(CNC(=O)c1ccccc1)Nc1ccc(-c2nc3ccccc3o2)cc1 0.5230792 8.4147 0.3336685 0.3337 0.9625404 2.5262 0.9814879 442.5190 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.0971 21.2601 2.3724 0.1969377 CCCOc1ccc2c(=O)cc(-c3ccc(N(C)C)cc3)oc2c1 1 O=c1cc(-c2ccccc2)oc2ccccc12 0.7237156 7.3887 0.7013268 0.7013 0.9814096 2.0884 0.9937552 323.3920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.0340 25.3811 -2.9578 0.1868614 Nc1ccccc1Nc1ccccc1CNc1ccc(C(=O)O)c(O)c1 1 c1ccc(NCc2ccccc2Nc2ccccc2)cc1 0.7405024 7.5323 0.4301369 0.4301 0.9814835 2.0859 0.9989580 349.3900 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 11.6167 12.8387 12.1544 0.2082751 O=C(Nc1sc2c(c1C(=O)O)CCCC2)c1ccccc1 1 O=C(Nc1cc2c(s1)CCCC2)c1ccccc1 0.7386863 7.5410 0.9103260 0.9103 0.9864236 1.8942 0.9720314 301.3670 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.1075 16.6351 5.8520 0.1873927 O=C(O)c1ccc(NCc2cc(O)ccc2O)cc1 1 c1ccc(CNc2ccccc2)cc1 0.7440386 7.5152 0.6329821 0.6330 0.9872108 1.8574 0.6546916 259.2610 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 31.6695 31.8562 -13.6616 0.1516216 CC(=O)c1cc2ccccc2nc1SC1=C(C(=O)O)N2C(=O)C(NC(=O)CS(=O)(=O)O)C2C1=O 1 O=C1C(Sc2ccc3ccccc3n2)=CN2C(=O)CC12 0.7334831 7.5657 0.2607541 0.2608 0.7124947 3.9482 0.4063780 505.4860 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.3567 7.1725 15.9153 0.1923983 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 1 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 0.7159069 7.3530 0.8001594 0.8002 0.9635772 2.5085 0.7284364 264.2840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.2354 25.3140 -1.5474 0.1980547 CC(=O)C1C(=O)C(C2c3ccccc3Oc3ccccc32)C(=O)CC1C 1 O=C1CCCC(=O)C1C1c2ccccc2Oc2ccccc21 0.7471202 7.4998 0.7718517 0.7719 0.8317981 3.5281 0.9988843 348.3980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.6880 21.0611 -1.6015 0.1621634 CC1(C(=O)O)CCC2(C)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1 1 C1=C2C3CCCCC3CCC2C2CCC3CCCCC3C2C1 0.7285683 7.5888 0.4090546 0.4091 0.4208623 4.6941 0.9521339 456.7110 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:14 <INFO> Score: 0.18 Agent NLL: 19.21 Valid:  97% Step: 22
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 20.5253 20.2761 1.8524 0.1844043 CCCCCNC(=O)c1onc(CSc2cccc(OC)c2)c1C(=O)O 1 c1ccc(SCc2ccon2)cc1 0.7099310 7.6740 0.4809892 0.4810 0.9656092 2.4723 0.9997744 378.4500 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.5403 25.0277 -0.4592 0.2047382 CC(=O)C1=C(C)N(c2ccccc2C)C(=O)C1(C)CC(=O)O 1 O=C1CC=CN1c1ccccc1 0.7283863 7.5896 0.9274714 0.9275 0.9081560 3.1068 0.9719844 301.3420 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.0923 8.3342 14.9891 0.1943610 CCOc1ccc(N2C(=O)C(Cl)=C(N3CCOCC3)C2=O)cc1 1 O=C1C=C(N2CCOCC2)C(=O)N1c1ccccc1 0.6779292 7.8131 0.7838660 0.7839 0.9775466 2.2056 0.9975131 336.7750 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.2280 23.5023 -1.0888 0.1867788 COC(=O)C1C(=N)OC2=C(C(=O)CC(C)(C)C2)C1(C)C 1 N=C1CCC2=C(CCCC2=O)O1 0.7223777 7.6175 0.7479076 0.7479 0.7365659 3.8748 0.8835472 279.3360 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.4565 21.4007 2.9891 0.2032487 Cc1cc(SCC(=O)NCCC(=O)O)c(C)cc1Br 1 c1ccccc1 0.7434859 7.5179 0.7776538 0.7777 0.9785463 2.1773 0.9987056 346.2460 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.6456 18.8782 3.9184 0.1899718 CCCCCOc1ccc(NS(=O)(=O)c2ccc3c(c2)CNCC3)cc1 1 O=S(=O)(Nc1ccccc1)c1ccc2c(c1)CNCC2 0.6759820 7.8213 0.6915297 0.6915 0.9800334 2.1327 0.9998160 374.5060 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.6292 8.0292 15.7888 0.1984839 O=C1C(O)=CC(=C(c2ccccc2)c2ccccc2)c2ccccc21 1 O=C1C=CC(=C(c2ccccc2)c2ccccc2)c2ccccc21 0.7378403 7.5450 0.6957487 0.6957 0.9768544 2.2245 0.9941644 324.3790 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 26.7204 27.6606 -6.3513 0.1775776 NC(=O)NC(CSCc1ccccc1)C(=O)Nc1cccc(C(=O)O)c1 1 O=C(CCSCc1ccccc1)Nc1ccccc1 0.6326439 7.9983 0.5655473 0.5655 0.9653940 2.4762 0.9998019 373.4340 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 7.5347 7.7077 13.0963 0.1733663 CC(C)CN(CC(C)C)c1ccc(C=C2C(=O)NC(=S)NC2=O)cc1[N+](=O)[O-] 1 O=C1NC(=S)NC(=O)C1=Cc1ccccc1 0.7188782 7.3665 0.2379868 0.2380 0.9386341 2.8416 0.9986380 404.4920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.2214 25.0347 -6.5470 0.1540644 CCCCCCSC1CC(=O)C(n2cnc3c(=N)[nH]c(Br)nc32)C(O)C1O 1 N=c1[nH]cnc2c1ncn2C1CCCCC1=O 0.6785576 7.8105 0.3709024 0.3709 0.4415763 4.6427 0.9465901 458.3820 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:18 <INFO> Score: 0.18 Agent NLL: 17.83 Valid: 100% Step: 23
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 20.5379 21.0319 -0.2398 0.1732671 CN1CCN(C(=O)c2ccc(-c3ccc4c(C(=O)NC5CCNCC5)c[nH]c4c3)cc2)CC1 1 O=C(NC1CCNCC1)c1c[nH]c2cc(-c3ccc(C(=O)N4CCNCC4)cc3)ccc12 0.6011124 8.1215 0.5769579 0.5770 0.9699070 2.3884 0.9772483 445.5670 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 26.1843 26.0506 -5.0418 0.1750733 CC(C)CC(COC(C)C)C(O)C(O)C(C)C 1  0.7321131 7.4278 0.6914253 0.6914 0.7887776 3.6989 0.4379957 246.3910 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.4060 19.2425 3.1866 0.1869091 CCc1nc2c(C)cc(C)nc2n1Cc1ccc(-c2ccc(-c3nn[nH]n3)cc2)cc1 1 c1cnc2c(c1)ncn2Cc1ccc(-c2ccc(-c3nn[nH]n3)cc2)cc1 0.7341661 7.5625 0.4617069 0.4617 0.9677328 2.4322 0.9980766 409.4970 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.0492 7.3768 10.7458 0.1510215 O=C(O)CN1C(=O)C=CC1=O 1 O=C1C=CC(=O)N1 0.6569496 7.9004 0.5185692 0.5186 0.9647431 2.4880 0.0014212 155.1090 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.9067 25.4397 -1.2083 0.2019286 CC1(C)Cc2c(c(=S)[nH]c(=O)n2Cc2ccccc2)C(O)C1 1 O=c1[nH]c(=S)c2c(n1Cc1ccccc1)CCCC2 0.7375449 7.5464 0.8375781 0.8376 0.8968544 3.1850 0.9899347 316.4260 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.0313 25.1114 -3.8331 0.1773188 CC(=O)OC1(C)CCCC2(C)C3Cc4oc(O)cc4C=C3CCC12 1 C1=C2CCC3CCCCC3C2Cc2occc21 0.7080060 7.6826 0.7722135 0.7722 0.4202079 4.6957 0.9961487 330.4240 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 26.2581 26.3966 -3.3007 0.1924657 COC(=O)C1C(C)=NC(C)=C(C(=O)Nc2ccccc2OC)C1c1c(OC)cccc1OC 1 O=C(Nc1ccccc1)C1=CN=CCC1c1ccccc1 0.7374761 7.5468 0.6389217 0.6389 0.9095664 3.0965 0.9637608 452.5070 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.7469 8.6284 14.5060 0.1927865 CC(=O)N(C1=C(Cl)C(=O)c2ccccc2C1=O)C1CCCCC1 1 O=C1C=C(NC2CCCCC2)C(=O)c2ccccc21 0.6550468 7.0918 0.8299671 0.8300 0.9639795 2.5015 0.9964965 331.7990 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.3780 17.7008 6.3986 0.2008287 CN(C)c1cccc2c(N3CCCCC3)ccc(N)c12 1 c1ccc2c(N3CCCCC3)cccc2c1 0.7441953 7.4855 0.8472129 0.8472 0.9783150 2.1840 0.7924163 269.3920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 14.3128 14.5229 8.6100 0.1927742 O=C(Nc1ccc(N2CCCCC2)cc1)c1ccc(-c2ccccc2)cc1 1 O=C(Nc1ccc(N2CCCCC2)cc1)c1ccc(-c2ccccc2)cc1 0.7037259 7.7016 0.6601299 0.6601 0.9912489 1.6242 0.9993607 356.4690 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:22 <INFO> Score: 0.18 Agent NLL: 18.19 Valid:  98% Step: 24
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 7.5258 7.8518 16.0039 0.1987977 CC1=NN(Cc2ccccc2)C(=O)C1C(c1ccc(Cl)cc1)C(C#N)C#N 1 O=C1C(Cc2ccccc2)C=NN1Cc1ccccc1 0.7449591 7.4892 0.7865805 0.7866 0.8408669 3.4878 0.9997980 376.8470 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.2965 15.6908 4.6442 0.1694584 CCCCC1NC(=S)N=C(C)C1C(=O)OCC 1 S=C1N=CCCN1 0.6882285 7.7692 0.6041566 0.6042 0.7831122 3.7194 0.6082812 256.3710 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.8393 18.3724 3.2707 0.1803588 CCOC(=O)c1cc(Nc2ccc(C(F)(F)F)cc2N)ccc1[N+](=O)[O-] 1 c1ccc(Nc2ccccc2)cc1 0.7198614 7.6290 0.3553073 0.3553 0.9762710 2.2400 0.9997364 369.2990 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 16.1119 16.4196 2.6088 0.1585705 C=c1c(O)c(O)c2c(c1=C)C(=O)C=CC2=O 1 C=c1ccc2c(c1=C)C(=O)C=CC2=O 0.6995538 7.2800 0.5914764 0.5915 0.8525560 3.4331 0.0882354 216.1920 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 13.4849 13.3685 7.7983 0.1763898 O=C1c2ccc3c4c(ccc(c24)C(=O)N1CCCO)C(=O)N(CCCCO)C3=O 1 O=C1NC(=O)c2ccc3c4c(ccc1c24)C(=O)NC3=O 0.6327697 7.0022 0.5365695 0.5366 0.9695120 2.3966 0.9992208 396.3990 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 12.4804 12.7864 10.4904 0.1939729 CC1(C)CC(=O)C(C(C2=C(O)CC(C)(C)CC2=O)c2cccc(O)c2)=C(O)C1 1 O=C1CCCC=C1C(C1=CCCCC1=O)c1ccccc1 0.7233781 7.6129 0.6903996 0.6904 0.9118580 3.0794 0.9996580 384.4720 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 9.5749 8.5794 13.4853 0.1838727 CC1(C)CC(=O)C(C(C2=C(O)CC(C)(C)CC2=O)c2ccc(Br)s2)C(=O)C1 1 O=C1CCCC=C1C(c1cccs1)C1C(=O)CCCC1=O 0.7129802 7.3397 0.6250322 0.6250 0.7884347 3.7002 0.9615486 453.3980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.6505 19.6582 3.8930 0.1962599 COc1c(N2CCC(CN)C2)c(F)cc2c(=O)c(C(=O)O)cn(C3CC3)c12 1 O=c1ccn(C2CC2)c2cc(N3CCCC3)ccc12 0.6932178 7.7477 0.8291983 0.8292 0.9130888 3.0700 0.9998173 375.4000 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 14.8763 14.4504 4.8574 0.1608986 CC1=CC(=O)C(C)=C2C1=CC=C1C2(C)CCC2(C)C3CC(C)(C(=O)O)CCC3(C)CCC12C 1 O=C1C=CC2=CC=C3C(CCC4C3CCC3CCCCC34)C2=C1 0.7251729 7.3954 0.4612365 0.4612 0.3193140 4.9602 0.9720051 448.6470 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.5219 8.8605 11.7862 0.1720555 N#Cc1c(N)sc(=S)c2c1CCCC2 1 S=c1sccc2c1CCCC2 0.7362035 7.4472 0.6866341 0.6866 0.9297765 2.9293 0.1288884 222.3380 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:26 <INFO> Score: 0.18 Agent NLL: 19.09 Valid:  98% Step: 25
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 20.6191 23.5610 1.5397 0.2091725 CN(C)c1cccc2cccc(S(=O)(=O)CC(=O)O)c12 1 c1ccc2ccccc2c1 0.7465353 7.4969 0.9294711 0.9295 0.9720824 2.3414 0.9523067 293.3440 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.9039 22.9404 0.3053 0.1937145 CCCCC1(O)c2ccccc2N(Cc2ccccc2F)C(=O)C1CCC 1 O=C1CCc2ccccc2N1Cc1ccccc1 0.7141981 7.6548 0.7316262 0.7316 0.8877110 3.2429 0.9997397 369.4800 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.9387 21.7672 -0.0672 0.1808338 CCCCCNC(=O)c1cc2cc(-c3ccc(C(=O)O)cc3)ccc2[nH]1 1 c1ccc(-c2ccc3[nH]ccc3c2)cc1 0.6563216 7.9030 0.5504933 0.5505 0.9839182 1.9987 0.9990294 350.4180 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.2635 19.3615 -0.8206 0.1545081 CC(N)(CO)CO 1  0.7300831 7.4183 0.4081636 0.4082 0.9236679 2.9841 0.0000451 105.1370 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.8870 26.3732 -3.4389 0.1911191 Cc1ccccc1OCCn1c(=O)oc2ccc(-c3ccccc3C(=O)O)cc21 1 O=c1oc2ccc(-c3ccccc3)cc2n1CCOc1ccccc1 0.7382033 7.4567 0.5302476 0.5302 0.9795051 2.1489 0.9995192 389.4070 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 14.5375 14.9626 2.4715 0.1452843 N=C(N)Nc1ccc(C(=O)O)cc1 1 c1ccccc1 0.6491606 7.9321 0.3961404 0.3961 0.9875624 1.8402 0.0074494 179.1790 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.9803 24.7877 -3.2382 0.1795789 COC(=O)C(N=Cc1ccc([N+](=O)[O-])cc1)c1ccccc1 1 C(=NCc1ccccc1)c1ccccc1 0.7241300 7.6094 0.3676143 0.3676 0.9493858 2.7176 0.9656537 298.2980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.0068 22.2521 0.2203 0.1872705 Cc1cc(O)c(C(C)C)cc1NC(=O)c1ccc(N)cc1 1 O=C(Nc1ccccc1)c1ccccc1 0.7045388 7.6980 0.5944638 0.5945 0.9851185 1.9508 0.9147791 284.3590 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 25.7351 25.7537 -2.8117 0.1911834 CCC(C)C1CCc2cc(Oc3cc(C(N)=O)nc(N(C)C)c3)ccc2N1C(C)=O 1 c1cc(Oc2ccc3c(c2)CCCN3)ccn1 0.6964587 7.7336 0.7833725 0.7834 0.8225641 3.5674 0.9979363 410.5180 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.9791 10.1143 13.5381 0.1971035 CC1(C)CC(=O)C(C(C2=C(O)CC(C)(C)CC2=O)c2cccs2)C(=O)C1 1 O=C1CCCC=C1C(c1cccs1)C1C(=O)CCCC1=O 0.7402860 7.4667 0.7845444 0.7845 0.8151785 3.5977 0.9998160 374.5020 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:29 <INFO> Score: 0.18 Agent NLL: 18.38 Valid:  95% Step: 26
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 30.4385 31.1873 -13.2814 0.1492157 CC(C)C1C(C)C(=O)OC12C(C)CCCC21CO1 1 O=C1CCC2(CCCCC23CO3)O1 0.7311921 7.5765 0.5318579 0.5319 0.2166080 5.2816 0.5405629 252.3540 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.2880 19.8465 3.5255 0.1947665 CCn1c2ccccc2c2cc(NC(=O)C3CCC3)ccc21 1 O=C(Nc1ccc2[nH]c3ccccc3c2c1)C1CCC1 0.6976399 7.7284 0.7544880 0.7545 0.9875388 1.8414 0.9491962 292.3820 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.9750 19.4518 3.4107 0.1905204 COc1cccc(-c2cc(=NC(=O)c3ccccc3-c3ccccc3)[nH][nH]2)c1 1 O=C(N=c1cc(-c2ccccc2)[nH][nH]1)c1ccccc1-c1ccccc1 0.7298109 7.4170 0.5587249 0.5587 0.9590495 2.5826 0.9997386 369.4240 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 27.4830 29.3503 -4.7756 0.2047886 Cc1nc(NC(=O)c2ccccc2SC(C)C)cn1C 1 O=C(Nc1c[nH]cn1)c1ccccc1 0.7355324 7.5560 0.8765445 0.8765 0.9716347 2.3514 0.9383085 289.4040 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 36.1100 37.0205 -37.0205 0.0000000 C(O)(=O)c1ccc2c(c3cc(-c4cc(-c5nc6c(c(C)nc(N(CC)CC)c6)[nH]c5-c5ccc(C(C)(C)C)cc5)ccc4)ccc3n2C)c1 0 -- 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 0.0000000 0.0000 None
+ | 16.0101 16.2979 6.4772 0.1897923 CCOC(=O)c1c(NC(=O)C2CC=CCC2)sc2c1CCC(C)C2 1 O=C(Nc1cc2c(s1)CCCC2)C1CC=CCC1 0.7104537 7.6716 0.6508093 0.6508 0.8975714 3.1803 0.9988112 347.4800 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.4744 8.1055 8.2583 0.1363651 Nc1ccc(C(=O)Oc2cc(N)n(S(=O)(=O)c3ccc(Oc4ccccc4)cc3)n2)cc1 1 O=C(Oc1ccn(S(=O)(=O)c2ccc(Oc3ccccc3)cc2)n1)c1ccccc1 0.4179014 8.8058 0.3368476 0.3368 0.9674035 2.4386 0.9683543 450.4760 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.8476 21.6903 -0.2809 0.1784110 N#Cc1c(C(=O)NCCCO)[nH]c2ccccc12 1 c1ccc2[nH]ccc2c1 0.7130780 7.6598 0.7036255 0.7036 0.9742022 2.2921 0.3857606 243.2660 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.8183 6.9787 16.0307 0.1917456 NS(=O)(=O)c1ccc(-c2ccc(C=C3C(=O)NC(=O)NC3=O)o2)cc1 1 O=C1NC(=O)C(=Cc2ccc(-c3ccccc3)o2)C(=O)N1 0.7457719 7.5068 0.5301831 0.5302 0.9681009 2.4250 0.9995432 361.3350 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.9755 20.2955 3.6586 0.1996181 O=C1C=C(Br)C(=O)N1c1ccc(Cl)cc1 1 O=C1C=CC(=O)N1c1ccccc1 0.7445657 7.5127 0.7439056 0.7439 0.9734257 2.3106 0.9256808 286.5120 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:33 <INFO> Score: 0.18 Agent NLL: 18.62 Valid: 100% Step: 27
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 10.2315 10.2784 9.0335 0.1609329 CCCCC(=O)Nc1nc(SC(=O)CCCC)c2nc[nH]c2n1 1 c1ncc2nc[nH]c2n1 0.5247476 8.4086 0.5668958 0.5669 0.9208110 3.0083 0.9972721 335.4330 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 50.3997 51.1656 -36.7344 0.1202605 CCC(COC(=O)C(C)(C)C)C(=O)C=C(C)CC(C)C(O)C(C)C=C(C)CCCC1(C)CCC(C(C)(C)O)O1 1 C1CCOC1 0.7358372 7.5546 0.1299744 0.1300 0.3034158 5.0053 0.0290124 550.8210 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 18.0742 19.9769 3.7596 0.1978037 O=S(=O)(Cc1ccccc1)Cc1nc(-c2ccccc2)no1 1 O=S(=O)(Cc1ccccc1)Cc1nc(-c2ccccc2)no1 0.7226904 7.6160 0.7237703 0.7238 0.9845891 1.9724 0.9884134 314.3660 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.4274 17.1719 1.5683 0.1561682 O=C(O)NN1C(=O)C=CC1=O 1 O=C1C=CC(=O)N1 0.7304934 7.5798 0.4811277 0.4811 0.8746414 3.3189 0.0015214 156.0970 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.9958 18.4410 6.2485 0.2057461 COc1ccccc1N1C(=O)c2ccc(C(=O)O)cc2C1=O 1 O=C1c2ccccc2C(=O)N1c1ccccc1 0.7327380 7.5692 0.8778957 0.8779 0.9876017 1.8383 0.9632091 297.2660 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.0062 7.0738 16.2665 0.1945022 Cc1ccc(C(C2=C(O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)s1 1 O=C1CCCC=C1C(c1cccs1)C1C(=O)CCCC1=O 0.7381324 7.4564 0.7464883 0.7465 0.8007920 3.6541 0.9995474 388.5290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 32.8128 33.5864 -10.5489 0.1919794 NC(=O)c1cc2c(cc1F)OCC1CCCC(CNC(=O)C3CCOCC3)C21 1 O=C(NCC1CCCC2COc3ccccc3C12)C1CCOCC1 0.6963993 7.7338 0.8257783 0.8258 0.7901125 3.6940 0.9994830 390.4550 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 8.6676 8.8265 14.2390 0.1922126 O=C1C=C(Nc2cccc3cccnc23)c2ccccc2C1=O 1 O=C1C=C(Nc2cccc3cccnc23)c2ccccc2C1=O 0.6844966 7.2148 0.7363774 0.7364 0.9749132 2.2747 0.9699905 300.3170 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.7079 20.8189 2.6114 0.1952525 CN(C(=O)CSc1ccccc1C(=O)NCc1ccccc1)C1CCS(=O)(=O)C1 1 O=C(CSc1ccccc1C(=O)NCc1ccccc1)NC1CCS(=O)(=O)C1 0.7269584 7.5963 0.6793289 0.6793 0.9536091 2.6619 0.9906047 432.5670 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 22.3533 23.1761 1.6115 0.2065636 COc1ccccc1N1CCC(C(=O)O)(C2CCCCC2)CC1 1 c1ccc(N2CCC(C3CCCCC3)CC2)cc1 0.7247939 7.6063 0.9133803 0.9134 0.9745633 2.2833 0.9906021 317.4290 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+18:17:37 <INFO> Score: 0.18 Agent NLL: 19.15 Valid: 100% Step: 28
+ | Agent Prior Target Score SMILES SMILES_state Scaffold DENV_Activity DENV_Activity (raw) Drug_Likeness Drug_Likeness (raw) Synthetic_Accessibility Synthetic_Accessibility (raw) Molecular_Weight Molecular_Weight (raw) Pyrrolidine_Scaffold Pyrrolidine_Scaffold (raw) Cyclobutane_Scaffold Cyclobutane_Scaffold (raw) Unwanted_Structures Unwanted_Structures (raw) matchting_patterns (Unwanted_Structures)
+ | 17.2812 16.8285 7.8160 0.2053704 O=C(O)c1cccc(NCc2c(F)cccc2Cl)c1 1 c1ccc(CNc2ccccc2)cc1 0.7395092 7.5371 0.8950929 0.8951 0.9884024 1.7972 0.8860955 279.6980 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 20.8943 21.6031 -1.1829 0.1701690 O=[N+]([O-])c1ccc(NCCCCC(O)=NO)c2nonc12 1 c1ccc2nonc2c1 0.7275165 7.4063 0.1754594 0.1755 0.9285842 2.9404 0.9579568 295.2550 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.7277 24.7711 -4.0205 0.1729216 CCC(=O)OCC1=CC(OC(C)=O)C=C(CO)C1 1 C1=CCC=CC1 0.7415345 7.5273 0.5876373 0.5876 0.7235214 3.9151 0.5734130 254.2820 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 15.1395 15.3687 4.1157 0.1623699 CCCCNC(=O)C1C2CCC(O2)C1C(=O)O 1 C1CC2CCC1O2 0.6892812 7.7647 0.6974059 0.6974 0.6619901 4.0913 0.3539154 241.2870 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 24.8198 24.1677 -0.8826 0.1940420 O=C(CCN1C(=O)c2ccc(C(=O)O)cc2C1=O)Nc1ccc(C(=O)O)cc1 1 O=C(CCN1C(=O)c2ccccc2C1=O)Nc1ccccc1 0.7192560 7.6318 0.6458011 0.6458 0.9848936 1.9601 0.9997051 382.3280 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 19.2135 19.2623 1.1061 0.1697370 CCOC(=O)c1c(C)n(CC)c(=S)n1C 1 S=c1[nH]cc[nH]1 0.7379608 7.5445 0.5866423 0.5866 0.9451796 2.7688 0.1827526 228.3170 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 17.5423 17.2760 5.5564 0.1902696 Cc1ccc(CS(=O)(=O)c2cc(C(=O)Nc3nnc(CCCO)o3)c(Cl)cn2)cc1 1 O=C(Nc1nnco1)c1ccnc(S(=O)(=O)Cc2ccccc2)c1 0.7448063 7.4885 0.5340781 0.5341 0.9510823 2.6957 0.9674357 450.9040 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 6.2442 7.1725 15.9153 0.1923983 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 1 O=C1C=CC(=O)N1N(c1ccccc1)c1ccccc1 0.7159069 7.3530 0.8001594 0.8002 0.9635772 2.5085 0.7284364 264.2840 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 23.3935 23.6463 -4.2646 0.1615143 C=CC1(C)CCC2C(=CCCC2(C)C)C1(C)CCC1(C)C(C)=CCCC1C 1 C1=CC(CCC2CCCC3CCCC=C32)CCC1 0.7414193 7.4721 0.4361675 0.4362 0.2855611 5.0576 0.9997243 368.6490 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
+ | 21.6555 21.8824 1.1982 0.1923384 O=C(Nc1ccc(OC(F)(F)F)cc1)N1CCC(O)(c2ccc(Br)cc2)CC1 1 O=C(Nc1ccccc1)N1CCC(c2ccccc2)CC1 0.7065267 7.6892 0.6894068 0.6894 0.9743291 2.2890 0.9434320 459.2620 0.5000000 0.5000 0.5000000 0.5000 1.0000000 1.0000 []
