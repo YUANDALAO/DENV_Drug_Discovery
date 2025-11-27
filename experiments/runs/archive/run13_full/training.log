@@ -1,0 +1,238 @@
+10:14:55 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-13
+10:14:55 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent experiments/runs/run13_full/config.toml
+10:14:55 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run13_full/config.toml using format toml
+10:14:55 <INFO> User cheriong on host CS00050812
+10:14:55 <INFO> Python version 3.10.18
+10:14:55 <INFO> PyTorch version 2.5.1, git a8d6afb511a69687bbb2b7e88a3cf67917e1697e
+10:14:55 <INFO> PyTorch compiled with CUDA version 11.8
+10:14:55 <INFO> RDKit version 2022.09.5
+10:14:55 <INFO> Platform Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+10:14:55 <INFO> Number of PyTorch CUDA devices 1
+10:14:55 <WARN> 'use_cuda' is deprecated, use 'device' instead
+10:14:55 <INFO> Using CUDA device:0 NVIDIA T1200 Laptop GPU
+10:14:55 <INFO> GPU memory: 3295 MiB free, 4095 MiB total
+10:14:55 <INFO> Writing TensorBoard summary to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run13_full/tensorboard
+10:14:55 <INFO> Writing JSON config file to /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run13_full/_config.json
+10:14:55 <INFO> Starting 1 stage of Reinforcement Learning
+10:14:55 <INFO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/priors/libinvent.prior has valid hash:
+{ 'comments': [],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': '99944413c8f0b152c2bca0dca31aa6d3',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.4.1',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': []}
+10:14:56 <INFO> Number of network parameters: 23,686,692
+10:14:56 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+10:14:58 <ERRO> /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run12_t1200/checkpoint_stage1.chkpt has invalid hash:
+{ 'comments': ['TL', 'RL', 'RL'],
+  'creation_date': 0,
+  'date_format': 'UNIX epoch',
+  'hash_id': 'be79a10c46c5208320595c11d0ecbbaa',
+  'hash_id_format': 'xxhash.xxh3_128_hex 3.5.0',
+  'model_id': '558e4fbd038c4b0ba67b03a025e657c4',
+  'model_id_format': 'uuid.uuid4 3.10.12',
+  'origina_data_source': 'ChEMBL 27',
+  'updates': [1759118354.6397514, 1760217434.051327, 1760217435.1426187]}
+10:14:58 <INFO> Number of network parameters: 23,686,692
+10:14:58 <INFO> Network architecture:
+Decorator(
+  (_encoder): Encoder(
+    (_embedding): Sequential(
+      (0): Embedding(38, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2, bidirectional=True)
+  )
+  (_decoder): Decoder(
+    (_embedding): Sequential(
+      (0): Embedding(36, 512)
+      (1): Dropout(p=0.2, inplace=False)
+    )
+    (_rnn): LSTM(512, 512, num_layers=3, batch_first=True, dropout=0.2)
+    (_attention): AttentionLayer(
+      (_attention_linear): Sequential(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+        (1): Tanh()
+      )
+    )
+    (_linear): Linear(in_features=512, out_features=36, bias=True)
+  )
+)
+10:14:58 <INFO> Using generator Libinvent
+10:14:58 <INFO> Prior read from priors/libinvent.prior
+10:14:58 <INFO> Agent read from experiments/runs/run12_t1200/checkpoint_stage1.chkpt
+10:14:58 <INFO> Input molecules/fragments read from file data/pyrrolidine_dual_aryl.smi
+10:14:58 <INFO> Using reward strategy dap
+10:14:58 <INFO> Using diversity filter from experiments/runs/run12_t1200/checkpoint_stage1.chkpt
+10:14:58 <INFO> Diversity filter memories are retained between stages
+10:14:58 <ERRO> Component reinvent_plugins.components.OpenEye.comp_rocs could not be imported: No module named 'openeye'
+10:14:58 <INFO> Registered scoring component GroupCount
+10:14:58 <INFO> Registered scoring component FragmentQed
+10:14:58 <INFO> Registered scoring component FragmentSlogP
+10:14:58 <INFO> Registered scoring component FragmentMolecularWeight
+10:14:58 <INFO> Registered scoring component FragmentTPSA
+10:14:58 <INFO> Registered scoring component FragmentDistanceMatrix
+10:14:58 <INFO> Registered scoring component FragmentNumAtomStereoCenters
+10:14:58 <INFO> Registered scoring component FragmentHBondAcceptors
+10:14:58 <INFO> Registered scoring component FragmentHBondDonors
+10:14:58 <INFO> Registered scoring component FragmentNumRotBond
+10:14:58 <INFO> Registered scoring component FragmentCsp3
+10:14:58 <INFO> Registered scoring component Fragmentnumsp
+10:14:58 <INFO> Registered scoring component Fragmentnumsp2
+10:14:58 <INFO> Registered scoring component Fragmentnumsp3
+10:14:58 <INFO> Registered scoring component FragmentEffectiveLength
+10:14:58 <INFO> Registered scoring component FragmentGraphLength
+10:14:58 <INFO> Registered scoring component FragmentLengthRatio
+10:14:58 <INFO> Registered scoring component FragmentNumHeavyAtoms
+10:14:58 <INFO> Registered scoring component FragmentNumHeteroAtoms
+10:14:58 <INFO> Registered scoring component FragmentNumRings
+10:14:58 <INFO> Registered scoring component FragmentNumAromaticRings
+10:14:58 <INFO> Registered scoring component FragmentNumAliphaticRings
+10:14:58 <INFO> Registered scoring component FragmentSlogP
+10:14:58 <INFO> Registered scoring component MatchingSubstructure
+10:14:58 <INFO> Registered scoring component MolVolume
+10:14:58 <INFO> Registered scoring component Qed
+10:14:58 <INFO> Registered scoring component LargestRingSize
+10:14:58 <INFO> Registered scoring component MolecularWeight
+10:14:58 <INFO> Registered scoring component GraphLength
+10:14:58 <INFO> Registered scoring component NumAtomStereoCenters
+10:14:58 <INFO> Registered scoring component HBondAcceptors
+10:14:58 <INFO> Registered scoring component HBondDonors
+10:14:58 <INFO> Registered scoring component NumRotBond
+10:14:58 <INFO> Registered scoring component Csp3
+10:14:58 <INFO> Registered scoring component numsp
+10:14:58 <INFO> Registered scoring component numsp2
+10:14:58 <INFO> Registered scoring component numsp3
+10:14:58 <INFO> Registered scoring component NumHeavyAtoms
+10:14:58 <INFO> Registered scoring component NumHeteroAtoms
+10:14:58 <INFO> Registered scoring component NumRings
+10:14:58 <INFO> Registered scoring component NumAromaticRings
+10:14:58 <INFO> Registered scoring component NumAliphaticRings
+10:14:58 <INFO> Registered scoring component SlogP
+10:14:58 <INFO> Registered scoring component LargestRingSize
+10:14:58 <INFO> Registered scoring component PMI
+10:14:58 <INFO> Registered scoring component RDKitDescriptors
+10:14:58 <INFO> Registered scoring component TanimotoSimilarity
+10:14:58 <INFO> Registered scoring component TanimotoDistance
+10:14:58 <INFO> Registered scoring component TPSA
+10:14:58 <INFO> Registered scoring component SAScore
+10:14:58 <INFO> Registered scoring component Cazp
+Failed to find the pandas get_adjustment() function to patch
+Failed to patch pandas - PandasTools will have limited functionality
+10:14:59 <INFO> Registered scoring component ChemProp
+10:14:59 <INFO> Registered scoring component CustomAlerts
+10:14:59 <INFO> Registered scoring component DockStream
+10:14:59 <INFO> Registered scoring component ExternalProcess
+10:14:59 <INFO> Registered scoring component REST
+10:14:59 <INFO> Registered scoring component Icolos
+10:14:59 <INFO> Registered scoring component Maize
+10:14:59 <INFO> Registered scoring component MMP
+10:14:59 <INFO> Registered scoring component Qptuna
+10:14:59 <INFO> Registered scoring component QSARScorer
+10:14:59 <INFO> Registered scoring component ReactionFilter
+10:14:59 <INFO> Registered scoring component ScaffoldMatcher
+10:14:59 <INFO> Registered scoring component RingPrecedence
+10:14:59 <INFO> Creating scoring component QSARScorer
+10:14:59 <INFO> Creating scoring component NumAtomStereoCenters
+10:14:59 <INFO> Creating filter component CustomAlerts
+10:14:59 <INFO> Creating scoring component Qed
+10:14:59 <INFO> Creating scoring component SAScore
+10:14:59 <INFO> Creating scoring component MolecularWeight
+10:14:59 <INFO> Creating scoring component NumHeavyAtoms
+10:14:59 <INFO> Creating scoring component SlogP
+10:14:59 <INFO> Creating scoring component TPSA
+10:14:59 <INFO> Creating scoring component HBondAcceptors
+10:14:59 <INFO> Creating scoring component HBondDonors
+10:14:59 <INFO> Creating scoring component NumRotBond
+10:14:59 <INFO> Creating scoring component NumRings
+10:14:59 <INFO> Creating scoring component NumAromaticRings
+10:14:59 <INFO> Writing tabular data for stage to experiments/runs/run13_full/results_1.csv
+10:14:59 <INFO> Starting stage 1 <<<
+10:14:59 <INFO> Current GPU memory usage: 1419 MiB used, 2676 MiB free
+10:15:19 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2sccc2)C(C(=O)N[*])C1c1(=O)n(C)c(C(*)=O)n(OCC)n1|N(C)C(*)=O could not be converted
+10:15:19 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccncc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1n1cnc2cc(C*)cc(OC)n2c1|O=C(*)NC could not be converted
+10:16:01 <INFO> Score: 0.65 Agent NLL: 21.35 Valid: 100% Step: 1
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups DENV_Activity DENV_Activity (raw) Stereo_Centers Stereo_Centers (raw) QED QED (raw) SA SA (raw) MW MW (raw) Heavy_Atoms Heavy_Atoms (raw) LogP LogP (raw) TPSA TPSA (raw) HBA HBA (raw) HBD HBD (raw) Rotatable_Bonds Rotatable_Bonds (raw) Ring_Count Ring_Count (raw) Aromatic_Rings Aromatic_Rings (raw) Stability_Alerts Stability_Alerts (raw) matchting_patterns (Stability_Alerts)
+ | 28.3412 40.3698 23.1297 0.5291622 Cc1cccc(C2CC(C(=O)NC(=O)N3CCOCC3)C(c3ccc(-c4ccccc4)cc3)N2C(=O)C2Cc3ccccc3CO2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|*C(C1Cc2c(cccc2)CO1)=O|c1ccc(*)cc1|C(=O)(N1CCOCC1)* 0.9475899 7.5856 0.0000000 4.0000 0.2926315 0.2926 0.0320928 4.0822 0.1527812 629.7570 0.3747985 47.0000 0.0097745 6.0028 0.9999951 88.1800 0.5000000 5.0000 0.9467598 1.0000 0.3453354 5.0000 0.0000014 7.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 21.2347 37.7442 41.9816 0.6643818 Cc1ccc(C2C(C(=O)NC3CCSC3)CC(c3cccc(C)c3)N2C(=O)c2ncccc2F)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|*C(c1ncccc1F)=O|C*|C1SCC(*)C1 0.9428053 7.6308 0.0000000 4.0000 0.5062309 0.5062 0.0507071 3.9657 0.9961150 503.6430 0.9090909 36.0000 0.1346782 5.4039 0.9999958 62.3000 0.8720069 4.0000 0.9467598 1.0000 0.3453354 5.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 21.4394 40.8692 38.6180 0.6623934 Cc1cccc(C2CC(C(=O)NC3CCCCC3)C(c3ccc(C4CCCCC4)cc3)N2C2CCOC2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1C(*)CCO1|C1CCCCC1*|C1CCC(*)CC1 0.9425327 7.6333 0.0000000 4.0000 0.4370718 0.4371 0.0801229 3.8462 0.9926608 514.7540 0.8570375 38.0000 0.0000170 7.3848 0.9883434 41.5700 0.9789100 3.0000 0.9467598 1.0000 0.1279931 6.0000 0.0000682 6.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 19.0396 34.3795 42.2788 0.6388191 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)OCCCCC2CCOCC2)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1COCCC1CCCCOC(=O)*|C*|C(=O)(*)C 0.9293360 7.7412 0.0000100 3.0000 0.4445847 0.4446 0.1220157 3.7321 0.9897137 520.6700 0.8570375 38.0000 0.0240734 5.8039 0.9999986 84.9400 0.5000000 5.0000 0.9467598 1.0000 0.0112369 8.0000 0.1279931 4.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 14.3064 31.4963 50.3559 0.6821010 Cc1ccc(C2C(C(=O)NC3CCCCC3)CC(c3cccc(C)c3)N2c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1ccccc1*|C*|C1CCCCC1* 0.9472005 7.5895 0.0000100 3.0000 0.4492698 0.4493 0.4559054 3.2932 0.9997930 452.6420 0.9434421 34.0000 0.0000755 7.0612 0.7105401 32.3400 0.9968477 2.0000 0.9467598 1.0000 0.3453354 5.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 28.1522 46.3433 33.8018 0.6678765 CCCNC(=O)C1CC(c2cccc(C)c2)N(C(=O)CC(O)c2cccnn2)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C(c1nnccc1)(CC(=O)*)O|C*|C(*)CC 0.9508209 7.5529 0.0000000 4.0000 0.4928848 0.4929 0.0600532 3.9219 0.9985386 486.6160 0.9090909 36.0000 0.9469360 4.3742 0.9999200 95.4200 0.5000000 5.0000 0.5000000 2.0000 0.0112369 8.0000 0.1279931 4.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 20.1356 45.6250 40.8116 0.7203049 Cc1ccc(C2C(C(=O)NC(=O)N3CCC3)CC(c3cccc(C)c3)N2C2CCOC(=O)C2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C1(=O)OCCC(*)C1|C*|C1CN(C(*)=O)C1 0.9459763 7.6013 0.0000000 4.0000 0.6751444 0.6751 0.0536458 3.9512 0.9992248 475.5890 0.9281377 35.0000 0.9872674 4.0552 0.9999999 78.9500 0.5000000 5.0000 0.9467598 1.0000 0.6546646 4.0000 0.0031523 5.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 26.7907 34.7383 35.0766 0.5817910 COC1CCCC(C(=O)NC(=O)C2CC(c3cccc(C)c3)N(C(=O)C3CCCC3)C2c2ccc(-c3ccccc3)cc2)C1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C1(C(=O)*)CCCC1|*c1ccccc1|COC1CC(C(*)=O)CCC1 0.9387500 7.6664 0.0000000 5.0000 0.2916088 0.2916 0.0396971 4.0283 0.6024334 592.7800 0.5636141 44.0000 0.0000218 7.3311 0.9999999 75.7100 0.8720069 4.0000 0.9467598 1.0000 0.0392398 7.0000 0.0000682 6.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 23.9370 49.2291 28.8555 0.6507043 Cc1cccc(C2CC(C(=O)NC3CC3)C(c3ccc(-c4ccc(F)cc4)cc3)N2C2COC(C)C2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C1(C)OCC(*)C1|c1cc(*)ccc1F|C1C(*)C1 0.9419974 7.6381 0.0000000 5.0000 0.4299231 0.4299 0.0569912 3.9355 0.9970840 498.6420 0.8856180 37.0000 0.0018895 6.3614 0.9883434 41.5700 0.9789100 3.0000 0.9467598 1.0000 0.1279931 6.0000 0.0000682 6.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 35.1184 65.0857 16.0558 0.6761795 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(CC2CC2)C1c1ccc(C2OCC3CN2CO3)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C1(C*)CC1|C1OC2CN1C(*)OC2|CC(=O)* 0.9348254 7.6988 0.0000000 6.0000 0.6646296 0.6646 0.0002474 5.2786 0.9982636 489.6160 0.9090909 36.0000 0.9948003 3.8591 0.9999999 71.1100 0.1279931 6.0000 0.9467598 1.0000 0.1279931 6.0000 0.0000682 6.0000 0.5000000 2.0000 1.0000000 1.0000 []
+10:16:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1O1COc2c1nncn2C(*)=O|*S(C)(=O)=O could not be converted
+10:16:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1C(=O)(*)N1CCn(CCOC)cc1=O|C(=O)(*)C could not be converted
+10:16:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1C1SCn2c1nc(C(=O)*)nc2|C(*)(C)=O could not be converted
+10:16:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ncccc2)C(C(=O)N[*])C1O=c1ccc(C)n2c1C(=O)NC(C(*)=O)C2|C(*)(=O)C could not be converted
+10:16:04 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccsc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1(C)nc2ccccc2s1C(=O)*|C* could not be converted
+10:16:57 <INFO> Score: 0.65 Agent NLL: 21.13 Valid:  99% Step: 2
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups DENV_Activity DENV_Activity (raw) Stereo_Centers Stereo_Centers (raw) QED QED (raw) SA SA (raw) MW MW (raw) Heavy_Atoms Heavy_Atoms (raw) LogP LogP (raw) TPSA TPSA (raw) HBA HBA (raw) HBD HBD (raw) Rotatable_Bonds Rotatable_Bonds (raw) Ring_Count Ring_Count (raw) Aromatic_Rings Aromatic_Rings (raw) Stability_Alerts Stability_Alerts (raw) matchting_patterns (Stability_Alerts)
+ | 28.7960 59.6433 25.9513 0.7132887 Cc1ccc(C2C(C(=O)NCCN3CCC3)CC(c3cccc(C)c3)N2CC2CN2C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|*CC1CN1C|C*|C1CN(CC*)C1 0.9341053 7.7045 0.0000000 5.0000 0.6297831 0.6298 0.0758616 3.8607 0.9998535 446.6390 0.9556430 33.0000 0.9987789 3.5436 0.9643098 38.5900 0.8720069 4.0000 0.9467598 1.0000 0.0112369 8.0000 0.0031523 5.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 20.3910 24.8221 55.9373 0.6729953 Cc1ccc(C2C(C(=O)NC(=O)c3ccccc3)CC(c3cccc(C)c3)N2C(=O)CC2CC2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C(C1CC1)C(=O)*|*C|c1cc(C(=O)*)ccc1 0.9409432 7.6474 0.0000100 3.0000 0.4610063 0.4610 0.3268965 3.4264 0.9989654 480.6080 0.9090909 36.0000 0.0398350 5.6910 0.9999992 66.4800 0.9789100 3.0000 0.9467598 1.0000 0.1279931 6.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 20.8051 41.2215 41.3722 0.6882810 Cc1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C)c3)N2C(=O)CCOCC2C=CC2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1=CCC1COCCC(=O)*|*C|O=S(*)(C)=O 0.9460050 7.6010 0.0000000 4.0000 0.4067679 0.4068 0.0407025 4.0219 0.9941941 510.6560 0.9090909 36.0000 0.9904127 3.9929 0.9999709 92.7800 0.5000000 5.0000 0.9467598 1.0000 0.0031523 9.0000 0.1279931 4.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 16.5770 27.5639 52.0003 0.6630346 Cc1cccc(C2CC(C(=O)NC(=O)c3ccccc3)C(c3ccc(-c4ccccc4)cc3)N2C2CC2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1C(*)C1|c1c(*)cccc1|c1cc(C(=O)*)ccc1 0.9419278 7.6387 0.0000100 3.0000 0.2935188 0.2935 0.3783303 3.3713 0.9967294 500.6420 0.8570375 38.0000 0.0001695 6.8853 0.9994183 49.4100 0.9789100 3.0000 0.9467598 1.0000 0.1279931 6.0000 0.0000682 6.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 31.1892 45.4274 28.7107 0.6178177 Cc1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C)c3)N2C(=O)C2CCc3cnnc(C)c3C2=O)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1CC(C(=O)*)C(=O)c2c(C)nncc21|C*|S(=O)(*)(=O)C 0.9470081 7.5913 0.0000000 4.0000 0.4730466 0.4730 0.0120603 4.3263 0.9058232 560.6760 0.7823160 40.0000 0.9987201 3.5539 0.0789942 126.4000 0.0210900 7.0000 0.9467598 1.0000 0.3453354 5.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 21.1978 30.3090 49.5385 0.6653960 Cc1ccc(C2C(C(=O)Nc3ccccc3)CC(c3cccc(C)c3)N2C(=O)c2ccc(Cl)nc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|O=C(*)c1cnc(Cl)cc1|C*|c1ccc(*)cc1 0.9284749 7.7475 0.0000100 3.0000 0.2964207 0.2964 0.3609918 3.3895 0.9943962 510.0370 0.8856180 37.0000 0.0001347 6.9352 0.9999958 62.3000 0.9789100 3.0000 0.9467598 1.0000 0.3453354 5.0000 0.0031523 5.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 26.1807 48.5976 29.1540 0.6479294 CNC(=O)C1CC(c2cccc(C)c2)N(C(=O)COCC2CC2c2ccccc2C)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1(C)ccccc1C1C(COCC(=O)*)C1|*C|C* 0.9487667 7.5739 0.0000000 5.0000 0.4161461 0.4161 0.0486497 3.9763 0.9941868 510.6780 0.8570375 38.0000 0.0235257 5.8091 0.9999832 58.6400 0.9789100 3.0000 0.9467598 1.0000 0.0112369 8.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 22.5429 43.6276 31.2998 0.6243951 Cc1cccc(C2CC(C(=O)NS(=O)(=O)C3CCOC3)C(c3ccc(C4CC4)cc3)N2C(=O)Cc2ccccc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1cc(CC(*)=O)ccc1|C1(*)CC1|O=S(=O)(C1CCOC1)* 0.9409048 7.6478 0.0000000 4.0000 0.4110930 0.4111 0.0501830 3.9684 0.8277780 572.7270 0.7356287 41.0000 0.5219527 4.9809 0.9999709 92.7800 0.5000000 5.0000 0.9467598 1.0000 0.0112369 8.0000 0.0000682 6.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 18.5188 36.2127 41.0188 0.6435958 Cc1cccc(C2CC(C(=O)Nc3ccccc3)C(c3ccc(-c4ccccc4)cc3)N2C2CCCOC2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C1CCCOC1|c1ccc(*)cc1|c1cc(*)ccc1 0.9292526 7.7418 0.0000000 4.0000 0.2871275 0.2871 0.2047353 3.5815 0.9918050 516.6850 0.8227450 39.0000 0.0000068 7.5840 0.9883434 41.5700 0.9789100 3.0000 0.9467598 1.0000 0.1279931 6.0000 0.0000682 6.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 19.1551 38.2352 44.8841 0.6926607 Cc1cccc(C2CC(C(=O)NS(C)(=O)=O)C(c3ccc(C4CCCC4)cc3)N2C(=O)C2=CCOC2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C(=O)(C1=CCOC1)*|C1CCCC1*|CS(=O)(*)=O 0.9417192 7.6406 0.0000100 3.0000 0.6102086 0.6102 0.0375670 4.0423 0.9884750 522.6670 0.8856180 37.0000 0.9589208 4.3159 0.9999709 92.7800 0.5000000 5.0000 0.9467598 1.0000 0.1279931 6.0000 0.0031523 5.0000 0.5000000 2.0000 1.0000000 1.0000 []
+10:17:00 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2cccc3ccccc23)C(C(=O)N[*])C1C1CCCCOC1)OCC(*)=O|CC(=O)* could not be converted
+10:17:00 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccco2)C(C(=O)N[*])C1n1c(C)c2c(c(C)n1CC(=O)*)CCCC2|C* could not be converted
+10:17:00 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccccc1C1N([*])C(c2ccncc2)C(C(=O)N[*])C1S(=O)(=O)(=O)*|n1(CC)ccc(C*)n1 could not be converted
+10:17:00 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccncc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c12c(cc(C*)cc1)CCCc2cccc1|CC(*)=O could not be converted
+10:18:01 <INFO> Score: 0.65 Agent NLL: 20.53 Valid:  99% Step: 3
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups DENV_Activity DENV_Activity (raw) Stereo_Centers Stereo_Centers (raw) QED QED (raw) SA SA (raw) MW MW (raw) Heavy_Atoms Heavy_Atoms (raw) LogP LogP (raw) TPSA TPSA (raw) HBA HBA (raw) HBD HBD (raw) Rotatable_Bonds Rotatable_Bonds (raw) Ring_Count Ring_Count (raw) Aromatic_Rings Aromatic_Rings (raw) Stability_Alerts Stability_Alerts (raw) matchting_patterns (Stability_Alerts)
+ | 20.4828 29.3012 51.7847 0.6757160 Cc1cccc(C2CC(C(=O)NS(C)(=O)=O)C(c3ccc(C4CCC4)cc3)N2C(=O)C2CCNC2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C(*)(=O)C1CNCC1|C1CCC1*|*S(=O)(=O)C 0.9210830 7.7995 0.0000000 4.0000 0.6207380 0.6207 0.0565542 3.9375 0.9945121 509.6720 0.9090909 36.0000 0.9985651 3.5787 0.9999149 95.5800 0.5000000 5.0000 0.5000000 2.0000 0.1279931 6.0000 0.0031523 5.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 17.7667 44.5855 36.9193 0.6792068 Cc1ccc(C2C(C(=O)NC3CCOCC3)CC(c3cccc(C)c3)N2CCC2CCC2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1CC(CC*)C1|C*|C1OCCC(*)C1 0.9421617 7.6366 0.0000100 3.0000 0.5598431 0.5598 0.1886646 3.6063 0.9996716 460.6620 0.9434421 34.0000 0.0160944 5.8931 0.9883434 41.5700 0.9789100 3.0000 0.9467598 1.0000 0.0392398 7.0000 0.0031523 5.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 15.8302 25.8916 54.7976 0.6724102 Cc1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C)c3)N2C(=O)CCCOC2CCOC2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1OCCC1OCCCC(*)=O|C*|S(=O)(=O)(*)C 0.9423959 7.6345 0.0000000 4.0000 0.4993059 0.4993 0.0558134 3.9409 0.9837939 528.6710 0.8856180 37.0000 0.9984476 3.5958 0.9989972 102.0100 0.1279931 6.0000 0.9467598 1.0000 0.0031523 9.0000 0.1279931 4.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 23.2268 32.4749 43.4166 0.6324293 CCOC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)c2cccc3c2ccn3C)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|Cn1c2cccc(C(=O)*)c2cc1|*C|C(OC(=O)*)C 0.9422759 7.6356 0.0000100 3.0000 0.3472969 0.3473 0.1448296 3.6838 0.9878240 523.6330 0.8227450 39.0000 0.0093506 6.0125 0.9999997 80.6400 0.5000000 5.0000 0.9467598 1.0000 0.3453354 5.0000 0.0031523 5.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 24.0044 31.9427 40.3081 0.6020904 Cc1cccc(C2CC(C(=O)NC(N)=O)C(c3ccc(C4CCCCC4)cc3)N2C(=O)NCCc2ccccc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|O=C(NCCc1ccccc1)*|C1CCCCC1*|C(*)(N)=O 0.9276599 7.7535 0.0000100 3.0000 0.3206051 0.3206 0.1770271 3.6254 0.9382958 552.7190 0.7356287 41.0000 0.0025731 6.2942 0.9973665 104.5300 0.9789100 3.0000 0.0532402 3.0000 0.0392398 7.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 16.4859 26.9160 55.6004 0.6876366 Cc1ccc(C2C(C(=O)NS(=O)(=O)N3CCCC3)CC(c3cccc(C)c3)N2c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1(*)ccccc1|C*|C1CCN(S(=O)(=O)*)C1 0.9521461 7.5389 0.0000100 3.0000 0.5100163 0.5100 0.2467145 3.5227 0.9961095 503.6680 0.9090909 36.0000 0.4210654 5.0691 0.9999998 69.7200 0.8720069 4.0000 0.9467598 1.0000 0.1279931 6.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 20.2594 36.0509 40.8473 0.6408182 Cc1cccc(C2CC(C(=O)NC3CCCC3)C(c3ccc(-c4cccc(F)c4)cc3)N2C(=O)c2ccccc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1c(C(=O)*)cccc1|c1c(*)cc(F)cc1|C1CCC(*)C1 0.9265694 7.7614 0.0000100 3.0000 0.2682123 0.2682 0.3056665 3.4504 0.9555959 546.6860 0.7356287 41.0000 0.0000025 7.8046 0.9994183 49.4100 0.9968477 2.0000 0.9467598 1.0000 0.1279931 6.0000 0.0000682 6.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 15.7447 28.6565 52.4659 0.6760204 Cc1ccc(C2C(C(=O)NCc3ccccc3)CC(c3cccc(C)c3)N2c2ccccn2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|n1ccccc1*|*C|c1ccc(C*)cc1 0.9383857 7.6695 0.0000100 3.0000 0.3652266 0.3652 0.4728875 3.2765 0.9996532 461.6090 0.9281377 35.0000 0.0022467 6.3237 0.9971132 45.2300 0.9789100 3.0000 0.9467598 1.0000 0.1279931 6.0000 0.0031523 5.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 29.0298 39.2717 33.0309 0.6025218 CC(=O)N(C)c1ccc(N2C(c3cccc(C)c3)CC(C(=O)NC(=O)Oc3ccccc3)C2c2ccc(C)cc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C(=O)(C)N(c1ccc(*)cc1)C|C*|c1ccccc1OC(*)=O 0.9323769 7.7181 0.0000100 3.0000 0.2767775 0.2768 0.1564363 3.6616 0.9007657 561.6820 0.6829860 42.0000 0.0001512 6.9102 0.9999999 78.9500 0.5000000 5.0000 0.9467598 1.0000 0.1279931 6.0000 0.0031523 5.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 26.9168 35.6722 45.0800 0.6729349 CNC(=O)C1CC(c2cccc(C)c2)N(C(=O)N2CC(CCO)C2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|C(O)CC1CN(C(=O)*)C1|c1ccccc1*|C* 0.9365581 7.6847 0.0000100 3.0000 0.5063930 0.5064 0.1772491 3.6250 0.9972472 497.6390 0.8856180 37.0000 0.5612620 4.9465 0.9999999 72.8800 0.9789100 3.0000 0.5000000 2.0000 0.1279931 6.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+10:19:10 <INFO> Score: 0.67 Agent NLL: 19.84 Valid: 100% Step: 4
+ | Agent Prior Target Score SMILES SMILES_state Input_Scaffold R-groups DENV_Activity DENV_Activity (raw) Stereo_Centers Stereo_Centers (raw) QED QED (raw) SA SA (raw) MW MW (raw) Heavy_Atoms Heavy_Atoms (raw) LogP LogP (raw) TPSA TPSA (raw) HBA HBA (raw) HBD HBD (raw) Rotatable_Bonds Rotatable_Bonds (raw) Ring_Count Ring_Count (raw) Aromatic_Rings Aromatic_Rings (raw) Stability_Alerts Stability_Alerts (raw) matchting_patterns (Stability_Alerts)
+ | 22.2155 39.2723 41.4314 0.6725314 Cc1ccc(C2C(C(=O)NC(=O)CC3CCCCO3)CC(c3cccc(C)c3)N2CC2CC2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|*CC1CC1|C*|C1COC(CC(=O)*)CC1 0.9408144 7.6486 0.0000000 4.0000 0.5821775 0.5822 0.0834709 3.8353 0.9992658 474.6450 0.9281377 35.0000 0.1264216 5.4197 0.9999832 58.6400 0.8720069 4.0000 0.9467598 1.0000 0.0392398 7.0000 0.0031523 5.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 21.4706 44.2513 40.2971 0.7045697 Cc1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C)c3)N2C2CC3OCCCCC32)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1(*)CC2OCCCCC21|C*|*S(C)(=O)=O 0.9461445 7.5997 0.0000000 6.0000 0.6623709 0.6624 0.0168554 4.2433 0.9973957 496.6730 0.9281377 35.0000 0.9291460 4.4411 0.9999999 75.7100 0.5000000 5.0000 0.9467598 1.0000 0.3453354 5.0000 0.0031523 5.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 20.2314 41.2602 39.4104 0.6722547 COCC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C2CC2c2ccccn2)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1(c2ncccc2)CC1*|*C|COCC(*)=O 0.9464806 7.5964 0.0000000 5.0000 0.5298209 0.5298 0.0366145 4.0488 0.9987704 483.6120 0.9090909 36.0000 0.8349105 4.6480 0.9999999 71.5300 0.5000000 5.0000 0.9467598 1.0000 0.0392398 7.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 17.5683 27.6331 48.4326 0.6338813 CCOC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C2CCOCC2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1C(*)CCOC1|c1ccccc1*|C(OC(=O)*)C 0.9407712 7.6489 0.0000100 3.0000 0.4248307 0.4248 0.1891619 3.6056 0.9934925 512.6500 0.8570375 38.0000 0.0036507 6.2180 0.9999995 67.8700 0.5000000 5.0000 0.9467598 1.0000 0.1279931 6.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 20.4056 42.5091 42.2209 0.7060830 CC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)C2CCCCCS2)C1c1ccc(C)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1SC(C(=O)*)CCCC1|*C|CC(=O)* 0.9478560 7.5830 0.0000000 4.0000 0.6498848 0.6499 0.0563477 3.9385 0.9990752 478.6580 0.9434421 34.0000 0.2215814 5.2728 0.9999992 66.4800 0.8720069 4.0000 0.9467598 1.0000 0.6546646 4.0000 0.1279931 4.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 18.1835 24.2925 61.9980 0.7190870 Cc1ccc(C2C(C(=O)NS(C)(=O)=O)CC(c3cccc(C)c3)N2C2CCSCC2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|C1SCCC(*)C1|*C|*S(=O)(C)=O 0.9453064 7.6077 0.0000100 3.0000 0.6996048 0.6996 0.1064754 3.7697 0.9993444 472.6760 0.9653086 32.0000 0.9457906 4.3791 0.9999992 66.4800 0.5000000 5.0000 0.9467598 1.0000 0.3453354 5.0000 0.1279931 4.0000 0.5000000 2.0000 1.0000000 1.0000 []
+ | 19.3760 36.2998 43.1882 0.6623998 Cc1cccc(C2CC(C(=O)NC3CC3)C(c3ccc(-c4cccccc4=O)cc3)N2c2ccccc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1ccccc1*|O=c1cccccc1*|C1C(*)C1 0.9506786 7.5544 0.0000100 3.0000 0.3241044 0.3241 0.2904555 3.4682 0.9967294 500.6420 0.8570375 38.0000 0.0006030 6.6097 0.9994183 49.4100 0.9789100 3.0000 0.9467598 1.0000 0.1279931 6.0000 0.0000682 6.0000 0.0000100 4.0000 1.0000000 1.0000 []
+ | 21.8773 37.7888 35.1475 0.6078030 Cc1cccc(C2CC(C(=O)NC(N)=O)C(c3ccc(C4CCS(=O)(=O)CC4)cc3)N2C(=O)Cc2ccccc2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 *C|c1ccccc1CC(*)=O|C1CS(=O)(=O)CCC1*|C(=O)(*)N 0.9366807 7.6837 0.0000100 3.0000 0.4532899 0.4533 0.1013339 3.7832 0.8195179 573.7150 0.7356287 41.0000 0.9510617 4.3557 0.0725479 126.6400 0.5000000 5.0000 0.5000000 2.0000 0.1279931 6.0000 0.0031523 5.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 21.0395 41.0260 38.1868 0.6601071 Cc1cccc(C2CC(C(=O)Nc3ccccc3)C(c3ccc(C4CCCCC4)cc3)N2C(=O)N2CCC2)c1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C(=O)N1CCC1|C1CCCC(*)C1|c1ccccc1* 0.9289612 7.7439 0.0000100 3.0000 0.3755980 0.3756 0.2725258 3.4899 0.9890891 521.7050 0.8227450 39.0000 0.0000060 7.6114 0.9998322 52.6500 0.9968477 2.0000 0.9467598 1.0000 0.3453354 5.0000 0.0000682 6.0000 0.0031523 3.0000 1.0000000 1.0000 []
+ | 19.0704 25.4202 51.2104 0.6385887 CNC(=O)NC(=O)C1CC(c2cccc(C)c2)N(C(=O)Cc2ccccn2)C1c1ccc(-c2ccccc2)cc1 1 c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1 C*|*C(Cc1ncccc1)=O|c1c(*)cccc1|N(C(*)=O)C 0.9484032 7.5776 0.0000100 3.0000 0.3485688 0.3486 0.2040994 3.5824 0.9797139 532.6440 0.7823160 40.0000 0.1444750 5.3862 0.9999829 91.4000 0.8720069 4.0000 0.5000000 2.0000 0.1279931 6.0000 0.0031523 5.0000 0.0000100 4.0000 1.0000000 1.0000 []
+10:19:18 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccc([*])cc1C1N([*])C(c2ccc([*])cc2)C(C(=O)N[*])C1C*|C1SCCC(C(=O)*)O1|c1cc(*)cccc1|C* could not be converted
+10:19:19 <WARN> reinvent_plugins.normalizers.rdkit_smiles: c1ccsc1C1N([*])C(c2ccccc2)C(C(=O)N[*])C1c1c2c(nc(C(*)=O)n2)cc(C)c1|COCCC(*)=O could not be converted

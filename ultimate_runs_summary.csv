@@ -1,0 +1,12 @@
+Run,Original_Gold,Strict_Gold,Pass_Rate_%,Avg_pIC50,Avg_QED,N_Scaffolds,Has_Toxicity,Prior,Agent
+run12_t1200,59,0,0.0,0.00,0.00,0,Yes,libinvent.prior,denv_libinvent_model.model
+run13b,89,0,0.0,0.00,0.00,0,Yes,libinvent.prior,denv_libinvent_model_v2.model
+run13c,316,0,0.0,0.00,0.00,0,Yes,libinvent.prior,denv_libinvent_model_v2.model
+run14a,113,0,0.0,0.00,0.00,0,Yes,libinvent.prior,denv_libinvent_model_v2.model
+run15,123,0,0.0,0.00,0.00,0,Yes,libinvent.prior,denv_libinvent_model_v2.model
+run3,2233,0,0.0,0.00,0.00,0,Yes,denv_ultra_clean_model.model,denv_ultra_clean_model.model
+run4,440,0,0.0,0.00,0.00,0,Yes,denv_ultra_clean_model.model,denv_ultra_clean_model.model
+run5_libinvent,6,0,0.0,0.00,0.00,0,Yes,libinvent.prior,libinvent.prior
+run7_optimized,13,0,0.0,0.00,0.00,0,Yes,libinvent.prior,libinvent.prior
+run8_aggressive,10,0,0.0,0.00,0.00,0,Yes,libinvent.prior,libinvent.prior
+run9_t1200,96,0,0.0,0.00,0.00,0,Yes,libinvent.prior,libinvent.prior

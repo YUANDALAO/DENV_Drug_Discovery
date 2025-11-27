@@ -1,0 +1,9 @@
+run_type = "sampling"
+device = "cuda:0"
+
+[parameters]
+model_file = "priors/denv_libinvent_model.model"
+smiles_file = "data/pyrrolidine_dual_aryl.smi"  # 你的scaffold
+output_file = "test_samples.csv"
+num_smiles = 100
+unique_molecules = true

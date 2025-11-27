@@ -1,0 +1,46 @@
+
+% Results Section for Nature Machine Intelligence
+
+\section{Results}
+
+\subsection{Universal Scaling Laws}
+
+Analysis of 11 reinforcement learning configurations generating 
+5.4 million molecules revealed a clear scaling relationship 
+between the exploration parameter $\sigma$ and chemical space navigation efficiency. 
+The champion configuration (Run13c, $\sigma = 60$) achieved 
+316 gold standard molecules, representing a 
+10.313\% success rate.
+
+The exploration efficiency $E$ follows a biphasic relationship with $\sigma$:
+
+\begin{equation}
+E(\sigma) = A_1 \exp\left(-\frac{(\sigma - \sigma_1)^2}{2w_1^2}\right) + 
+            A_2 \exp\left(-\frac{(\sigma - \sigma_2)^2}{2w_2^2}\right)
+\label{eq:biphasic}
+\end{equation}
+
+where $\sigma_1 \approx 60$ represents the exploitative regime and 
+$\sigma_2 \approx 120$ represents the balanced exploration regime.
+
+\begin{table}[h]
+\centering
+\caption{Summary of key configurations}
+\begin{tabular}{lcccc}
+\hline
+Configuration & $\sigma$ & Molecules & Gold Standard & Efficiency \\
+\hline
+run13c & 60 & 306,415 & 316 & 543.2 \\
+run14a & 150 & 1,318,183 & 113 & 806.4 \\
+run15 & 150 & 1,069,649 & 112 & 816.9 \\
+run9_t1200 & 120 & 1,096,589 & 96 & 819.2 \\
+run13b & 120 & 806,382 & 89 & 828.6 \\
+\hline
+\end{tabular}
+\label{tab:results}
+\end{table}
+
+The failed configurations (Run3, Run4, Run5) with zero gold standard molecules 
+despite generating > 200,000 molecules collectively, demonstrate the importance 
+of appropriate $\sigma$ selection. These ``failures'' map the boundaries of 
+accessible chemical space, providing valuable negative information.

@@ -1,0 +1,478 @@
+# Run16_adaptive_fixed: 自适应三阶段优化策略（修正版）
+# 符合REINVENT4标准格式要求
+
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "tensorboard/run16_adaptive"
+json_out_config = "configs/run16_adaptive.json"
+
+[parameters]
+summary_csv_prefix = "results/run16_adaptive"
+restart_dir = "checkpoints/run16_adaptive"
+use_checkpoint = true
+purge_memories = false
+
+# 模型配置
+prior_file = "priors/libinvent.prior"
+agent_file = "priors/denv_libinvent_model_v2.model"
+smiles_file = "data/pyrrolidine_dual_aryl.smi"
+
+batch_size = 32
+unique_sequences = true
+randomize_smiles = true
+
+# 全局学习策略
+[learning_strategy]
+type = "dap"
+sigma = 120
+rate = 0.0001
+
+# 全局多样性过滤器
+[diversity_filter]
+type = "ScaffoldSimilarity"
+bucket_size = 50
+minscore = 0.45
+minsimilarity = 0.35
+
+# Inception配置
+[inception]
+smiles_file = "data/pyrrolidine_dual_aryl.smi"
+memory_size = 50
+sample_size = 5
+
+# ============================================
+# Stage 1: 广泛探索阶段
+# ============================================
+[[stage]]
+max_score = 0.65
+min_steps = 1000
+max_steps = 2000
+chkpt_file = "checkpoints/run16_adaptive/stage1.chkpt"
+
+# Stage 1 学习策略
+[stage.learning_strategy]
+type = "dap"
+sigma = 150
+rate = 0.0001
+
+# Stage 1 多样性过滤器
+[stage.diversity_filter]
+type = "ScaffoldSimilarity"
+bucket_size = 20
+minscore = 0.40
+
+# Stage 1 评分配置
+[stage.scoring]
+type = "geometric_mean"
+
+# QSAR活性评分
+[[stage.scoring.component]]
+[stage.scoring.component.QSARScorer]
+[[stage.scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 2.0
+
+[stage.scoring.component.QSARScorer.endpoint.params]
+model_path = "models/denv_qsar_model.pkl"
+
+[stage.scoring.component.QSARScorer.endpoint.transform]
+type = "sigmoid"
+low = 5.5
+high = 7.5
+k = 1.5
+
+# 基础毒性过滤
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Basic_Toxicity"
+weight = 1.0
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "N=N",
+    "[N;R0]=[N;R0][#6]",
+    "C(=O)N(N)C(=O)",
+    "[#6][N+](=O)[O-]",
+    "C(=O)Cl",
+    "[#6]OO[#6]",
+    "[Cl,Br,I][#6][Cl,Br,I]",
+    "[P,S][F,Cl,Br,I]"
+]
+
+# QED药物相似性
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.2
+
+# 分子量
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.3
+
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 200.0
+high = 650.0
+coef_div = 425.0
+coef_si = 10.0
+coef_se = 10.0
+
+# LogP
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.2
+
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 0.0
+high = 6.0
+coef_div = 3.0
+coef_si = 8.0
+coef_se = 8.0
+
+# ============================================
+# Stage 2: 聚焦优化阶段
+# ============================================
+[[stage]]
+max_score = 0.75
+min_steps = 1500
+max_steps = 3500
+chkpt_file = "checkpoints/run16_adaptive/stage2.chkpt"
+
+# Stage 2 学习策略
+[stage.learning_strategy]
+type = "dap"
+sigma = 100
+rate = 0.00005
+
+# Stage 2 多样性过滤器
+[stage.diversity_filter]
+type = "ScaffoldSimilarity"
+bucket_size = 50
+minscore = 0.50
+
+# Stage 2 评分配置
+[stage.scoring]
+type = "arithmetic_mean"
+
+# QSAR活性评分（增强）
+[[stage.scoring.component]]
+[stage.scoring.component.QSARScorer]
+[[stage.scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 3.0
+
+[stage.scoring.component.QSARScorer.endpoint.params]
+model_path = "models/denv_qsar_model.pkl"
+
+[stage.scoring.component.QSARScorer.endpoint.transform]
+type = "sigmoid"
+low = 6.5
+high = 8.5
+k = 2.0
+
+# 扩展毒性过滤
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Extended_Toxicity"
+weight = 1.2
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "N=N",
+    "[N;R0]=[N;R0][#6]",
+    "C(=O)N(N)C(=O)",
+    "[#6][N+](=O)[O-]",
+    "C(=O)Cl",
+    "[#6]OO[#6]",
+    "OS(=O)(=O)[#6]",
+    "[#6]S(=O)(=O)F",
+    "C(=O)C(=O)",
+    "[#6]=[#6]-[#6]=[O,S]",
+    "C=CC(=O)[#6,#7,#8]",
+    "O=C1C=CC(=O)C=C1",
+    "[OH]c1ccccc1[OH]"
+]
+
+# QED药物相似性
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.3
+
+[stage.scoring.component.Qed.endpoint.transform]
+type = "sigmoid"
+low = 0.5
+high = 0.8
+k = 4.0
+
+# 合成可行性
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.4
+
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1.5
+high = 5.0
+k = 0.7
+
+# 分子量
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.4
+
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 280.0
+high = 580.0
+coef_div = 430.0
+coef_si = 20.0
+coef_se = 20.0
+
+# LogP
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.3
+
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 1.5
+high = 5.0
+coef_div = 3.25
+coef_si = 15.0
+coef_se = 15.0
+
+# TPSA
+[[stage.scoring.component]]
+[stage.scoring.component.TPSA]
+[[stage.scoring.component.TPSA.endpoint]]
+name = "TPSA"
+weight = 0.25
+
+[stage.scoring.component.TPSA.endpoint.transform]
+type = "double_sigmoid"
+low = 40.0
+high = 110.0
+coef_div = 75.0
+coef_si = 20.0
+coef_se = 20.0
+
+# 氢键受体
+[[stage.scoring.component]]
+[stage.scoring.component.HBondAcceptors]
+[[stage.scoring.component.HBondAcceptors.endpoint]]
+name = "HBA"
+weight = 0.25
+
+[stage.scoring.component.HBondAcceptors.endpoint.transform]
+type = "double_sigmoid"
+low = 3
+high = 7
+coef_div = 5.0
+coef_si = 2.0
+coef_se = 2.0
+
+# 氢键供体
+[[stage.scoring.component]]
+[stage.scoring.component.HBondDonors]
+[[stage.scoring.component.HBondDonors.endpoint]]
+name = "HBD"
+weight = 0.2
+
+[stage.scoring.component.HBondDonors.endpoint.transform]
+type = "double_sigmoid"
+low = 0
+high = 3
+coef_div = 1.5
+coef_si = 2.0
+coef_se = 2.0
+
+# ============================================
+# Stage 3: 精确打磨阶段
+# ============================================
+[[stage]]
+max_score = 0.90
+min_steps = 1500
+max_steps = 3000
+chkpt_file = "checkpoints/run16_adaptive/stage3.chkpt"
+
+# Stage 3 学习策略
+[stage.learning_strategy]
+type = "dap"
+sigma = 60
+rate = 0.00003
+
+# Stage 3 多样性过滤器
+[stage.diversity_filter]
+type = "ScaffoldSimilarity"
+bucket_size = 100
+minscore = 0.60
+
+# Stage 3 评分配置
+[stage.scoring]
+type = "arithmetic_mean"
+
+# QSAR活性评分（最大化）
+[[stage.scoring.component]]
+[stage.scoring.component.QSARScorer]
+[[stage.scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 3.5
+
+[stage.scoring.component.QSARScorer.endpoint.params]
+model_path = "models/denv_qsar_model.pkl"
+
+[stage.scoring.component.QSARScorer.endpoint.transform]
+type = "sigmoid"
+low = 7.5
+high = 9.0
+k = 2.5
+
+# 全面毒性评估
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Comprehensive_Safety"
+weight = 1.5
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "N=N",
+    "[N;R0]=[N;R0][#6]",
+    "C(=O)N(N)C(=O)",
+    "[#6][N+](=O)[O-]",
+    "N=C=O",
+    "N=C=S",
+    "C(=O)Cl",
+    "OS(=O)(=O)[#6]",
+    "[#6]S(=O)(=O)F",
+    "C(=O)C(=O)",
+    "[#6]OO[#6]",
+    "C(=O)OO",
+    "[#6]=[#6]-[#6]=[O,S]",
+    "C=CC(=O)[#6,#7,#8]",
+    "[#7]-[#7]=C",
+    "C=NO",
+    "[Cl,Br,I][#6][Cl,Br,I]",
+    "c1cc2OCOc2cc1",
+    "[P,S][F,Cl,Br,I]",
+    "O=C1C=CC(=O)C=C1",
+    "[#6]=N-N=[#6]",
+    "[OH]c1ccccc1[OH]",
+    "N=C1C=CC(=N)C=C1",
+    "[#6]O[#6](C)C",
+    "c1ccccc1OC",
+    "[#7]C(C)(C)C",
+    "c1ccccc1[CH3]",
+    "[#6][CH2][OH]"
+]
+
+# QED药物相似性（金标准）
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.4
+
+[stage.scoring.component.Qed.endpoint.transform]
+type = "step"
+low = 0.7
+high = 0.7
+
+# 合成可行性（金标准）
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.4
+
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "step"
+low = 4.0
+high = 4.0
+
+# 分子量（金标准）
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.5
+
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 300.0
+high = 550.0
+coef_div = 425.0
+coef_si = 30.0
+coef_se = 30.0
+
+# LogP（金标准）
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.4
+
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 2.0
+high = 4.5
+coef_div = 3.25
+coef_si = 25.0
+coef_se = 25.0
+
+# 立体中心控制
+[[stage.scoring.component]]
+[stage.scoring.component.NumAtomStereoCenters]
+[[stage.scoring.component.NumAtomStereoCenters.endpoint]]
+name = "Stereo_Centers"
+weight = 0.5
+
+[stage.scoring.component.NumAtomStereoCenters.endpoint.transform]
+type = "step"
+low = 0
+high = 2
+
+# 可旋转键
+[[stage.scoring.component]]
+[stage.scoring.component.NumRotBond]
+[[stage.scoring.component.NumRotBond.endpoint]]
+name = "Rotatable_Bonds"
+weight = 0.3
+
+[stage.scoring.component.NumRotBond.endpoint.transform]
+type = "step"
+low = 0
+high = 6
+
+# 相似性引导
+[[stage.scoring.component]]
+[stage.scoring.component.TanimotoSimilarity]
+[[stage.scoring.component.TanimotoSimilarity.endpoint]]
+name = "Known_Actives_Similarity"
+weight = 0.1
+
+[stage.scoring.component.TanimotoSimilarity.endpoint.params]
+smiles = [
+    "CC1=CC=C(C=C1)C2=CC(=NO2)C(C)C",
+    "O=C(NC1=CC=CC=C1)C2=CC=C(C=C2)Cl"
+]
+radius = 3
+use_counts = true
+use_features = true

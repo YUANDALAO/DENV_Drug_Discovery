@@ -1,0 +1,21 @@
+18:02:10 <INFO> Started REINVENT 4.6.27 (C) AstraZeneca 2017, 2023 on 2025-10-25
+18:02:10 <INFO> Command line: /home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent experiments/runs/run15b/config.toml
+18:02:10 <INFO> Reading run configuration from /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/experiments/runs/run15b/config.toml using format toml
+Traceback (most recent call last):
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/bin/reinvent", line 7, in <module>
+    sys.exit(main_script())
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 194, in main_script
+    main(args)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/Reinvent.py", line 73, in main
+    input_config = config_parse.read_config(args.config_filename, fmt)
+  File "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main/reinvent/utils/config_parse.py", line 252, in read_config
+    config = pkg.load(tf)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/tomli/_parser.py", line 139, in load
+    return loads(s, parse_float=parse_float)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/tomli/_parser.py", line 180, in loads
+    pos = key_value_rule(src, pos, out, header, parse_float)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/tomli/_parser.py", line 408, in key_value_rule
+    pos, key, value = parse_key_value_pair(src, pos, parse_float, nest_lvl=0)
+  File "/home/cheriong/miniconda3/envs/reinvent4-gpu/lib/python3.10/site-packages/tomli/_parser.py", line 448, in parse_key_value_pair
+    raise TOMLDecodeError("Expected '=' after a key in a key/value pair", src, pos)
+tomli._parser.TOMLDecodeError: Expected '=' after a key in a key/value pair (at line 3, column 16)

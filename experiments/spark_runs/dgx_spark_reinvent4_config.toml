@@ -1,0 +1,719 @@
+# ============================================================================
+# DGX Spark Optimized REINVENT4 Configuration for DENV NS2B-NS3 Inhibitor Design
+# ============================================================================
+#
+# Hardware: NVIDIA DGX Spark (GB10 Grace Blackwell Superchip)
+#   - 128GB unified memory
+#   - 20 ARM cores (10x Cortex-X925 + 10x Cortex-A725)
+#   - 6,144 CUDA cores with Blackwell architecture
+#   - 1 PFLOP AI performance (FP4)
+#
+# Scientific Rationale:
+#   Based on Run13b's success (66.79% scaffold diversity) and Run14a's theory,
+#   this configuration leverages DGX Spark's superior compute to enable:
+#   1. Larger batch sizes for more stable gradients
+#   2. Extended training for thorough exploration
+#   3. Enhanced diversity mechanisms
+#   4. Multi-stage curriculum learning with optimal transitions
+#
+# Expected Outcomes:
+#   - Scaffold diversity: >70% (exceeding Run13b)
+#   - Activity: median pIC50 7.6-7.8
+#   - Quality: >95% Lipinski-compliant
+#   - Novelty: >80% beyond training set
+#
+# Methodology References:
+#   [1] Blaschke et al., JCIM 2020 (REINVENT 2.0)
+#   [2] Molecular Sets (MOSES): A benchmarking platform, arXiv:1811.12823
+#   [3] Olivecrona et al., J Cheminf 2017 (Reinforcement learning)
+#
+# Author: Jason (DENV Drug Discovery Project)
+# Date: 2025-01-17
+# Version: DGX_v1.0
+# ============================================================================
+
+run_type = "staged_learning"
+device = "cuda:0"                              # GB10 GPU with 128GB unified memory
+tb_logdir = "experiments/dgx_runs/run_spark_v1/tensorboard"
+json_out_config = "experiments/dgx_runs/run_spark_v1/_config.json"
+
+[parameters]
+summary_csv_prefix = "experiments/dgx_runs/run_spark_v1/results"
+use_checkpoint = true
+purge_memories = false                         # Preserve diversity memory across stages
+
+# Model Configuration
+prior_file = "priors/libinvent.prior"
+agent_file = "priors/denv_libinvent_model_v2.model"  # V2 transfer learning model
+smiles_file = "data/pyrrolidine_dual_aryl.smi"
+
+# Training Parameters (DGX Spark Optimized)
+batch_size = 128                               # ✨ 4x larger than old config (128GB memory)
+                                               # Rationale: Larger batch → more stable gradients
+                                               # → reduced variance in policy updates
+                                               # Literature: [Olivecrona 2017] recommends 64-256
+
+unique_sequences = true                        # Remove duplicate sequences per batch
+randomize_smiles = false                       # LibInvent: scaffold is fixed
+                                               # R-group generation doesn't benefit from randomization
+
+# Advanced: TensorBoard logging
+tb_isim = true                                 # ✨ Monitor internal similarity
+                                               # Track diversity metrics during training
+                                               # DGX Spark can handle extra computation
+
+# ============================================================================
+# Learning Strategy: DAP (Diversity-Aware Policy Gradient)
+# ============================================================================
+[learning_strategy]
+type = "dap"                                   # Augmented Policy Gradient
+
+sigma = 180                                    # ✨ Further increased from Run14a (150→180)
+                                               # Rationale: DGX Spark's compute allows
+                                               # more thorough exploration without convergence issues
+                                               # Theory: σ controls exploration-exploitation trade-off
+                                               #   Low σ (60): rapid convergence, low diversity
+                                               #   High σ (180): thorough exploration, high diversity
+                                               # Empirical: Run13b (σ=120) → 66.79% diversity
+                                               #           Run14a (σ=150) → predicted 68-70%
+                                               #           DGX (σ=180) → target >70%
+
+rate = 0.00012                                 # ✨ Slightly increased from Run14a (0.00008→0.00012)
+                                               # Rationale: Larger batch size (128) provides
+                                               # more accurate gradient estimates → can handle
+                                               # slightly higher learning rate safely
+                                               # Theory: Learning rate ∝ sqrt(batch_size)
+                                               #   batch=32, lr=0.00008  (Run14a)
+                                               #   batch=128, lr=0.00012 (DGX Spark, +50% due to 4x batch)
+                                               # This maintains similar convergence speed
+                                               # while leveraging improved gradient quality
+
+# ============================================================================
+# Diversity Filter: Enforce Structural Novelty
+# ============================================================================
+[diversity_filter]
+type = "IdenticalMurckoScaffold"              # Penalize identical scaffolds
+
+bucket_size = 15                               # ✨ Further reduced from Run14a (20→15)
+                                               # Rationale: Stricter diversity enforcement
+                                               # Theory: After generating 15 molecules with
+                                               # the same Murcko scaffold, score → 0
+                                               # Empirical evidence:
+                                               #   bucket=25 (Run13b) → 66.79% diversity
+                                               #   bucket=20 (Run14a) → ~68-70% predicted
+                                               #   bucket=15 (DGX) → >70% target
+                                               # Trade-off: May sacrifice some activity
+                                               # for diversity, but DGX's extended training
+                                               # can recover optimal solutions in novel scaffolds
+
+minscore = 0.60                                # ✨ Raised from Run14a (0.55→0.60)
+                                               # Rationale: Higher quality threshold
+                                               # Only molecules scoring ≥0.60 enter memory
+                                               # Prevents low-quality scaffolds from
+                                               # polluting the diversity filter
+                                               # Combined with bucket=15, creates a
+                                               # "high-diversity, high-quality" regime
+
+# ============================================================================
+# Inception: Experience Replay from High-Scoring Regions
+# ============================================================================
+[inception]
+smiles_file = "data/pyrrolidine_dual_aryl.smi" # Seed scaffolds
+
+memory_size = 60                               # ✨ Increased from Run14a (40→60)
+                                               # Rationale: DGX's 128GB memory can easily
+                                               # store more experience replay buffer
+                                               # Theory: Inception samples from top-scoring
+                                               # historical molecules to prevent catastrophic
+                                               # forgetting and accelerate convergence to
+                                               # high-reward regions [Blaschke 2020]
+                                               # Larger memory → more diverse replay samples
+                                               # → better exploration of reward landscape
+
+sample_size = 8                                # ✨ Increased from Run14a (5→8)
+                                               # Rationale: Each batch samples 8 molecules
+                                               # from inception memory (8/128 = 6.25% of batch)
+                                               # Maintains exploration-exploitation balance
+                                               # while leveraging historical knowledge
+
+# ============================================================================
+# STAGE 1: Broad Exploration Phase
+# ============================================================================
+#
+# Objective: Discover diverse chemical space with moderate activity
+# Duration: 5,000-10,000 steps (adaptive termination)
+# Target: Mean Score ≥ 0.68, ensuring broad exploration before specialization
+#
+# Scientific Rationale:
+#   Extended exploration phase (min_steps=5000) allows RL to thoroughly
+#   sample the reward landscape before converging. This prevents premature
+#   mode collapse observed in Run13c (terminated at step 2000).
+#
+#   Theory: Curriculum learning [Bengio 2009] suggests easier tasks first.
+#   Stage 1 uses relaxed activity threshold (low=4.0) to encourage
+#   exploration of synthetically accessible, drug-like chemical space.
+#
+# ============================================================================
+[[stage]]
+max_score = 0.68                               # ✨ Balanced target (Run13b: 0.66, Run14a: 0.85)
+                                               # Rationale: 0.68 is achievable yet challenging
+                                               # Not too easy (←Run13c: 0.70 unreachable)
+                                               # Not too hard (←prevents extended Stage 1)
+                                               # Empirical: Run13b peaked at 0.66
+                                               # Target: Slightly higher with DGX advantages
+
+min_steps = 5000                               # ✨ Extended from Run14a (3000→5000)
+                                               # Rationale: DGX Spark can afford longer training
+                                               # 5000 steps @ batch=128 = 640,000 molecules generated
+                                               # Thorough exploration prevents early convergence
+                                               # Critical: Avoids Run13c's premature termination
+
+max_steps = 10000                              # ✨ Extended from Run14a (6000→10000)
+                                               # Safety ceiling to prevent infinite training
+                                               # if max_score never reached
+                                               # At 10K steps, force transition to Stage 2
+
+chkpt_file = "experiments/dgx_runs/run_spark_v1/stage1_checkpoint.chkpt"
+save_every_n_steps = 1000                      # ✨ Frequent checkpoints (DGX has fast I/O)
+                                               # Enable recovery from crashes
+                                               # Monitor intermediate progress
+
+[stage.scoring]
+type = "arithmetic_mean"                       # Simple averaging of all components
+                                               # Rationale: Geometric mean too sensitive
+                                               # to single component failure (score→0)
+                                               # Arithmetic mean more forgiving during exploration
+
+# ----------------------------------------------------------------------------
+# Priority 1: QSAR-Predicted Activity (DENV NS2B-NS3 Inhibition)
+# ----------------------------------------------------------------------------
+[[stage.scoring.component]]
+[stage.scoring.component.QSARScorer]
+[[stage.scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 2.8                                   # ✨ Slightly reduced from Run14a (3.0→2.8)
+                                               # Rationale: Stage 1 emphasizes exploration
+                                               # Lower activity weight → more chemical diversity
+                                               # Stage 2 will increase this to 3.5 for exploitation
+
+[stage.scoring.component.QSARScorer.endpoint.params]
+model_path = "/path/to/models/random_forest_champion.joblib"  # ⚠️ UPDATE THIS PATH
+                                               # Random Forest trained on 729 DENV inhibitors
+                                               # R² = 0.69 on test set (stratified by scaffold)
+
+# Transform: Double Sigmoid with Relaxed Lower Threshold
+[stage.scoring.component.QSARScorer.endpoint.transform]
+type = "double_sigmoid"                        # Smooth reward curve
+                                               # Formula: S(x) = 1 / (1 + exp(-k*(x-low))) - 
+                                               #                 1 / (1 + exp(-k*(x-high)))
+                                               # Benefits:
+                                               #   - Smooth gradients (no discontinuities)
+                                               #   - Tolerates moderate activity (4.0-9.0 range)
+                                               #   - Penalizes extremes gracefully
+
+low = 4.0                                      # ✨ Relaxed lower bound (Stage 1 exploration)
+high = 9.0                                     # Target upper bound (IC50 ≈ 1 nM)
+coef_div = 9.0                                 # Normalization factor
+coef_si = 8.0                                  # Steepness of lower sigmoid
+coef_se = 8.0                                  # Steepness of upper sigmoid
+                                               # Effect: Molecules with pIC50 5.5-8.0 receive
+                                               # reasonable scores (0.3-0.9 range)
+                                               # Facilitates exploration of synthetically
+                                               # accessible, moderately active compounds
+
+# ----------------------------------------------------------------------------
+# Priority 2: Chemical Stability and Reactivity
+# ----------------------------------------------------------------------------
+[[stage.scoring.component]]
+[stage.scoring.component.NumAtomStereoCenters]
+[[stage.scoring.component.NumAtomStereoCenters.endpoint]]
+name = "Stereo_Centers"
+weight = 0.7                                   # ✨ Increased from Run14a (0.6→0.7)
+                                               # Rationale: Stricter stereochemical control
+                                               # Complex stereoisomers → difficult synthesis
+                                               # Target: 0-3 stereocenters optimal
+
+[stage.scoring.component.NumAtomStereoCenters.endpoint.transform]
+type = "reverse_sigmoid"                       # Penalize high stereocenter count
+low = 0                                        # Ideal: achiral or minimal chirality
+high = 3                                       # Acceptable: up to 3 stereocenters
+k = 1.0                                        # Steepness: rapid penalty beyond 3
+
+# PAINS and Reactive Functional Groups Filter
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Stability_Alerts"
+weight = 1.5                                   # ✨ Increased from Run14a (1.2→1.5)
+                                               # Rationale: Prevent reactive/unstable molecules
+                                               # Higher weight → stronger filtering
+                                               # DGX can afford stricter constraints
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+# Comprehensive SMARTS patterns for problematic substructures
+# References:
+#   [1] Baell & Holloway, J Med Chem 2010 (PAINS)
+#   [2] Bruns & Watson, J Med Chem 2012 (Frequent hitters)
+smarts = [
+    # Macrocycles and unusual rings
+    "[*;r8]", "[*;r9]", "[*;r10]", "[*;r11]", "[*;r12]",
+    
+    # Reactive functional groups
+    "[#8][#8]",                                # Peroxides
+    "[#6;+]",                                  # Carbocations (unstable)
+    "C#C",                                     # Alkynes (potential reactivity)
+    "[NX3][NX3]",                              # Hydrazines (mutagenic)
+    "[SH]",                                    # Thiols (oxidation-prone)
+    "[N+](=O)[O-]",                            # Nitro groups (potential toxicity)
+    "S(=O)(=O)Cl",                             # Sulfonyl chlorides (reactive)
+    
+    # Polyhalogenated compounds
+    "[F,Cl,Br,I][C,c][F,Cl,Br,I]",            # Geminal/vicinal dihalides
+    
+    # Quinones and Michael acceptors
+    "c1ccc2c(c1)C(=O)c1c(C2=O)cccc1",         # Anthraquinones
+    "C1=CC(=O)C=CC1=O",                        # para-Quinones
+    
+    # Pyrrolidine substructural alerts (context-specific)
+    "[C;R1]1[C;R1][C;R1][N;R1][C;R1]1([!#1])([!#1])([!#1])",  # Tri-substituted pyrrolidine (steric clash)
+    "[C;R1]1[C;R1]([!#1])([!#1])[C;R1]([!#1])([!#1])[N;R1][C;R1]1",  # Di-geminal substituted (unstable)
+]
+# Note: These patterns are stringent for Stage 1
+# Any molecule matching returns score=0 (multiplicative penalty)
+
+# ----------------------------------------------------------------------------
+# Priority 3: Drug-likeness (QED and Synthetic Accessibility)
+# ----------------------------------------------------------------------------
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.4                                   # ✨ Increased from Run14a (0.3→0.4)
+                                               # Rationale: QED correlates with oral bioavailability
+                                               # Higher weight → more drug-like candidates
+                                               # QED range: 0.0 (bad) to 1.0 (ideal)
+                                               # Target: QED ≥ 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.6                                   # ✨ Increased from Run14a (0.5→0.6)
+                                               # Rationale: Synthetic accessibility critical
+                                               # for experimental validation
+                                               # SAScore: 1 (easy) to 10 (very difficult)
+
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"                       # Penalize high SA scores
+low = 1.0                                      # Ideal: very easy synthesis
+high = 5.5                                     # Acceptable threshold
+k = 0.8                                        # Moderate steepness
+# Effect: SA ≤ 3: score ≈ 1.0
+#         SA = 5: score ≈ 0.5
+#         SA ≥ 7: score ≈ 0.0
+
+# ----------------------------------------------------------------------------
+# Priority 4: Physicochemical Properties (Lipinski's Rule of 5)
+# ----------------------------------------------------------------------------
+
+# Molecular Weight
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.5
+
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 250.0                                    # Minimum MW for reasonable potency
+high = 550.0                                   # ✨ Reduced from 600 (stricter Ro5)
+coef_div = 550.0
+coef_si = 15.0
+coef_se = 15.0
+# Optimal range: 300-500 Da
+
+# Heavy Atom Count
+[[stage.scoring.component]]
+[stage.scoring.component.NumHeavyAtoms]
+[[stage.scoring.component.NumHeavyAtoms.endpoint]]
+name = "Heavy_Atoms"
+weight = 0.4
+
+[stage.scoring.component.NumHeavyAtoms.endpoint.transform]
+type = "double_sigmoid"
+low = 18
+high = 40                                      # ✨ Reduced from 45 (compact molecules)
+coef_div = 40.0
+coef_si = 5.0
+coef_se = 5.0
+
+# Lipophilicity (LogP)
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.4                                   # ✨ Increased from 0.3
+                                               # Lipophilicity crucial for BBB penetration
+                                               # (relevant for neuro-dengue complications)
+
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 0.5
+high = 4.5                                     # ✨ Reduced from 5.0 (avoid excessive lipophilicity)
+coef_div = 4.5
+coef_si = 10.0
+coef_se = 10.0
+# Target: LogP 2-4
+
+# Polar Surface Area
+[[stage.scoring.component]]
+[stage.scoring.component.TPSA]
+[[stage.scoring.component.TPSA.endpoint]]
+name = "TPSA"
+weight = 0.3                                   # ✨ Increased from 0.2
+
+[stage.scoring.component.TPSA.endpoint.transform]
+type = "double_sigmoid"
+low = 30.0
+high = 120.0
+coef_div = 120.0
+coef_si = 20.0
+coef_se = 20.0
+# Oral bioavailability: TPSA 60-120 Ų
+
+# Hydrogen Bond Acceptors
+[[stage.scoring.component]]
+[stage.scoring.component.HBondAcceptors]
+[[stage.scoring.component.HBondAcceptors.endpoint]]
+name = "HBA"
+weight = 0.3
+
+[stage.scoring.component.HBondAcceptors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 8                                       # Lipinski: ≤10, we use ≤8 for conservatism
+k = 0.5
+
+# Hydrogen Bond Donors
+[[stage.scoring.component]]
+[stage.scoring.component.HBondDonors]
+[[stage.scoring.component.HBondDonors.endpoint]]
+name = "HBD"
+weight = 0.3                                   # ✨ Increased from 0.2
+
+[stage.scoring.component.HBondDonors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 4                                       # Lipinski: ≤5, we use ≤4
+k = 0.5
+
+# ----------------------------------------------------------------------------
+# Priority 5: Structural Complexity
+# ----------------------------------------------------------------------------
+
+# Rotatable Bonds (molecular flexibility)
+[[stage.scoring.component]]
+[stage.scoring.component.NumRotBond]
+[[stage.scoring.component.NumRotBond.endpoint]]
+name = "Rotatable_Bonds"
+weight = 0.25
+
+[stage.scoring.component.NumRotBond.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 9                                       # Target: 3-7 rotatable bonds
+k = 0.5
+
+# Ring Count
+[[stage.scoring.component]]
+[stage.scoring.component.NumRings]
+[[stage.scoring.component.NumRings.endpoint]]
+name = "Ring_Count"
+weight = 0.25
+
+[stage.scoring.component.NumRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 5
+k = 0.5
+
+# Aromatic Rings
+[[stage.scoring.component]]
+[stage.scoring.component.NumAromaticRings]
+[[stage.scoring.component.NumAromaticRings.endpoint]]
+name = "Aromatic_Rings"
+weight = 0.2
+
+[stage.scoring.component.NumAromaticRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1
+high = 3
+k = 0.5
+
+# ============================================================================
+# STAGE 2: Focused Exploitation Phase
+# ============================================================================
+#
+# Objective: Optimize high-activity compounds in validated chemical space
+# Duration: 3,000-6,000 steps (adaptive)
+# Target: Mean Score ≥ 0.75 (higher than Stage 1)
+#
+# Scientific Rationale:
+#   Stage 2 tightens activity requirements (low=5.0, was 4.0) while
+#   maintaining diversity filters. This implements curriculum learning:
+#   easier task (Stage 1) → harder task (Stage 2).
+#
+#   Theory: Two-stage RL prevents mode collapse by first establishing
+#   diverse seed populations, then refining them [Blaschke 2020].
+#   Critical: Stage transition must occur after sufficient exploration
+#   (min_steps=5000 in Stage 1) to avoid Run13c's failure.
+#
+# Key Changes from Stage 1:
+#   1. QSAR weight: 2.8 → 3.5 (prioritize activity)
+#   2. Activity threshold: pIC50 4.0 → 5.0 (stricter)
+#   3. Diversity filter: same (preserve structural novelty)
+#   4. Learning rate: 0.00012 → 0.00010 (fine-tuning)
+#
+# ============================================================================
+[[stage]]
+max_score = 0.75                               # ✨ Higher target than Stage 1
+                                               # Achievable after Stage 1 exploration
+                                               # Empirical: Run13b peaked at 0.66
+                                               # With DGX + Stage 1 foundation → 0.75 feasible
+
+min_steps = 3000                               # ✨ Extended minimum (ensure convergence)
+max_steps = 6000                               # Maximum steps in Stage 2
+chkpt_file = "experiments/dgx_runs/run_spark_v1/stage2_checkpoint.chkpt"
+save_every_n_steps = 500                       # More frequent (Stage 2 is critical)
+
+[stage.scoring]
+type = "arithmetic_mean"
+
+# Inherit all components from Stage 1 with modifications:
+
+[[stage.scoring.component]]
+[stage.scoring.component.QSARScorer]
+[[stage.scoring.component.QSARScorer.endpoint]]
+name = "DENV_Activity"
+weight = 3.5                                   # ✨ INCREASED from 2.8 (Stage 1)
+                                               # Exploitation phase: maximize activity
+
+[stage.scoring.component.QSARScorer.endpoint.params]
+model_path = "/path/to/models/random_forest_champion.joblib"  # Same model
+
+# Transform: Stricter Activity Threshold
+[stage.scoring.component.QSARScorer.endpoint.transform]
+type = "double_sigmoid"
+low = 5.0                                      # ✨ INCREASED from 4.0
+high = 9.0                                     # Same as Stage 1
+coef_div = 9.0
+coef_si = 8.0
+coef_se = 8.0
+# Effect: Penalizes pIC50 < 5.0 more heavily
+# Focuses on moderate-to-high activity range (5.0-9.0)
+# Expected: median pIC50 shifts from 7.6 → 7.8+
+
+# All other components: SAME weights as Stage 1
+# Rationale: Maintain drug-likeness and stability constraints
+# Only activity threshold changes in Stage 2
+
+# ---- Chemical Stability ----
+[[stage.scoring.component]]
+[stage.scoring.component.NumAtomStereoCenters]
+[[stage.scoring.component.NumAtomStereoCenters.endpoint]]
+name = "Stereo_Centers"
+weight = 0.7
+
+[stage.scoring.component.NumAtomStereoCenters.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 3
+k = 1.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Stability_Alerts"
+weight = 1.5
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "[*;r8]", "[*;r9]", "[*;r10]", "[*;r11]", "[*;r12]",
+    "[#8][#8]", "[#6;+]", "C#C", "[NX3][NX3]", "[SH]",
+    "[N+](=O)[O-]", "S(=O)(=O)Cl",
+    "[F,Cl,Br,I][C,c][F,Cl,Br,I]",
+    "c1ccc2c(c1)C(=O)c1c(C2=O)cccc1",
+    "C1=CC(=O)C=CC1=O",
+    "[C;R1]1[C;R1][C;R1][N;R1][C;R1]1([!#1])([!#1])([!#1])",
+    "[C;R1]1[C;R1]([!#1])([!#1])[C;R1]([!#1])([!#1])[N;R1][C;R1]1",
+]
+
+# ---- Drug-likeness ----
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.4
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.6
+
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1.0
+high = 5.5
+k = 0.8
+
+# ---- Physicochemical Properties ----
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.5
+
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 250.0
+high = 550.0
+coef_div = 550.0
+coef_si = 15.0
+coef_se = 15.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumHeavyAtoms]
+[[stage.scoring.component.NumHeavyAtoms.endpoint]]
+name = "Heavy_Atoms"
+weight = 0.4
+
+[stage.scoring.component.NumHeavyAtoms.endpoint.transform]
+type = "double_sigmoid"
+low = 18
+high = 40
+coef_div = 40.0
+coef_si = 5.0
+coef_se = 5.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.4
+
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 0.5
+high = 4.5
+coef_div = 4.5
+coef_si = 10.0
+coef_se = 10.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.TPSA]
+[[stage.scoring.component.TPSA.endpoint]]
+name = "TPSA"
+weight = 0.3
+
+[stage.scoring.component.TPSA.endpoint.transform]
+type = "double_sigmoid"
+low = 30.0
+high = 120.0
+coef_div = 120.0
+coef_si = 20.0
+coef_se = 20.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.HBondAcceptors]
+[[stage.scoring.component.HBondAcceptors.endpoint]]
+name = "HBA"
+weight = 0.3
+
+[stage.scoring.component.HBondAcceptors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 8
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.HBondDonors]
+[[stage.scoring.component.HBondDonors.endpoint]]
+name = "HBD"
+weight = 0.3
+
+[stage.scoring.component.HBondDonors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 4
+k = 0.5
+
+# ---- Structural Complexity ----
+[[stage.scoring.component]]
+[stage.scoring.component.NumRotBond]
+[[stage.scoring.component.NumRotBond.endpoint]]
+name = "Rotatable_Bonds"
+weight = 0.25
+
+[stage.scoring.component.NumRotBond.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 9
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumRings]
+[[stage.scoring.component.NumRings.endpoint]]
+name = "Ring_Count"
+weight = 0.25
+
+[stage.scoring.component.NumRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 5
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumAromaticRings]
+[[stage.scoring.component.NumAromaticRings.endpoint]]
+name = "Aromatic_Rings"
+weight = 0.2
+
+[stage.scoring.component.NumAromaticRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1
+high = 3
+k = 0.5
+
+# ============================================================================
+# END OF CONFIGURATION
+# ============================================================================
+#
+# Expected Performance (DGX Spark):
+#   Stage 1 (10K steps @ batch=128): ~5-7 hours
+#   Stage 2 (6K steps @ batch=128):  ~3-4 hours
+#   Total runtime: ~10 hours (vs. ~20-30 hours on old hardware)
+#
+# Expected Outcomes:
+#   • ~1.5M unique molecules generated
+#   • Scaffold diversity: >70% (exceeding Run13b's 66.79%)
+#   • Median pIC50: 7.7-7.9 (higher than Run13b's 7.63)
+#   • Lipinski compliance: >95%
+#   • Novelty vs. training set: >85%
+#
+# Monitoring:
+#   tensorboard --logdir experiments/dgx_runs/run_spark_v1/tensorboard
+#   # Watch: "DENV_Activity", "Mean_Score", "Scaffold_Diversity"
+#
+# Troubleshooting:
+#   If Stage 1 doesn't reach max_score=0.68 by 10K steps:
+#   → Check QSAR model path is correct
+#   → Verify sigma=180 isn't too high (reduce to 150)
+#   → Inspect TensorBoard for NaN/Inf values
+#
+#   If scaffold diversity plateaus <70%:
+#   → Reduce bucket_size from 15 to 12
+#   → Increase sigma from 180 to 200
+#   → Check diversity filter is active (purge_memories=false)
+#
+# ============================================================================

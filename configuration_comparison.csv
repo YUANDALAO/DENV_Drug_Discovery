@@ -1,0 +1,3 @@
+Run,Run_Type,Device,Prior_Model,Agent_Model,Batch_Size,Learning_Rate,Sigma,Scoring_Type,Num_Components
+run3,staged_learning,cuda:0,denv_ultra_clean_model.model,denv_ultra_clean_model.model,64,0.0001,120.0,arithmetic_mean,10
+run4,staged_learning,cuda:0,denv_ultra_clean_model.model,denv_ultra_clean_model.model,64,0.0001,120.0,arithmetic_mean,12

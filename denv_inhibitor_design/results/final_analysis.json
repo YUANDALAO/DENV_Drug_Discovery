@@ -1,0 +1,9 @@
+{
+  "sequence_identity": 72.3598820058997,
+  "active_site_conservation": 64.28571428571429,
+  "catalytic_conserved": false,
+  "global_rmsd": 39.267440531907326,
+  "active_site_rmsd": 8.099901132799454,
+  "mean_plddt": 70.9082162162162,
+  "recommendation": "DENV2"
+}

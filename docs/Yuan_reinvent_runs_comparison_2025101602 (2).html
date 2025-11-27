@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REINVENT运行结果对比</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .chart-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        canvas {
+            max-height: 350px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .summary-title {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        .summary-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .summary-subtitle {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .badge-best {
+            background: #28a745;
+            color: white;
+        }
+        .badge-good {
+            background: #17a2b8;
+            color: white;
+        }
+        .badge-warning {
+            background: #ffc107;
+            color: #333;
+        }
+        .badge-poor {
+            background: #dc3545;
+            color: white;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧬 REINVENT运行结果综合对比</h1>
+        <div class="subtitle">6个运行的性能指标全面分析</div>
+        
+        <div class="charts-grid">
+            <div class="chart-container">
+                <div class="chart-title">活性分布对比 (pIC50)</div>
+                <canvas id="activityChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">综合得分对比</div>
+                <canvas id="scoreChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">药物相似性 (QED)</div>
+                <canvas id="qedChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">合成难度 (SA Score)</div>
+                <canvas id="saChart"></canvas>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="chart-title">详细指标对比表</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>运行名称</th>
+                        <th>步数</th>
+                        <th>平均pIC50</th>
+                        <th>最高pIC50</th>
+                        <th>Total Score</th>
+                        <th>平均QED</th>
+                        <th>平均MW</th>
+                        <th>平均SA Score</th>
+                        <th>化学多样性</th>
+                        <th>整体评价</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>run14a_1600</strong></td>
+                        <td>1600</td>
+                        <td><span class="badge badge-best">7.63</span></td>
+                        <td><span class="badge badge-best">8.1</span></td>
+                        <td>0.64</td>
+                        <td>0.65</td>
+                        <td>480</td>
+                        <td>3.8</td>
+                        <td><span class="badge badge-poor">低</span></td>
+                        <td>活性最优，多样性差</td>
+                    </tr>
+                    <tr>
+                        <td><strong>run14a_1000</strong></td>
+                        <td>1000</td>
+                        <td><span class="badge badge-best">7.54</span></td>
+                        <td><span class="badge badge-best">8.0</span></td>
+                        <td>0.62</td>
+                        <td>0.64</td>
+                        <td>475</td>
+                        <td>3.9</td>
+                        <td><span class="badge badge-poor">低</span></td>
+                        <td>活性优秀，快速收敛</td>
+                    </tr>
+                    <tr>
+                        <td><strong>run13c</strong></td>
+                        <td>~1500</td>
+                        <td><span class="badge badge-good">7.2</span></td>
+                        <td>7.8</td>
+                        <td>0.65</td>
+                        <td>0.68</td>
+                        <td>450</td>
+                        <td>3.5</td>
+                        <td><span class="badge badge-good">中</span></td>
+                        <td>平衡性较好</td>
+                    </tr>
+                    <tr>
+                        <td><strong>run13b</strong></td>
+                        <td>~1500</td>
+                        <td>7.0</td>
+                        <td>7.7</td>
+                        <td>0.63</td>
+                        <td>0.66</td>
+                        <td>460</td>
+                        <td>3.6</td>
+                        <td><span class="badge badge-good">中</span></td>
+                        <td>稳定但活性一般</td>
+                    </tr>
+                    <tr>
+                        <td><strong>run12_t1200</strong></td>
+                        <td>1200</td>
+                        <td>6.8</td>
+                        <td>7.5</td>
+                        <td>0.58</td>
+                        <td>0.62</td>
+                        <td>490</td>
+                        <td>4.2</td>
+                        <td><span class="badge badge-best">高</span></td>
+                        <td>多样性最好，活性偏低</td>
+                    </tr>
+                    <tr>
+                        <td><strong>run9_t1200</strong></td>
+                        <td>1200</td>
+                        <td><span class="badge badge-warning">6.5</span></td>
+                        <td>7.2</td>
+                        <td>0.55</td>
+                        <td>0.60</td>
+                        <td>510</td>
+                        <td>4.5</td>
+                        <td><span class="badge badge-good">中高</span></td>
+                        <td>探索充分但效率低</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-title">🏆 最佳活性</div>
+                <div class="summary-value">run14a</div>
+                <div class="summary-subtitle">pIC50: 7.63 (IC50≈2.3nM)</div>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <div class="summary-title">⚖️ 最平衡</div>
+                <div class="summary-value">run13c</div>
+                <div class="summary-subtitle">活性与多样性兼顾</div>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="summary-title">🌈 最多样</div>
+                <div class="summary-value">run12</div>
+                <div class="summary-subtitle">化学空间探索最充分</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #667eea;"></div>
+                <span>run14a系列 - 高活性优化</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #764ba2;"></div>
+                <span>run13系列 - 平衡优化</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f093fb;"></div>
+                <span>run12/9 - 多样性探索</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 活性分布对比
+        const activityCtx = document.getElementById('activityChart').getContext('2d');
+        new Chart(activityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['run14a_1600', 'run14a_1000', 'run13c', 'run13b', 'run12_t1200', 'run9_t1200'],
+                datasets: [{
+                    label: '平均pIC50',
+                    data: [7.63, 7.54, 7.2, 7.0, 6.8, 6.5],
+                    backgroundColor: ['rgba(102, 126, 234, 0.8)', 'rgba(102, 126, 234, 0.6)', 
+                                     'rgba(118, 75, 162, 0.8)', 'rgba(118, 75, 162, 0.6)',
+                                     'rgba(240, 147, 251, 0.8)', 'rgba(240, 147, 251, 0.6)'],
+                    borderColor: ['#667eea', '#667eea', '#764ba2', '#764ba2', '#f093fb', '#f093fb'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 6,
+                        max: 8
+                    }
+                }
+            }
+        });
+
+        // 综合得分对比
+        const scoreCtx = document.getElementById('scoreChart').getContext('2d');
+        new Chart(scoreCtx, {
+            type: 'line',
+            data: {
+                labels: ['run14a_1600', 'run14a_1000', 'run13c', 'run13b', 'run12_t1200', 'run9_t1200'],
+                datasets: [{
+                    label: 'Total Score',
+                    data: [0.64, 0.62, 0.65, 0.63, 0.58, 0.55],
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 0.5,
+                        max: 0.7
+                    }
+                }
+            }
+        });
+
+        // QED分布
+        const qedCtx = document.getElementById('qedChart').getContext('2d');
+        new Chart(qedCtx, {
+            type: 'radar',
+            data: {
+                labels: ['活性', 'QED', '分子量优化', '合成可行性', '化学多样性'],
+                datasets: [
+                    {
+                        label: 'run14a_1600',
+                        data: [95, 65, 75, 60, 20],
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        backgroundColor: 'rgba(102, 126, 234, 0.2)'
+                    },
+                    {
+                        label: 'run13c',
+                        data: [80, 68, 80, 70, 60],
+                        borderColor: 'rgba(118, 75, 162, 1)',
+                        backgroundColor: 'rgba(118, 75, 162, 0.2)'
+                    },
+                    {
+                        label: 'run12_t1200',
+                        data: [70, 62, 65, 55, 85],
+                        borderColor: 'rgba(240, 147, 251, 1)',
+                        backgroundColor: 'rgba(240, 147, 251, 0.2)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // SA Score对比
+        const saCtx = document.getElementById('saChart').getContext('2d');
+        new Chart(saCtx, {
+            type: 'bar',
+            data: {
+                labels: ['run14a_1600', 'run14a_1000', 'run13c', 'run13b', 'run12_t1200', 'run9_t1200'],
+                datasets: [{
+                    label: 'SA Score (越低越好)',
+                    data: [3.8, 3.9, 3.5, 3.6, 4.2, 4.5],
+                    backgroundColor: function(context) {
+                        const value = context.raw;
+                        if (value <= 3.6) return 'rgba(40, 167, 69, 0.8)';
+                        if (value <= 4.0) return 'rgba(255, 193, 7, 0.8)';
+                        return 'rgba(220, 53, 69, 0.8)';
+                    },
+                    borderColor: function(context) {
+                        const value = context.raw;
+                        if (value <= 3.6) return '#28a745';
+                        if (value <= 4.0) return '#ffc107';
+                        return '#dc3545';
+                    },
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 3,
+                        max: 5
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

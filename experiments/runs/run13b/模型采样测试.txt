@@ -1,0 +1,18 @@
+# 创建sampling配置
+cat > test_pretrain_model.toml << 'EOF'
+run_type = "sampling"
+device = "cuda:0"
+
+[parameters]
+model_file = "priors/denv_libinvent_model.model"
+smiles_file = "data/pyrrolidine_dual_aryl.smi"  # 你的scaffold
+output_file = "test_samples.csv"
+num_smiles = 100
+unique_molecules = true
+EOF
+
+# 运行采样
+reinvent test_pretrain_model.toml
+
+# 查看结果
+head -20 test_samples.csv

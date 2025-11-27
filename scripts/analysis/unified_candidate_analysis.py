@@ -217,8 +217,12 @@ class CandidateAnalyzer:
                 print(f"\n⚠️  {criteria_name}: 无候选物，跳过可视化")
                 continue
             
-            n_mols = min(n_per_criteria, len(df))
-            print(f"\n📸 {criteria_name}: 生成 Top {n_mols} 分子结构图...")
+            # 替换为：
+            if criteria_name == 'gold':
+                n_mols = len(df)  # 金标准使用全部
+            else:
+                n_mols = min(n_per_criteria, len(df))  # 其他保持10个
+                print(f"\n📸 {criteria_name}: 生成 Top {n_mols} 分子结构图...")
             
             top_df = df.head(n_mols)
             
@@ -253,7 +257,7 @@ class CandidateAnalyzer:
                 continue
             
             # 生成图像
-            n_cols = min(4, len(mols))
+            n_cols = min(11, len(mols))
             n_rows = (len(mols) + n_cols - 1) // n_cols
             
             img = Draw.MolsToGridImage(

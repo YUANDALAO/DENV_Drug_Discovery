@@ -1,0 +1,4 @@
+Run,n_molecules,n_gold,n_high,n_good,total_score_mean,total_score_std,total_score_min,total_score_max,total_score_median,logp_mean,logp_std,logp_min,logp_max,logp_median,config_run_type,config_device,config_scoring_type,config_learning_rate,config_sigma,config_batch_size
+archive,,,,,,,,,,,,,,,,,,,,
+run3,122551.0,0.0,0.0,0.0,0.4209991484810406,0.12383385586364891,0.0,0.4919639,0.4767952,0.9290798316662587,0.2430648916327493,0.0,1.0,0.9999957,staged_learning,cuda:0,,0.0001,120.0,64.0
+run4,125965.0,0.0,0.0,0.0,0.31804251109673326,0.07783941541244072,0.0,0.356659,0.3399025,0.8508481565077601,0.3353704107100957,0.0,1.0,0.9999924,staged_learning,cuda:0,,0.0001,120.0,64.0

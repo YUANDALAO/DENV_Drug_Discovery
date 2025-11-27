@@ -1,0 +1,4 @@
+TensorFlow installation not found - running with reduced feature set.
+TensorBoard 2.20.0 at http://0.0.0.0:6008/ (Press CTRL+C to quit)
+E1018 10:36:51.625357 140361391400640 _internal.py:97] 172.30.144.1 - - [18/Oct/2025 10:36:51] code 400, message Bad request version ('X<Ö\x8eÕ\x8acë\x01+Ä;æ')
+E1018 10:36:51.628818 140361391400640 _internal.py:97] 172.30.144.1 - - [18/Oct/2025 10:36:51] code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93')

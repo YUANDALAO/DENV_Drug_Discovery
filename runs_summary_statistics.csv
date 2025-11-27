@@ -1,0 +1,4 @@
+Run,Total_Molecules,Gold_Count,High_Count,Good_Count,Mean_QSAR_pIC50,Mean_QED,Mean_MW,Mean_Score
+archive,0,0,0,0,0.00,0.000,0.0,0.000
+run3,122551,0,0,0,0.00,0.000,0.0,0.421
+run4,125965,0,0,0,0.00,0.000,0.0,0.318

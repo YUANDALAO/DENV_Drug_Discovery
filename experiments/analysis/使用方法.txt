@@ -1,12 +1,15 @@
 # 以这个为准（2025/10/08）
 
-
+cd /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main
 # 创建目录
 mkdir -p experiments/runs/run8_aggressive
 # 开始跑
 reinvent experiments/runs/run8_aggressive/config.toml 2>&1 | tee experiments/runs/run8_aggressive/training.log &
 # 开始分析
-python unified_candidate_analysis.py experiments/runs/run12_t1200
+
+
+
+python scripts/analysis/unified_candidate_analysis.py experiments/runs/run13b
 python visualize_top_structures_fixed.py experiments/runs/run3
 python visualize_full_analysis_fixed.py experiments/runs/run3
 

@@ -1,0 +1,10 @@
+Component,run3,run4
+CustomAlerts,1.0,1.0
+HBondAcceptors,0.2,0.2
+HBondDonors,0.2,0.2
+MatchingSubstructure,2.0,1.0
+MolecularWeight,0.3,0.3
+QSARScorer,1.5,1.5
+Qed,0.5,0.5
+SAScore,0.4,0.4
+SlogP,0.3,0.3
