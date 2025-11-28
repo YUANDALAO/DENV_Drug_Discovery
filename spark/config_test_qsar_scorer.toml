@@ -1,0 +1,75 @@
+# ============================================================================
+# REINVENT4 LibInvent - 测试qsar_scorer组件名
+# ============================================================================
+
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "experiments/runs/spark_run1/tensorboard"
+json_out_config = "experiments/runs/spark_run1/_config.json"
+
+[parameters]
+summary_csv_prefix = "experiments/runs/spark_run1/results"
+use_checkpoint = true
+purge_memories = false
+
+prior_file = "priors/libinvent.prior"
+agent_file = "priors/denv_libinvent_model_v2.model"
+smiles_file = "data/pyrrolidine_dual_aryl.smi"
+
+batch_size = 512
+unique_sequences = true
+randomize_smiles = false
+
+[learning_strategy]
+type = "dap"
+sigma = 128
+rate = 0.00015
+
+[diversity_filter]
+type = "IdenticalMurckoScaffold"
+bucket_size = 15
+minscore = 0.6
+
+[inception]
+smiles_file = "data/pyrrolidine_dual_aryl.smi"
+memory_size = 100
+sample_size = 20
+
+[[stage]]
+max_score = 0.85
+min_steps = 100
+max_steps = 300
+chkpt_file = "experiments/runs/spark_run1/checkpoint_stage1.chkpt"
+
+[stage.scoring]
+type = "arithmetic_mean"
+
+# ========================================
+# 测试不同的QSAR组件名称
+# 这次使用 qsar_scorer (基于文件名)
+# ========================================
+[[stage.scoring.component]]
+[stage.scoring.component.qsar_scorer]    # ← 试试这个
+
+[[stage.scoring.component.qsar_scorer.endpoint]]
+name = "DENV_Activity"
+weight = 3.0
+
+[stage.scoring.component.qsar_scorer.endpoint.params]
+model_path = "models/random_forest_champion.joblib"
+
+[stage.scoring.component.qsar_scorer.endpoint.transform]
+type = "double_sigmoid"
+low = 4.5
+high = 9.0
+coef_div = 9.0
+coef_si = 8.0
+coef_se = 8.0
+
+# 其他组件
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 1.0
