@@ -271,7 +271,9 @@ reinvent_plugins/components/comp_icolos.py
 reinvent_plugins/components/comp_maize.py
 reinvent_plugins/components/comp_mmp.py
 reinvent_plugins/components/comp_qptuna.py
+reinvent_plugins/components/comp_qsar_scorer.py
 reinvent_plugins/components/comp_reaction_filter.py
+reinvent_plugins/components/comp_scaffold_matcher.py
 reinvent_plugins/components/component_results.py
 reinvent_plugins/components/run_program.py
 reinvent_plugins/components/OpenEye/__init__.py

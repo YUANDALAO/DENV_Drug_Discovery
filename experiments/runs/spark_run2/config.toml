@@ -1,0 +1,132 @@
+# REINVENT4 LibInvent Configuration - NVIDIA DGX Spark Optimized
+# Generated at 2025-11-28 11:25:40
+
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "experiments/runs/spark_run2/tensorboard"
+json_out_config = "experiments/runs/spark_run2/_config.json"
+
+[parameters]
+summary_csv_prefix = "experiments/runs/spark_run2/results"
+use_checkpoint = true
+purge_memories = false
+
+prior_file = "priors/libinvent.prior"
+agent_file = "priors/denv_libinvent_model_v2.model"
+smiles_file = "data/pyrrolidine_dual_aryl.smi"
+
+# DGX Spark优化
+batch_size = 512
+unique_sequences = true
+randomize_smiles = true
+
+[learning_strategy]
+type = "dap"
+sigma = 128
+rate = 0.00015
+
+[diversity_filter]
+type = "IdenticalMurckoScaffold"
+bucket_size = 15
+minscore = 0.6
+
+[inception]
+smiles_file = "data/pyrrolidine_dual_aryl.smi"
+memory_size = 100
+sample_size = 20
+
+[[stage]]
+max_score = 0.85
+min_steps = 1000
+max_steps = 5000
+chkpt_file = "experiments/runs/spark_run2/checkpoint_stage1.chkpt"
+
+[stage.scoring]
+type = "arithmetic_mean"
+
+# QSAR Activity Prediction
+[[stage.scoring.component]]
+[stage.scoring.component.qsar_scorer]
+[[stage.scoring.component.qsar_scorer.endpoint]]
+name = "DENV_Activity"
+weight = 3.0
+[stage.scoring.component.qsar_scorer.endpoint.params]
+model_path = "models/random_forest_champion.joblib"
+[stage.scoring.component.qsar_scorer.endpoint.transform]
+type = "double_sigmoid"
+low = 4.5
+high = 9.0
+coef_div = 9.0
+coef_si = 8.0
+coef_se = 8.0
+
+# Stereochemistry
+[[stage.scoring.component]]
+[stage.scoring.component.NumAtomStereoCenters]
+[[stage.scoring.component.NumAtomStereoCenters.endpoint]]
+name = "Stereo_Centers"
+weight = 0.6
+[stage.scoring.component.NumAtomStereoCenters.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 3
+k = 1.0
+
+# Chemical Stability Alerts
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Stability_Alerts"
+weight = 1.2
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "[*;r8]", "[*;r9]", "[*;r10]", "[*;r11]",
+    "[#8][#8]", "[#6;+]", "C#C", "[NX3][NX3]",
+    "[SH]", "[N+](=O)[O-]", "S(=O)(=O)Cl",
+    "[F,Cl,Br,I][C,c][F,Cl,Br,I]",
+]
+
+# Drug-likeness
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.4
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.5
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1.0
+high = 5.0
+k = 0.8
+
+# Molecular Properties
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.5
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 280.0
+high = 550.0
+coef_div = 550.0
+coef_si = 15.0
+coef_se = 15.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.4
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 1.0
+high = 4.5
+coef_div = 4.5
+coef_si = 10.0
+coef_se = 10.0

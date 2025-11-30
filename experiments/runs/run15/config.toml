@@ -1,6 +1,6 @@
 # Run15 另加三个毒性组件(Run14a: 基于Run13b的优化版)
 # 核心改进：
-Toxicity_Alerts, PAINS_Filter, Metabolic_Stability
+#  Toxicity_Alerts, PAINS_Filter, Metabolic_Stability
 # 1. 延长探索期（防止早熟收敛）
 # 2. 略微降低学习率（更细致优化）
 # 3. 提高QSAR权重（强化活性导向）
@@ -49,7 +49,7 @@ sample_size = 5                # ✨ 从3增加到5（增强diversity sampling�
 max_score = 0.85               # ✨ 提高目标（从0.80到0.85）
 min_steps = 3000               # ✨ 强制至少3000步（防止早熟，从1500延长）
 max_steps = 6000               # 保持6000步上限
-chkpt_file = "experiments/runs/run14a/checkpoint.chkpt"
+chkpt_file = "experiments/runs/run15/checkpoint.chkpt"
 
 [stage.scoring]
 type = "arithmetic_mean"
@@ -64,7 +64,7 @@ name = "DENV_Activity"
 weight = 3.0                   # ✨ 从2.5提高到3.0（强化活性导向）
 
 [stage.scoring.component.QSARScorer.endpoint.params]
-model_path = "/mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/02_ML_Modeling/models/random_forest_champion.joblib"
+model_path = "models/random_forest_champion.joblib"
 
 # 保持Run13b成功的double_sigmoid配置
 [stage.scoring.component.QSARScorer.endpoint.transform]

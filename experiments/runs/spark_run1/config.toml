@@ -1,0 +1,299 @@
+# REINVENT4 LibInvent Configuration - NVIDIA DGX Spark Optimized
+# Generated at 2025-11-29 11:22:42
+
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "experiments/runs/spark_run1/tensorboard"
+json_out_config = "experiments/runs/spark_run1/_config.json"
+
+[parameters]
+summary_csv_prefix = "experiments/runs/spark_run1/results"
+use_checkpoint = true
+purge_memories = false
+
+prior_file = "priors/libinvent.prior"
+agent_file = "priors/denv_libinvent_model_v2.model"
+smiles_file = "data/pyrrolidine_dual_aryl_fixed.smi"
+
+# DGX Spark优化
+batch_size = 512
+unique_sequences = true
+randomize_smiles = false
+
+[learning_strategy]
+type = "dap"
+sigma = 128
+rate = 0.00015
+
+[diversity_filter]
+type = "IdenticalMurckoScaffold"
+bucket_size = 15
+minscore = 0.6
+
+[inception]
+smiles_file = "data/pyrrolidine_dual_aryl_fixed_fixed.smi"
+memory_size = 100
+sample_size = 20
+
+[[stage]]
+max_score = 0.85
+min_steps = 1000
+max_steps = 5000
+chkpt_file = "experiments/runs/spark_run1/checkpoint_stage1.chkpt"
+
+[stage.scoring]
+type = "arithmetic_mean"
+
+# QSAR Activity Prediction
+[[stage.scoring.component]]
+[stage.scoring.component.QSAR_scorer]
+[[stage.scoring.component.QSAR_scorer.endpoint]]
+name = "DENV_Activity"
+weight = 2.5
+[stage.scoring.component.QSAR_scorer.endpoint.params]
+model_path = "models/random_forest_champion.joblib"
+[stage.scoring.component.QSAR_scorer.endpoint.transform]
+type = "double_sigmoid"
+low = 4.5
+high = 9.0
+coef_div = 9.0
+coef_si = 8.0
+coef_se = 8.0
+
+# Stereochemistry
+[[stage.scoring.component]]
+[stage.scoring.component.NumAtomStereoCenters]
+[[stage.scoring.component.NumAtomStereoCenters.endpoint]]
+name = "Stereo_Centers"
+weight = 0.6
+[stage.scoring.component.NumAtomStereoCenters.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 3
+k = 1.0
+
+# Chemical Stability Alerts
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Stability_Alerts"
+weight = 1.2
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    "[*;r8]", "[*;r9]", "[*;r10]",
+    "[#8][#8]",
+    "[#6;+]",
+    "C#C",
+    "[NX3][NX3]",
+    "[SH]",
+    "[N+](=O)[O-]",
+    "S(=O)(=O)Cl",
+    "[F,Cl,Br,I][C,c][F,Cl,Br,I]",
+    "c1ccc2c(c1)C(=O)c1c(C2=O)cccc1",
+    "C1=CC(=O)C=CC1=O",
+    "[C;R1]1[C;R1][C;R1][N;R1][C;R1]1([!#1])([!#1])([!#1])",
+    "[C;R1]1[C;R1]([!#1])([!#1])[C;R1]([!#1])([!#1])[N;R1][C;R1]1",
+]
+
+# Drug-likeness
+[[stage.scoring.component]]
+[stage.scoring.component.Qed]
+[[stage.scoring.component.Qed.endpoint]]
+name = "QED"
+weight = 0.3
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SA"
+weight = 0.4
+[stage.scoring.component.SAScore.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1.0
+high = 5.5
+k = 0.8
+
+# Molecular Properties
+[[stage.scoring.component]]
+[stage.scoring.component.MolecularWeight]
+[[stage.scoring.component.MolecularWeight.endpoint]]
+name = "MW"
+weight = 0.5
+[stage.scoring.component.MolecularWeight.endpoint.transform]
+type = "double_sigmoid"
+low = 280.0
+high = 600.0
+coef_div = 600.0
+coef_si = 15.0
+coef_se = 15.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumHeavyAtoms]
+[[stage.scoring.component.NumHeavyAtoms.endpoint]]
+name = "Heavy_Atoms"
+weight = 0.4
+[stage.scoring.component.NumHeavyAtoms.endpoint.transform]
+type = "double_sigmoid"
+low = 18
+high = 45
+coef_div = 45.0
+coef_si = 5.0
+coef_se = 5.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.SlogP]
+[[stage.scoring.component.SlogP.endpoint]]
+name = "LogP"
+weight = 0.3
+[stage.scoring.component.SlogP.endpoint.transform]
+type = "double_sigmoid"
+low = 0.5
+high = 5.0
+coef_div = 5.0
+coef_si = 10.0
+coef_se = 10.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.TPSA]
+[[stage.scoring.component.TPSA.endpoint]]
+name = "TPSA"
+weight = 0.2
+[stage.scoring.component.TPSA.endpoint.transform]
+type = "double_sigmoid"
+low = 30.0
+high = 120.0
+coef_div = 120.0
+coef_si = 20.0
+coef_se = 20.0
+
+[[stage.scoring.component]]
+[stage.scoring.component.HBondAcceptors]
+[[stage.scoring.component.HBondAcceptors.endpoint]]
+name = "HBA"
+weight = 0.3
+[stage.scoring.component.HBondAcceptors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 8
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.HBondDonors]
+[[stage.scoring.component.HBondDonors.endpoint]]
+name = "HBD"
+weight = 0.2
+[stage.scoring.component.HBondDonors.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 4
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumRotBond]
+[[stage.scoring.component.NumRotBond.endpoint]]
+name = "Rotatable_Bonds"
+weight = 0.2
+[stage.scoring.component.NumRotBond.endpoint.transform]
+type = "reverse_sigmoid"
+low = 0
+high = 9
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumRings]
+[[stage.scoring.component.NumRings.endpoint]]
+name = "Ring_Count"
+weight = 0.2
+[stage.scoring.component.NumRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 2
+high = 5
+k = 0.5
+
+[[stage.scoring.component]]
+[stage.scoring.component.NumAromaticRings]
+[[stage.scoring.component.NumAromaticRings.endpoint]]
+name = "Aromatic_Rings"
+weight = 0.15
+[stage.scoring.component.NumAromaticRings.endpoint.transform]
+type = "reverse_sigmoid"
+low = 1
+high = 3
+k = 0.5
+
+# toxic alerts, originated from run15
+# 1. 扩展的毒性警报
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Toxicity_Alerts"
+weight = 1.5  # 高权重，因为安全性重要
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    # 致突变性结构
+    "N=N",  # 偶氮化合物
+    "[N;R0]=[N;R0][#6]",  # 重氮化合物
+    "C(=O)N(N)C(=O)",  # 肼衍生物
+    "[#6][N+](=O)[O-]",  # 硝基芳烃
+    
+    # 反应性/毒性官能团
+    "C(=O)Cl",  # 酰氯
+    "OS(=O)(=O)[#6]",  # 磺酸酯
+    "[#6]S(=O)(=O)F",  # 磺酰氟
+    "C(=O)C(=O)",  # α-二酮
+    "[#6]OO[#6]",  # 过氧化物
+    
+    # 潜在心脏毒性
+    "[#6]c1ccc(F)cc1",  # 对氟苯基（hERG风险）
+    "CN1CCN(CC1)c2",  # 哌嗪片段（某些情况）
+    
+    # 肝毒性相关
+    "c1ccccc1[N+](=O)[O-]",  # 硝基苯
+    "Nc1ccc(cc1)S(=O)(=O)N",  # 磺胺类
+    
+    # 基因毒性
+    "[#6]=[#6]-[#6]=[O,S]",  # Michael受体
+    "C=CC(=O)[#6,#7,#8]",  # α,β-不饱和羰基
+    "[#7]-[#7]=C",  # 腙类
+    
+    # 其他高风险结构
+    "[Cl,Br,I][#6][Cl,Br,I]",  # 二卤代烷
+    "c1cc2OCOc2cc1",  # 亚甲二氧基（某些情况）
+    "[P,S][F,Cl,Br,I]",  # 含卤素的磷/硫化合物
+]
+
+# 2. PAINS (Pan-Assay INterference compoundS) 过滤
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "PAINS_Filter"
+weight = 0.8
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    # 常见PAINS结构
+    "[#6]=[#6](C(=O)O[#6])C(=O)N",  # 烯胺类
+    "O=C1C=CC(=O)C=C1",  # 醌类
+    "[#6]=N-N=[#6]",  # 偶氮化合物
+    "c1ccc(cc1)S(=O)(=O)O",  # 芳基磺酸
+    "[OH]c1ccccc1[OH]",  # 邻苯二酚
+    "N=C1C=CC(=N)C=C1",  # 醌亚胺
+]
+
+# 3. 代谢稳定性（避免快速代谢的结构）
+[[stage.scoring.component]]
+[stage.scoring.component.CustomAlerts]
+[[stage.scoring.component.CustomAlerts.endpoint]]
+name = "Metabolic_Stability"
+weight = 0.6
+
+[stage.scoring.component.CustomAlerts.endpoint.params]
+smarts = [
+    # 易代谢位点
+    "[#6]O[#6](C)C",  # 叔丁基醚（易脱烷基）
+    "c1ccccc1OC",  # 苯甲醚（易O-去甲基化）
+    "[#7]C(C)(C)C",  # 叔丁胺（易N-去烷基化）
+    "c1ccccc1[CH3]",  # 甲苯（易氧化）
+    "[#6][CH2][OH]",  # 伯醇（易氧化）
+]
