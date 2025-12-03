@@ -1,0 +1,5 @@
+/home/august/miniconda3/envs/reinvent4/lib/python3.10/site-packages/tensorboard/default.py:30: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+TensorFlow installation not found - running with reduced feature set.
+E1130 18:24:41.919650 276151537723968 program.py:300] TensorBoard could not bind to port 6007, it was already in use
+ERROR: TensorBoard could not bind to port 6007, it was already in use

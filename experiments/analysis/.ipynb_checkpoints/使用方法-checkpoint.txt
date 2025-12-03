@@ -1,0 +1,57 @@
+# 以这个为准（2025/10/08）
+
+cd /mnt/c/Users/ucsaheu/python_projects/DENV_Drug_Discovery/05_Generative_AI_REINVENT/REINVENT4-main
+# 创建目录
+mkdir -p experiments/runs/run8_aggressive
+# 开始跑
+reinvent experiments/runs/run8_aggressive/config.toml 2>&1 | tee experiments/runs/run8_aggressive/training.log &
+# 开始分析
+
+
+
+python scripts/analysis/unified_candidate_analysis.py experiments/runs/run13b
+python visualize_top_structures_fixed.py experiments/runs/run3
+python visualize_full_analysis_fixed.py experiments/runs/run3
+
+python visualize_top_structures_fixed.py experiments/runs/run9_t1200
+python visualize_full_analysis_fixed.py experiments/runs/run9_t1200
+python analyze_top_candidates.py experiments/runs/run9_t1200
+
+reinvent experiments/runs/run9/config.toml 2>&1 | tee experiments/runs/run9/training.log &
+
+reinvent experiments/runs/run10_safe_mode/config.toml 2>&1 | tee experiments/runs/run10_safe_mode/training.log &
+
+
+reinvent experiments/runs/run9/config.toml > experiments/runs/run9/training.log 2>&1 &
+
+# 10. 监控
+tail -f experiments/runs/run10_safe_mode/training.log
+
+
+bash# 1. 停止所有Python进程
+pkill -9 python
+
+# 2. 等待5秒
+sleep 5
+
+# 3. 检查GPU
+nvidia-smi
+
+# 如果还有残留进程，找到PID并杀掉
+nvidia-smi | grep python
+# 记下PID
+kill -9 <PID>
+
+（2025/10/05）
+# Run3分析
+python analyze_results.py experiments/runs/run3
+python visualize_results.py experiments/runs/run3
+
+# Run2分析（以后只需改路径）
+python analyze_results.py experiments/runs/run2
+python visualize_results.py experiments/runs/run2
+
+# 任何其他run
+python analyze_results.py experiments/runs/runX
+
+

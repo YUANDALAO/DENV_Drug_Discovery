@@ -1,0 +1,24 @@
+
+实验名称: baseline_run2
+完成时间: 2025-12-02 09:37:58
+
+配置参数:
+  batch_size:    64
+  sigma:         200
+  learning_rate: 0.0002
+  bucket_size:   20
+  max_steps:     500
+
+结果文件:
+  /home/august/aidd/DENV_Drug_Discovery/experiments/runs/baseline_run2/
+  ├── config.toml
+  ├── results_1.csv
+  ├── gold_candidates.csv
+  ├── baseline_analysis.png
+  ├── training.log
+  └── tensorboard/
+
+下一步实验建议:
+  1. High Explore: sigma=200, rate=0.00005, bucket_size=10
+  2. Fast Converge: sigma=80, rate=0.0002, bucket_size=30
+  3. 根据Baseline结果调整权重
