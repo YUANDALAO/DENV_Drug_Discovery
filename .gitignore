@@ -208,3 +208,4 @@ contrib/
 
 # 1. 允许所有层级的子文件夹（比如 a/candidates_gold.csv、a/b/candidates_gold.csv 都生效）
 !**/candidates_gold.csv
+!denv_libinvent_model_v2.model
